@@ -13,7 +13,7 @@
 //==============================================================================
 /**
 */
-class JDelayAudioProcessor  : public juce::AudioProcessor
+class JDelayAudioProcessor : public juce::AudioProcessor
 {
 public:
     //==============================================================================

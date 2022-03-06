@@ -12,12 +12,12 @@
 //==============================================================================
 JDelayAudioProcessor::JDelayAudioProcessor()
 #ifndef JucePlugin_PreferredChannelConfigurations
-     : AudioProcessor (BusesProperties()
+     : AudioProcessor(BusesProperties()
                      #if ! JucePlugin_IsMidiEffect
                       #if ! JucePlugin_IsSynth
-                       .withInput  ("Input",  juce::AudioChannelSet::stereo(), true)
+                       .withInput("Input",  juce::AudioChannelSet::stereo(), true)
                       #endif
-                       .withOutput ("Output", juce::AudioChannelSet::stereo(), true)
+                       .withOutput("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
                        )
 #endif
@@ -77,21 +77,21 @@ int JDelayAudioProcessor::getCurrentProgram()
     return 0;
 }
 
-void JDelayAudioProcessor::setCurrentProgram (int index)
+void JDelayAudioProcessor::setCurrentProgram(int index)
 {
 }
 
-const juce::String JDelayAudioProcessor::getProgramName (int index)
+const juce::String JDelayAudioProcessor::getProgramName(int index)
 {
     return {};
 }
 
-void JDelayAudioProcessor::changeProgramName (int index, const juce::String& newName)
+void JDelayAudioProcessor::changeProgramName(int index, const juce::String& newName)
 {
 }
 
 //==============================================================================
-void JDelayAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
+void JDelayAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
@@ -104,7 +104,7 @@ void JDelayAudioProcessor::releaseResources()
 }
 
 #ifndef JucePlugin_PreferredChannelConfigurations
-bool JDelayAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) const
+bool JDelayAudioProcessor::isBusesLayoutSupported(const BusesLayout& layouts) const
 {
   #if JucePlugin_IsMidiEffect
     juce::ignoreUnused (layouts);
@@ -129,7 +129,7 @@ bool JDelayAudioProcessor::isBusesLayoutSupported (const BusesLayout& layouts) c
 }
 #endif
 
-void JDelayAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
+void JDelayAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
     juce::ScopedNoDenormals noDenormals;
     auto totalNumInputChannels  = getTotalNumInputChannels();
@@ -170,14 +170,14 @@ juce::AudioProcessorEditor* JDelayAudioProcessor::createEditor()
 }
 
 //==============================================================================
-void JDelayAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
+void JDelayAudioProcessor::getStateInformation(juce::MemoryBlock& destData)
 {
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
 }
 
-void JDelayAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
+void JDelayAudioProcessor::setStateInformation(const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.

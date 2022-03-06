@@ -17,11 +17,11 @@
 class JDelayAudioProcessorEditor : public juce::AudioProcessorEditor
 {
 public:
-    JDelayAudioProcessorEditor (JDelayAudioProcessor&);
+    JDelayAudioProcessorEditor(JDelayAudioProcessor&);
     ~JDelayAudioProcessorEditor() override;
 
     //==============================================================================
-    void paint (juce::Graphics&) override;
+    void paint(juce::Graphics&) override;
     void resized() override;
 
 private:
