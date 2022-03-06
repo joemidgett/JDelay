@@ -22,10 +22,12 @@ JDelayAudioProcessor::JDelayAudioProcessor()
                        )
 #endif
 {
+
 }
 
 JDelayAudioProcessor::~JDelayAudioProcessor()
 {
+
 }
 
 //==============================================================================

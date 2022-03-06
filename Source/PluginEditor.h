@@ -12,8 +12,6 @@
 #include "PluginProcessor.h"
 
 //==============================================================================
-/**
-*/
 class JDelayAudioProcessorEditor : public juce::AudioProcessorEditor
 {
 public:
