@@ -56,6 +56,218 @@ of GUI controls. See the book reference for more details.
 enum class delayUpdateType { kLeftAndRight, kLeftPlusRatio };
 
 /**
+@doLinearInterpolation
+\ingroup FX-Functions
+
+@brief performs linear interpolation of x distance between two (x,y) points;
+returns interpolated value
+
+\param x1 - the x coordinate of the first point
+\param x2 - the x coordinate of the second point
+\param y1 - the y coordinate of the first point
+\param y2 - the 2 coordinate of the second point
+\param x - the interpolation location
+\return the interpolated value or y1 if the x coordinates are unusable
+*/
+inline double doLinearInterpolation(double x1, double x2, double y1, double y2, double x)
+{
+	double denom = x2 - x1;
+	if (denom == 0)
+		return y1; // --- should not ever happen
+
+	// --- calculate decimal position of x
+	double dx = (x - x1) / (x2 - x1);
+
+	// --- use weighted sum method of interpolating
+	return dx * y2 + (1 - dx) * y1;
+}
+
+/**
+@doLinearInterpolation
+\ingroup FX-Functions
+
+@brief performs linear interpolation of fractional x distance between two adjacent (x,y) points;
+returns interpolated value
+
+\param y1 - the y coordinate of the first point
+\param y2 - the 2 coordinate of the second point
+\param x - the interpolation location as a fractional distance between x1 and x2 (which are not needed)
+\return the interpolated value or y2 if the interpolation is outside the x interval
+*/
+inline double doLinearInterpolation(double y1, double y2, double fractional_X)
+{
+	// --- check invalid condition
+	if (fractional_X >= 1.0) return y2;
+
+	// --- use weighted sum method of interpolating
+	return fractional_X * y2 + (1.0 - fractional_X) * y1;
+}
+
+/**
+\class IAudioSignalProcessor
+\ingroup Interfaces
+\brief
+Use this interface for objects that process audio input samples to produce audio output samples. A derived class must implement the three abstract methods. The others are optional.
+
+\author Will Pirkle http://www.willpirkle.com
+\remark This object is included in Designing Audio Effects Plugins in C++ 2nd Ed. by Will Pirkle
+\version Revision : 1.0
+\date Date : 2018 / 09 / 7
+*/
+class IAudioSignalProcessor
+{
+public:
+	// --- pure virtual, derived classes must implement or will not compile
+	//     also means this is a pure abstract base class and is incomplete,
+	//     so it can only be used as a base class
+	//
+	/** initialize the object with the new sample rate */
+	virtual bool reset(double _sampleRate) = 0;
+
+	/** process one sample in and out */
+	virtual double processAudioSample(double xn) = 0;
+
+	/** return true if the derived object can process a frame, false otherwise */
+	virtual bool canProcessAudioFrame() = 0;
+
+	/** set or change the sample rate; normally this is done during reset( ) but may be needed outside of initialzation */
+	virtual void setSampleRate(double _sampleRate) {}
+
+	/** switch to enable/disable the aux input */
+	virtual void enableAuxInput(bool enableAuxInput) {}
+
+	/** for processing objects with a sidechain input or other necessary aux input
+			the return value is optional and will depend on the subclassed object */
+	virtual double processAuxInputAudioSample(double xn)
+	{
+		// --- do nothing
+		return xn;
+	}
+
+	/** for processing objects with a sidechain input or other necessary aux input
+	--- optional processing function
+		e.g. does not make sense for some objects to implement this such as inherently mono objects like Biquad
+			 BUT a processor that must use both left and right channels (ping-pong delay) would require it */
+	virtual bool processAudioFrame(const float* inputFrame,		/* ptr to one frame of data: pInputFrame[0] = left, pInputFrame[1] = right, etc...*/
+		float* outputFrame,
+		uint32_t inputChannels,
+		uint32_t outputChannels)
+	{
+		// --- do nothing
+		return false; // NOT handled
+	}
+};
+
+/**
+\class CircularBuffer
+\ingroup FX-Objects
+\brief
+The CircularBuffer object implements a simple circular buffer. It uses a wrap mask to wrap the read or write index quickly.
+
+\author Will Pirkle http://www.willpirkle.com
+\remark This object is included in Designing Audio Effects Plugins in C++ 2nd Ed. by Will Pirkle
+\version Revision : 1.0
+\date Date : 2018 / 09 / 7
+*/
+/** A simple cyclic buffer: NOTE - this is NOT an IAudioSignalProcessor or IAudioSignalGenerator
+	S must be a power of 2.
+*/
+template <typename T>
+class CircularBuffer
+{
+public:
+	CircularBuffer() {}		/* C-TOR */
+	~CircularBuffer() {}	/* D-TOR */
+
+							/** flush buffer by resetting all values to 0.0 */
+	void flushBuffer() { memset(&buffer[0], 0, bufferLength * sizeof(T)); }
+
+	/** Create a buffer based on a target maximum in SAMPLES
+	//	   do NOT call from realtime audio thread; do this prior to any processing */
+	void createCircularBuffer(unsigned int _bufferLength)
+	{
+		// --- find nearest power of 2 for buffer, and create
+		createCircularBufferPowerOfTwo((unsigned int)(pow(2, ceil(log(_bufferLength) / log(2)))));
+	}
+
+	/** Create a buffer based on a target maximum in SAMPLESwhere the size is
+		pre-calculated as a power of two */
+	void createCircularBufferPowerOfTwo(unsigned int _bufferLengthPowerOfTwo)
+	{
+		// --- reset to top
+		writeIndex = 0;
+
+		// --- find nearest power of 2 for buffer, save it as bufferLength
+		bufferLength = _bufferLengthPowerOfTwo;
+
+		// --- save (bufferLength - 1) for use as wrapping mask
+		wrapMask = bufferLength - 1;
+
+		// --- create new buffer
+		buffer.reset(new T[bufferLength]);
+
+		// --- flush buffer
+		flushBuffer();
+	}
+
+	/** write a value into the buffer; this overwrites the previous oldest value in the buffer */
+	void writeBuffer(T input)
+	{
+		// --- write and increment index counter
+		buffer[writeIndex++] = input;
+
+		// --- wrap if index > bufferlength - 1
+		writeIndex &= wrapMask;
+	}
+
+	/** read an arbitrary location that is delayInSamples old */
+	T readBuffer(int delayInSamples)//, bool readBeforeWrite = true)
+	{
+		// --- subtract to make read index
+		//     note: -1 here is because we read-before-write,
+		//           so the *last* write location is what we use for the calculation
+		int readIndex = (writeIndex - 1) - delayInSamples;
+
+		// --- autowrap index
+		readIndex &= wrapMask;
+
+		// --- read it
+		return buffer[readIndex];
+	}
+
+	/** read an arbitrary location that includes a fractional sample */
+	T readBuffer(double delayInFractionalSamples)
+	{
+		// --- truncate delayInFractionalSamples and read the int part
+		T y1 = readBuffer((int)delayInFractionalSamples);
+
+		// --- if no interpolation, just return value
+		if (!interpolate) return y1;
+
+		// --- else do interpolation
+		//
+		// --- read the sample at n+1 (one sample OLDER)
+		T y2 = readBuffer((int)delayInFractionalSamples + 1);
+
+		// --- get fractional part
+		double fraction = delayInFractionalSamples - (int)delayInFractionalSamples;
+
+		// --- do the interpolation (you could try different types here)
+		return doLinearInterpolation(y1, y2, fraction);
+	}
+
+	/** enable or disable interpolation; usually used for diagnostics or in algorithms that require strict integer samples times */
+	void setInterpolate(bool b) { interpolate = b; }
+
+private:
+	std::unique_ptr<T[]> buffer = nullptr;	///< smart pointer will auto-delete
+	unsigned int writeIndex = 0;		///> write index
+	unsigned int bufferLength = 1024;	///< must be nearest power of 2
+	unsigned int wrapMask = 1023;		///< must be (bufferLength - 1)
+	bool interpolate = true;			///< interpolation (default is ON)
+};
+
+/**
 \struct AudioDelayParameters
 \ingroup FX-Objects
 \brief
@@ -324,168 +536,4 @@ private:
 	// --- delay buffer of doubles
 	CircularBuffer<double> delayBuffer_L;	///< LEFT delay buffer of doubles
 	CircularBuffer<double> delayBuffer_R;	///< RIGHT delay buffer of doubles
-};
-
-/**
-\class CircularBuffer
-\ingroup FX-Objects
-\brief
-The CircularBuffer object implements a simple circular buffer. It uses a wrap mask to wrap the read or write index quickly.
-
-\author Will Pirkle http://www.willpirkle.com
-\remark This object is included in Designing Audio Effects Plugins in C++ 2nd Ed. by Will Pirkle
-\version Revision : 1.0
-\date Date : 2018 / 09 / 7
-*/
-/** A simple cyclic buffer: NOTE - this is NOT an IAudioSignalProcessor or IAudioSignalGenerator
-	S must be a power of 2.
-*/
-template <typename T>
-class CircularBuffer
-{
-public:
-	CircularBuffer() {}		/* C-TOR */
-	~CircularBuffer() {}	/* D-TOR */
-
-							/** flush buffer by resetting all values to 0.0 */
-	void flushBuffer() { memset(&buffer[0], 0, bufferLength * sizeof(T)); }
-
-	/** Create a buffer based on a target maximum in SAMPLES
-	//	   do NOT call from realtime audio thread; do this prior to any processing */
-	void createCircularBuffer(unsigned int _bufferLength)
-	{
-		// --- find nearest power of 2 for buffer, and create
-		createCircularBufferPowerOfTwo((unsigned int)(pow(2, ceil(log(_bufferLength) / log(2)))));
-	}
-
-	/** Create a buffer based on a target maximum in SAMPLESwhere the size is
-		pre-calculated as a power of two */
-	void createCircularBufferPowerOfTwo(unsigned int _bufferLengthPowerOfTwo)
-	{
-		// --- reset to top
-		writeIndex = 0;
-
-		// --- find nearest power of 2 for buffer, save it as bufferLength
-		bufferLength = _bufferLengthPowerOfTwo;
-
-		// --- save (bufferLength - 1) for use as wrapping mask
-		wrapMask = bufferLength - 1;
-
-		// --- create new buffer
-		buffer.reset(new T[bufferLength]);
-
-		// --- flush buffer
-		flushBuffer();
-	}
-
-	/** write a value into the buffer; this overwrites the previous oldest value in the buffer */
-	void writeBuffer(T input)
-	{
-		// --- write and increment index counter
-		buffer[writeIndex++] = input;
-
-		// --- wrap if index > bufferlength - 1
-		writeIndex &= wrapMask;
-	}
-
-	/** read an arbitrary location that is delayInSamples old */
-	T readBuffer(int delayInSamples)//, bool readBeforeWrite = true)
-	{
-		// --- subtract to make read index
-		//     note: -1 here is because we read-before-write,
-		//           so the *last* write location is what we use for the calculation
-		int readIndex = (writeIndex - 1) - delayInSamples;
-
-		// --- autowrap index
-		readIndex &= wrapMask;
-
-		// --- read it
-		return buffer[readIndex];
-	}
-
-	/** read an arbitrary location that includes a fractional sample */
-	T readBuffer(double delayInFractionalSamples)
-	{
-		// --- truncate delayInFractionalSamples and read the int part
-		T y1 = readBuffer((int)delayInFractionalSamples);
-
-		// --- if no interpolation, just return value
-		if (!interpolate) return y1;
-
-		// --- else do interpolation
-		//
-		// --- read the sample at n+1 (one sample OLDER)
-		T y2 = readBuffer((int)delayInFractionalSamples + 1);
-
-		// --- get fractional part
-		double fraction = delayInFractionalSamples - (int)delayInFractionalSamples;
-
-		// --- do the interpolation (you could try different types here)
-		return doLinearInterpolation(y1, y2, fraction);
-	}
-
-	/** enable or disable interpolation; usually used for diagnostics or in algorithms that require strict integer samples times */
-	void setInterpolate(bool b) { interpolate = b; }
-
-private:
-	std::unique_ptr<T[]> buffer = nullptr;	///< smart pointer will auto-delete
-	unsigned int writeIndex = 0;		///> write index
-	unsigned int bufferLength = 1024;	///< must be nearest power of 2
-	unsigned int wrapMask = 1023;		///< must be (bufferLength - 1)
-	bool interpolate = true;			///< interpolation (default is ON)
-};
-
-/**
-\class IAudioSignalProcessor
-\ingroup Interfaces
-\brief
-Use this interface for objects that process audio input samples to produce audio output samples. A derived class must implement the three abstract methods. The others are optional.
-
-\author Will Pirkle http://www.willpirkle.com
-\remark This object is included in Designing Audio Effects Plugins in C++ 2nd Ed. by Will Pirkle
-\version Revision : 1.0
-\date Date : 2018 / 09 / 7
-*/
-class IAudioSignalProcessor
-{
-public:
-	// --- pure virtual, derived classes must implement or will not compile
-	//     also means this is a pure abstract base class and is incomplete,
-	//     so it can only be used as a base class
-	//
-	/** initialize the object with the new sample rate */
-	virtual bool reset(double _sampleRate) = 0;
-
-	/** process one sample in and out */
-	virtual double processAudioSample(double xn) = 0;
-
-	/** return true if the derived object can process a frame, false otherwise */
-	virtual bool canProcessAudioFrame() = 0;
-
-	/** set or change the sample rate; normally this is done during reset( ) but may be needed outside of initialzation */
-	virtual void setSampleRate(double _sampleRate) {}
-
-	/** switch to enable/disable the aux input */
-	virtual void enableAuxInput(bool enableAuxInput) {}
-
-	/** for processing objects with a sidechain input or other necessary aux input
-			the return value is optional and will depend on the subclassed object */
-	virtual double processAuxInputAudioSample(double xn)
-	{
-		// --- do nothing
-		return xn;
-	}
-
-	/** for processing objects with a sidechain input or other necessary aux input
-	--- optional processing function
-		e.g. does not make sense for some objects to implement this such as inherently mono objects like Biquad
-			 BUT a processor that must use both left and right channels (ping-pong delay) would require it */
-	virtual bool processAudioFrame(const float* inputFrame,		/* ptr to one frame of data: pInputFrame[0] = left, pInputFrame[1] = right, etc...*/
-		float* outputFrame,
-		uint32_t inputChannels,
-		uint32_t outputChannels)
-	{
-		// --- do nothing
-		return false; // NOT handled
-	}
 };

@@ -8,6 +8,8 @@
 
 #pragma once
 
+#include "Delay.h"
+
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
 
