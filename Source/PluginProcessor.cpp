@@ -140,8 +140,8 @@ void JDelayAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
 
-    auto dt = apvts.getRawParameterValue("DELAY TIME");
-    dt->load();
+    /*auto dt = apvts.getRawParameterValue("DELAY TIME");
+    dt->load();*/
 
     // In case we have more outputs than inputs, this code clears any output
     // channels that didn't contain input data, (because these aren't
@@ -162,7 +162,15 @@ void JDelayAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
     {
         auto* channelData = buffer.getWritePointer (channel);
 
-        // ..do something to the data...
+        /*switch ((int)*apvts.getRawParameterValue("DELAYTYPE"))
+        {
+            case 0:
+                DBG("Normal");
+                break;
+            case 1:
+                DBG("PingPong");
+                break;
+        }*/
     }
 }
 
@@ -221,6 +229,11 @@ juce::AudioProcessorValueTreeState::ParameterLayout JDelayAudioProcessor::create
     std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;
 
     params.push_back(std::make_unique<juce::AudioParameterFloat>("DELAY TIME", "Delay Time", 0.0, 2000.0, 250.0));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("FEEDBACK", "Feedback", 0.0, 100.0, 50.0));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("RATIO", "Ratio", 0.0, 100.0, 50.0));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("WETLEVEL", "Wet Level", -60.0, 12.0, -3.0));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("DRYLEVEL", "Dry Level", -60.0, 12.0, -3.0));
+    params.push_back(std::make_unique<juce::AudioParameterChoice>("DELAYTYPE", "Delay Type", juce::StringArray("Normal", "PingPong"), 0));
 
     return { params.begin(), params.end() };
 }

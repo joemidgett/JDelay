@@ -39,6 +39,26 @@ private:
     juce::Label delayTimeLabel;
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> delayTimeSliderAttachment;
 
+    juce::Slider feedbackSlider;
+    juce::Label feedbackLabel;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> feedbackSliderAttachment;
+
+    juce::Slider ratioSlider;
+    juce::Label ratioLabel;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> ratioSliderAttachment;
+
+    juce::Slider wetLevelSlider;
+    juce::Label wetLevelLabel;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> wetLevelSliderAttachment;
+
+    juce::Slider dryLevelSlider;
+    juce::Label dryLevelLabel;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> dryLevelSliderAttachment;
+
+    juce::ComboBox delayTypeComboBox;
+    juce::Label delayTypeLabel;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::ComboBoxAttachment> delayTypeComboBoxAttachment;
+
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     JDelayAudioProcessor& audioProcessor;
