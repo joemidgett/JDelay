@@ -35,6 +35,10 @@ public:
     };
 
 private:
+    juce::Slider delayTimeSlider;
+    juce::Label delayTimeLabel;
+    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> delayTimeSliderAttachment;
+
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     JDelayAudioProcessor& audioProcessor;

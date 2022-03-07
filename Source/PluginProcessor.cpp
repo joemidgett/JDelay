@@ -19,7 +19,7 @@ JDelayAudioProcessor::JDelayAudioProcessor()
                       #endif
                        .withOutput("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       )
+                       ), apvts(*this, nullptr, "Parameters", createParameters())
 #endif
 {
 
@@ -140,6 +140,9 @@ void JDelayAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
 
+    auto dt = apvts.getRawParameterValue("DELAY TIME");
+    dt->load();
+
     // In case we have more outputs than inputs, this code clears any output
     // channels that didn't contain input data, (because these aren't
     // guaranteed to be empty - they may contain garbage).
@@ -188,27 +191,36 @@ void JDelayAudioProcessor::setStateInformation(const void* data, int sizeInBytes
     // whose contents will have been created by the getStateInformation() call.
 }
 
-void updateParameters()
-{
-    AudioDelayParameters params = stereoDelay.getParameters();
-    params.leftDelay_mSec = delayTime_mSec;
-    params.feedback_Pct = delayFeedback_Pct;
-    params.delayRatio_Pct = delayRatio_Pct;
-    params.updateType = delayUpdateType::kLeftPlusRatio;
-
-    params.dryLevel_dB = dryLevel_dB;
-    params.wetLevel_dB = wetLevel_dB;
-
-    // Use helper
-    params.algorithm = convertIntToEnum(delayType, delayAlgorithm);
-
-    // Set Them
-    stereoDelay.setParameters(params);
-}
+//void updateParameters()
+//{
+//    AudioDelayParameters params = stereoDelay.getParameters();
+//    params.leftDelay_mSec = delayTime_mSec;
+//    params.feedback_Pct = delayFeedback_Pct;
+//    params.delayRatio_Pct = delayRatio_Pct;
+//    params.updateType = delayUpdateType::kLeftPlusRatio;
+//
+//    params.dryLevel_dB = dryLevel_dB;
+//    params.wetLevel_dB = wetLevel_dB;
+//
+//    // Use helper
+//    params.algorithm = convertIntToEnum(delayType, delayAlgorithm);
+//
+//    // Set Them
+//    stereoDelay.setParameters(params);
+//}
 
 //==============================================================================
 // This creates new instances of the plugin..
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new JDelayAudioProcessor();
+}
+
+juce::AudioProcessorValueTreeState::ParameterLayout JDelayAudioProcessor::createParameters()
+{
+    std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;
+
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("DELAY TIME", "Delay Time", 0.0, 2000.0, 250.0));
+
+    return { params.begin(), params.end() };
 }

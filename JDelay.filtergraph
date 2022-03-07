@@ -65,7 +65,7 @@
           uiLastY_Normal="87" uiopen_Normal="0">
     <PLUGIN name="AudioFilePlayer" format="VST3" category="Fx" manufacturer="Matkat Music LLC"
             version="1.0.0" file="C:\Users\josep\Dev\AudioFilePlayer\Builds\VisualStudio2022\x64\Debug\VST3\AudioFilePlayer.vst3"
-            uniqueId="79fe81c" isInstrument="0" fileTime="17ebf3d9b72" infoUpdateTime="17f60d6dfec"
+            uniqueId="79fe81c" isInstrument="0" fileTime="17ebf3d9b72" infoUpdateTime="17f624525f1"
             numInputs="2" numOutputs="2" isShell="0" uid="e95d02c7"/>
     <STATE>316.VMjLgLS....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9DSMy3BTIISX1UEaho2ZVkUdAAkKAwDUigWRWkEcQ0VTucmUY4BQPAUQLolShUELhsVRxHlXuESX4UkQhIFLTMVdqECVhUjZho2ZwHldMczU5slQhYWUrIlXQUkV1EzUYgGNv.UcMU0TlQDUgg1ZVkEcQcDRSUkQiQmdFIVdt3hKt3hKt3hKt3hKtXlTU0DUQAURWoULEYzXqEEUXoWQF4RPDYFTzDzUXkWSG4RPDYmKtnWPt3hKt3hKt3hKJUELPUTPqI1aYcEV5UkQQcVTWgEOujzPu0Fbu4VYtQmO77hUSQ0LPwVcmklaSQWXzUlO..</STATE>
     <LAYOUT>
@@ -77,10 +77,11 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="26" x="0.4561170212765958" y="0.625886524822695">
-    <PLUGIN name="JDelay" format="VST3" category="Fx" manufacturer="yourcompany"
+  <FILTER uid="26" x="0.4561170212765958" y="0.625886524822695" uiLastX_Normal="612"
+          uiLastY_Normal="476" uiopen_Normal="1">
+    <PLUGIN name="JDelay" format="VST3" category="Fx" manufacturer="Joe Midgett"
             version="1.0.0" file="C:\Users\josep\Dev\JDelay\Builds\VisualStudio2022\x64\Debug\VST3\JDelay.vst3"
-            uniqueId="a2e02d" isInstrument="0" fileTime="17f60d413bb" infoUpdateTime="17f60d6dfed"
+            uniqueId="a2e02d" isInstrument="0" fileTime="17f6244f789" infoUpdateTime="17f624525f2"
             numInputs="2" numOutputs="2" isShell="0" uid="e959de8a"/>
     <STATE>191.VMjLgXK....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9XCLt3hKt3hKt3hKt3hYRUUSTEETIckVwTjQisVTTgkdEYjKAQjYPQSPWgUdMcjKAQjct3hdA4hKt3hKt3hKtnTUv.UQAslXuk0UXoWUFE0YQcEV77RRC8Vav8lak4Fc9vyKVMEUy.Ea0cVZtMEcgQWY9..</STATE>
     <LAYOUT>
