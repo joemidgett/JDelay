@@ -97,6 +97,9 @@ void JDelayAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
 {
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
+    stereoDelay.reset(sampleRate);
+
+    stereoDelay.createDelayBuffers(sampleRate, 2000.0);
 }
 
 void JDelayAudioProcessor::releaseResources()
@@ -183,6 +186,24 @@ void JDelayAudioProcessor::setStateInformation(const void* data, int sizeInBytes
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
+}
+
+void updateParameters()
+{
+    AudioDelayParameters params = stereoDelay.getParameters();
+    params.leftDelay_mSec = delayTime_mSec;
+    params.feedback_Pct = delayFeedback_Pct;
+    params.delayRatio_Pct = delayRatio_Pct;
+    params.updateType = delayUpdateType::kLeftPlusRatio;
+
+    params.dryLevel_dB = dryLevel_dB;
+    params.wetLevel_dB = wetLevel_dB;
+
+    // Use helper
+    params.algorithm = convertIntToEnum(delayType, delayAlgorithm);
+
+    // Set Them
+    stereoDelay.setParameters(params);
 }
 
 //==============================================================================

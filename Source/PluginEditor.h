@@ -24,6 +24,16 @@ public:
     void paint(juce::Graphics&) override;
     void resized() override;
 
+    enum controlID
+    {
+        delayTime_mSec = 0,
+        delayFeedback_Pct = 1,
+        delayRatio_Pct = 2,
+        delayType = 3,
+        wetLevel_dB = 4,
+        dryLevel_dB = 5
+    };
+
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
