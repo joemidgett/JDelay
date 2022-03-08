@@ -98,8 +98,10 @@ void JDelayAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
     // Use this method as the place to do any pre-playback
     // initialisation that you need..
     stereoDelay.reset(sampleRate);
-
+    
     stereoDelay.createDelayBuffers(sampleRate, 2000.0);
+
+    updateParameters();
 }
 
 void JDelayAudioProcessor::releaseResources()
@@ -191,31 +193,21 @@ void JDelayAudioProcessor::getStateInformation(juce::MemoryBlock& destData)
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
+    auto state = apvts.copyState();
+    std::unique_ptr<juce::XmlElement> xml(state.createXml());
+    copyXmlToBinary(*xml, destData);
 }
 
 void JDelayAudioProcessor::setStateInformation(const void* data, int sizeInBytes)
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
-}
+    std::unique_ptr<juce::XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
 
-//void updateParameters()
-//{
-//    AudioDelayParameters params = stereoDelay.getParameters();
-//    params.leftDelay_mSec = delayTime_mSec;
-//    params.feedback_Pct = delayFeedback_Pct;
-//    params.delayRatio_Pct = delayRatio_Pct;
-//    params.updateType = delayUpdateType::kLeftPlusRatio;
-//
-//    params.dryLevel_dB = dryLevel_dB;
-//    params.wetLevel_dB = wetLevel_dB;
-//
-//    // Use helper
-//    params.algorithm = convertIntToEnum(delayType, delayAlgorithm);
-//
-//    // Set Them
-//    stereoDelay.setParameters(params);
-//}
+    if (xmlState.get() != nullptr)
+        if (xmlState->hasTagName(apvts.state.getType()))
+            apvts.replaceState(juce::ValueTree::fromXml(*xmlState));
+}
 
 //==============================================================================
 // This creates new instances of the plugin..
@@ -236,4 +228,18 @@ juce::AudioProcessorValueTreeState::ParameterLayout JDelayAudioProcessor::create
     params.push_back(std::make_unique<juce::AudioParameterChoice>("DELAYTYPE", "Delay Type", juce::StringArray("Normal", "PingPong"), 0));
 
     return { params.begin(), params.end() };
+}
+
+void JDelayAudioProcessor::updateParameters()
+{
+    AudioDelayParameters audioDelayParams = stereoDelay.getParameters();
+    audioDelayParams.leftDelay_mSec = *apvts.getRawParameterValue("DELAY TIME");
+    audioDelayParams.feedback_Pct = *apvts.getRawParameterValue("FEEDBACK");
+    audioDelayParams.delayRatio_Pct = *apvts.getRawParameterValue("RATIO");
+    // audioDelayParams.updateType = (int)*apvts.getRawParameterValue("Normal");
+
+    audioDelayParams.dryLevel_dB = *apvts.getRawParameterValue("DRYLEVEL");
+    audioDelayParams.wetLevel_dB = *apvts.getRawParameterValue("WETLEVEL");
+
+    stereoDelay.setParameters(audioDelayParams);
 }
