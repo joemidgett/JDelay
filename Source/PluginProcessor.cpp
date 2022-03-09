@@ -255,7 +255,7 @@ void JDelayAudioProcessor::updateParameters()
     audioDelayParams.dryLevel_dB = *apvts.getRawParameterValue("DRYLEVEL");
     audioDelayParams.wetLevel_dB = *apvts.getRawParameterValue("WETLEVEL");
 
-    // audioDelayParams.algorithm = convertIntToEnum(delayType, delayAlgorithm);
+    audioDelayParams.algorithm = convertIntToEnum((int)*apvts.getRawParameterValue("DELAYTYPE"), delayAlgorithm);
 
     stereoDelay.setParameters(audioDelayParams);
 }
