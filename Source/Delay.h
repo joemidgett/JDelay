@@ -9,6 +9,17 @@
 #include <JuceHeader.h>
 
 /**
+@convertIntToEnum
+\ingroup ASPiK-GUI
+\def convertIntToEnum
+@brief convert an int to an enum, e.g. for passing to functions
+\param INT - the int to compare with
+\param ENUM - the typed enum to compare with
+\return the int value properly cast as the enum type
+*/
+#define convertIntToEnum(INT,ENUM) static_cast<ENUM>(INT)
+
+/**
 @boundValue
 \ingroup FX-Functions
 

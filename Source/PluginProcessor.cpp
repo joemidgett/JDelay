@@ -250,10 +250,12 @@ void JDelayAudioProcessor::updateParameters()
     audioDelayParams.leftDelay_mSec = *apvts.getRawParameterValue("DELAY TIME");
     audioDelayParams.feedback_Pct = *apvts.getRawParameterValue("FEEDBACK");
     audioDelayParams.delayRatio_Pct = *apvts.getRawParameterValue("RATIO");
-    // audioDelayParams.updateType = (int)*apvts.getRawParameterValue("Normal");
+    audioDelayParams.updateType = delayUpdateType::kLeftPlusRatio;
 
     audioDelayParams.dryLevel_dB = *apvts.getRawParameterValue("DRYLEVEL");
     audioDelayParams.wetLevel_dB = *apvts.getRawParameterValue("WETLEVEL");
+
+    // audioDelayParams.algorithm = convertIntToEnum(delayType, delayAlgorithm);
 
     stereoDelay.setParameters(audioDelayParams);
 }
