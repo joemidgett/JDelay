@@ -13,70 +13,41 @@
 JDelayAudioProcessorEditor::JDelayAudioProcessorEditor(JDelayAudioProcessor& p)
     : AudioProcessorEditor(&p), audioProcessor(p)
 {
-    delayTimeSlider.setSliderStyle(juce::Slider::SliderStyle::LinearHorizontal);
-    delayTimeSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 50);
-    addAndMakeVisible(delayTimeSlider);
-
-    delayTimeLabel.setText("Delay Time", juce::dontSendNotification);
-    delayTimeLabel.attachToComponent(&delayTimeSlider, false);
-    delayTimeLabel.setJustificationType(juce::Justification::centred);
-    addAndMakeVisible(delayTimeLabel);
+    makeSlider(&delayTimeSlider, " mSec", this);
+    makeSliderLabel(&delayTimeLabel, "Delay Time", delayTimeSlider, this);
 
     delayTimeSliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts,
         "DELAY TIME", delayTimeSlider);
 
     //======================
 
-    feedbackSlider.setSliderStyle(juce::Slider::SliderStyle::LinearHorizontal);
-    feedbackSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 50);
-    addAndMakeVisible(feedbackSlider);
-
-    feedbackLabel.setText("Feedback", juce::dontSendNotification);
-    feedbackLabel.attachToComponent(&feedbackSlider, false);
-    feedbackLabel.setJustificationType(juce::Justification::centred);
-    addAndMakeVisible(feedbackLabel);
+    makeSlider(&feedbackSlider, " %", this);
+    makeSliderLabel(&feedbackLabel, "Feedback", feedbackSlider, this);
 
     feedbackSliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts,
         "FEEDBACK", feedbackSlider);
 
     //======================
 
-    ratioSlider.setSliderStyle(juce::Slider::SliderStyle::LinearHorizontal);
-    ratioSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 50);
-    addAndMakeVisible(ratioSlider);
-
-    ratioLabel.setText("Ratio", juce::dontSendNotification);
-    ratioLabel.attachToComponent(&ratioSlider, false);
-    ratioLabel.setJustificationType(juce::Justification::centred);
-    addAndMakeVisible(ratioLabel);
+    // Is the ratio param for wet/dry mixing?
+    makeSlider(&ratioSlider, " %", this);
+    makeSliderLabel(&ratioLabel, "Ratio", ratioSlider, this);
 
     ratioSliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts,
         "RATIO", ratioSlider);
 
     //======================
 
-    wetLevelSlider.setSliderStyle(juce::Slider::SliderStyle::LinearHorizontal);
-    wetLevelSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 50);
-    addAndMakeVisible(wetLevelSlider);
-
-    wetLevelLabel.setText("Wet Level", juce::dontSendNotification);
-    wetLevelLabel.attachToComponent(&wetLevelSlider, false);
-    wetLevelLabel.setJustificationType(juce::Justification::centred);
-    addAndMakeVisible(wetLevelLabel);
+    makeSlider(&wetLevelSlider, " dB", this);
+    makeSliderLabel(&wetLevelLabel, "Wet Level", wetLevelSlider, this);
 
     ratioSliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts,
         "WETLEVEL", wetLevelSlider);
 
     //======================
 
-    dryLevelSlider.setSliderStyle(juce::Slider::SliderStyle::LinearHorizontal);
-    dryLevelSlider.setTextBoxStyle(juce::Slider::TextBoxBelow, true, 100, 50);
-    addAndMakeVisible(dryLevelSlider);
-
-    dryLevelLabel.setText("Dry Level", juce::dontSendNotification);
-    dryLevelLabel.attachToComponent(&dryLevelSlider, false);
-    dryLevelLabel.setJustificationType(juce::Justification::centred);
-    addAndMakeVisible(dryLevelLabel);
+    makeSlider(&dryLevelSlider, " dB", this);
+    makeSliderLabel(&dryLevelLabel, "Dry Level", dryLevelSlider, this);
 
     ratioSliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts,
         "DRYLEVEL", dryLevelSlider);
@@ -126,4 +97,20 @@ void JDelayAudioProcessorEditor::resized()
     wetLevelSlider.setBounds(getWidth() / 2 - 275, getHeight() / 2 + 25, 150, 100);
     dryLevelSlider.setBounds(getWidth() / 2 - 75, getHeight() / 2 + 25, 150, 100);
     delayTypeComboBox.setBounds(getWidth() / 2 + 125, getHeight() / 2 + 25, 150, 50);
+}
+
+void JDelayAudioProcessorEditor::makeSlider(juce::Slider* slider, juce::String suffix, juce::Component* parent)
+{
+    slider->setSliderStyle(juce::Slider::RotaryHorizontalVerticalDrag);
+    slider->setTextBoxStyle(juce::Slider::TextBoxBelow, false, 100, 25);
+    slider->setTextValueSuffix(suffix);
+    addAndMakeVisible(slider);
+}
+
+void JDelayAudioProcessorEditor::makeSliderLabel(juce::Label* label, juce::String labelText, juce::Slider& slider, juce::Component* parent)
+{
+    label->setText(labelText, juce::dontSendNotification);
+    label->attachToComponent(&slider, false);
+    label->setJustificationType(juce::Justification::centred);
+    addAndMakeVisible(label);
 }

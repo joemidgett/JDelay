@@ -35,6 +35,10 @@ public:
     };
 
 private:
+    void makeSlider(juce::Slider* slider, juce::String suffix, juce::Component* parent);
+
+    void makeSliderLabel(juce::Label* label, juce::String labelText, juce::Slider& slider, juce::Component* parent);
+
     juce::Slider delayTimeSlider;
     juce::Label delayTimeLabel;
     std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> delayTimeSliderAttachment;
