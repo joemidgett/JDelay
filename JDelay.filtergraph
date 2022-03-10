@@ -65,7 +65,7 @@
           uiLastY_Normal="17" uiopen_Normal="1">
     <PLUGIN name="AudioFilePlayer" format="VST3" category="Fx" manufacturer="Matkat Music LLC"
             version="1.0.0" file="C:\Users\josep\Dev\AudioFilePlayer\Builds\VisualStudio2022\x64\Debug\VST3\AudioFilePlayer.vst3"
-            uniqueId="79fe81c" isInstrument="0" fileTime="17ebf3d9b72" infoUpdateTime="17f6c3ef100"
+            uniqueId="79fe81c" isInstrument="0" fileTime="17ebf3d9b72" infoUpdateTime="17f7575cb3e"
             numInputs="2" numOutputs="2" isShell="0" uid="e95d02c7"/>
     <STATE>316.VMjLgLS....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9DSMy3BTIISX1UEaho2ZVkUdAAkKAwDUigWRWkEcQ0VTucmUY4BQPAUQLolShUELhsVRxHlXuESX4UkQhIFLTMVdqECVhUjZho2ZwHldMczU5slQhYWUrIlXQUkV1EzUYgGNv.UcMU0TlQDUgg1ZVkEcQcDRSUkQiQmdFIVdt3hKt3hKt3hKt3hKtXlTU0DUQAURWoULEYzXqEEUXoWQF4RPDYFTzDzUXkWSG4RPDYmKtnWPt3hKt3hKt3hKJUELPUTPqI1aYcEV5UkQQcVTWgEOujzPu0Fbu4VYtQmO77hUSQ0LPwVcmklaSQWXzUlO..</STATE>
     <LAYOUT>
@@ -77,11 +77,11 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="26" x="0.4561170212765958" y="0.625886524822695" uiLastX_Normal="495"
-          uiLastY_Normal="560" uiopen_Normal="1">
+  <FILTER uid="26" x="0.4561170212765958" y="0.625886524822695" uiLastX_Normal="292"
+          uiLastY_Normal="564" uiopen_Normal="1">
     <PLUGIN name="JDelay" format="VST3" category="Fx" manufacturer="Joe Midgett"
             version="1.0.0" file="C:\Users\josep\Dev\JDelay\Builds\VisualStudio2022\x64\Debug\VST3\JDelay.vst3"
-            uniqueId="a2e02d" isInstrument="0" fileTime="17f6c3e58a2" infoUpdateTime="17f6c3ef100"
+            uniqueId="a2e02d" isInstrument="0" fileTime="17f7575abff" infoUpdateTime="17f7575cb40"
             numInputs="2" numOutputs="2" isShell="0" uid="e959de8a"/>
     <STATE>586.VMjLgDj....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9LSM03hUMoFSmMSTt3hKt7zJlcUXxEDZisVRxH1a3vVX3fjTLQmKogjYTwVXogiQY8FMwjENHIUUTkEUKMCR38TNtHzSPUDahcFLVkkdUwlX4QyPOAUQpQUPvPDRuEkUOgFTTEESEQkUlAUUR0TUpgjYXcEVxU0UYgCRn0TdPk1RzPzTNQiYowDMDMDS2QUZMgGR3sTN1MDUAkTUP0TPRokZvjFRDUEQSEzZEUUVAUUTn4BZic1cVM1ZvjFR1MiPLg1Mn8zMtTETRUDUSYlZFkENHITTRsVQSUTVUEESIIDRwTjQgASUV8DZ5gGSz4RZHU2LC8DTEoFUAACQH8VTV8DZXQUTEEkZPETS5IEZtf1XmcmUisFLogDLtj1R1gDdKkicCQUPIUETMEjTZoFLogjTEQTUIgiZHYFVWgkbUcUV3fjTMY2LBwDZ2f1S23RUPIUQTMkYpYTV3fDdUUTTEMUQYUUTLkjPHESQFEFLUY0SnoGdLQmKogTcyLzS04RUXgWQVE1ZQcUV30TaO4hKt3hKt3hKt3hKtnTUv.UQAslXuk0UXoWUFE0YQcEVtPDTtHzZGI1YMIiXtPDTtLjKPcjKt3hKt3hKt3haTU0PUQDU3sFaicVTWkEQEYzXmEDOujzPu0Fbu4VYtQmO77hUSQ0LPwVcmklaSQWXzUlO..</STATE>
     <LAYOUT>

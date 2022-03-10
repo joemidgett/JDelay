@@ -60,7 +60,7 @@ protected:
     AudioDelay stereoDelay;
     void updateParameters();
 
-    // juce::LinearSmoothedValue<float> delayTimeSmoothing;
+    LowpassParamSmoother delayTimeLowpassParamSmoothing;
 
 private:
     //==============================================================================

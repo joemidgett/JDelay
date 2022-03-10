@@ -101,9 +101,9 @@ void JDelayAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
     
     stereoDelay.createDelayBuffers(sampleRate, 2000.0);
 
-    updateParameters();
+    delayTimeLowpassParamSmoothing.initializeLowpassSmoothing(1500.0, sampleRate);
 
-    // delayTimeSmoothing.reset(sampleRate, 2.5);
+    updateParameters();
 }
 
 juce::AudioProcessorValueTreeState::ParameterLayout JDelayAudioProcessor::createParameters()
@@ -125,8 +125,7 @@ void JDelayAudioProcessor::updateParameters()
     AudioDelayParameters audioDelayParams = stereoDelay.getParameters();
 
     audioDelayParams.leftDelay_mSec = *apvts.getRawParameterValue("DELAY TIME");
-    //delayTimeSmoothing.setTargetValue(audioDelayParams.leftDelay_mSec);
-    //delayTimeSmoothing.getNextValue();
+    audioDelayParams.leftDelay_mSec = delayTimeLowpassParamSmoothing.processLowpassSmoothing(audioDelayParams.leftDelay_mSec);
 
     audioDelayParams.feedback_Pct = *apvts.getRawParameterValue("FEEDBACK");
     audioDelayParams.delayRatio_Pct = *apvts.getRawParameterValue("RATIO");
@@ -190,8 +189,6 @@ void JDelayAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
 
         float inputFrame[2]{ leftChannelData[i], rightChannelData[i] };
         float outputFrame[2];
-
-        // Smoothing of params and re-cooking variables goes here
 
         stereoDelay.processAudioFrame(inputFrame, outputFrame, totalNumInputChannels, totalNumOutputChannels);
 

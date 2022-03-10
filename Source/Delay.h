@@ -521,3 +521,31 @@ private:
     CircularBuffer<double> delayBuffer_L;	///< LEFT delay buffer of doubles
     CircularBuffer<double> delayBuffer_R;	///< RIGHT delay buffer of doubles
 };
+
+class LowpassParamSmoother
+{
+public:
+
+    LowpassParamSmoother() {};
+    ~LowpassParamSmoother() {};
+
+    void initializeLowpassSmoothing(float smoothingTimeInMs, float samplingRate)
+    {
+        const float c_twoPi = 6.283185307179586476925286766559f;
+
+        a = exp(-c_twoPi / (smoothingTimeInMs * 0.001f * samplingRate));
+        b = 1.0f - a;
+        z = 0.0f;
+    }
+
+    inline float processLowpassSmoothing(float in)
+    {
+        z = (in * b) + (z * a);
+        return z;
+    }
+
+private:
+    float a;
+    float b;
+    float z;
+};
