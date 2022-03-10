@@ -102,6 +102,42 @@ void JDelayAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
     stereoDelay.createDelayBuffers(sampleRate, 2000.0);
 
     updateParameters();
+
+    // delayTimeSmoothing.reset(sampleRate, 2.5);
+}
+
+juce::AudioProcessorValueTreeState::ParameterLayout JDelayAudioProcessor::createParameters()
+{
+    std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;
+
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("DELAY TIME", "Delay Time", 0.0, 2000.0, 250.0));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("FEEDBACK", "Feedback", 0.0, 100.0, 50.0));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("RATIO", "Ratio", 0.0, 100.0, 50.0));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("WETLEVEL", "Wet Level", -60.0, 12.0, -3.0));
+    params.push_back(std::make_unique<juce::AudioParameterFloat>("DRYLEVEL", "Dry Level", -60.0, 12.0, -3.0));
+    params.push_back(std::make_unique<juce::AudioParameterChoice>("DELAYTYPE", "Delay Type", juce::StringArray("Normal", "PingPong"), 0));
+
+    return { params.begin(), params.end() };
+}
+
+void JDelayAudioProcessor::updateParameters()
+{
+    AudioDelayParameters audioDelayParams = stereoDelay.getParameters();
+
+    audioDelayParams.leftDelay_mSec = *apvts.getRawParameterValue("DELAY TIME");
+    //delayTimeSmoothing.setTargetValue(audioDelayParams.leftDelay_mSec);
+    //delayTimeSmoothing.getNextValue();
+
+    audioDelayParams.feedback_Pct = *apvts.getRawParameterValue("FEEDBACK");
+    audioDelayParams.delayRatio_Pct = *apvts.getRawParameterValue("RATIO");
+    audioDelayParams.updateType = delayUpdateType::kLeftPlusRatio;
+
+    audioDelayParams.dryLevel_dB = *apvts.getRawParameterValue("DRYLEVEL");
+    audioDelayParams.wetLevel_dB = *apvts.getRawParameterValue("WETLEVEL");
+
+    audioDelayParams.algorithm = convertIntToEnum((int)*apvts.getRawParameterValue("DELAYTYPE"), delayAlgorithm);
+
+    stereoDelay.setParameters(audioDelayParams);
 }
 
 void JDelayAudioProcessor::releaseResources()
@@ -142,12 +178,6 @@ void JDelayAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
     auto totalNumInputChannels  = getTotalNumInputChannels();
     auto totalNumOutputChannels = getTotalNumOutputChannels();
 
-    // In case we have more outputs than inputs, this code clears any output
-    // channels that didn't contain input data, (because these aren't
-    // guaranteed to be empty - they may contain garbage).
-    // This is here to avoid people getting screaming feedback
-    // when they first compile a plugin, but obviously you don't need to keep
-    // this code if your algorithm always overwrites all the output channels.
     for (auto i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
         buffer.clear (i, 0, buffer.getNumSamples());
 
@@ -160,6 +190,8 @@ void JDelayAudioProcessor::processBlock(juce::AudioBuffer<float>& buffer, juce::
 
         float inputFrame[2]{ leftChannelData[i], rightChannelData[i] };
         float outputFrame[2];
+
+        // Smoothing of params and re-cooking variables goes here
 
         stereoDelay.processAudioFrame(inputFrame, outputFrame, totalNumInputChannels, totalNumOutputChannels);
 
@@ -206,34 +238,4 @@ void JDelayAudioProcessor::setStateInformation(const void* data, int sizeInBytes
 juce::AudioProcessor* JUCE_CALLTYPE createPluginFilter()
 {
     return new JDelayAudioProcessor();
-}
-
-juce::AudioProcessorValueTreeState::ParameterLayout JDelayAudioProcessor::createParameters()
-{
-    std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;
-
-    params.push_back(std::make_unique<juce::AudioParameterFloat>("DELAY TIME", "Delay Time", 0.0, 2000.0, 250.0));
-    params.push_back(std::make_unique<juce::AudioParameterFloat>("FEEDBACK", "Feedback", 0.0, 100.0, 50.0));
-    params.push_back(std::make_unique<juce::AudioParameterFloat>("RATIO", "Ratio", 0.0, 100.0, 50.0));
-    params.push_back(std::make_unique<juce::AudioParameterFloat>("WETLEVEL", "Wet Level", -60.0, 12.0, -3.0));
-    params.push_back(std::make_unique<juce::AudioParameterFloat>("DRYLEVEL", "Dry Level", -60.0, 12.0, -3.0));
-    params.push_back(std::make_unique<juce::AudioParameterChoice>("DELAYTYPE", "Delay Type", juce::StringArray("Normal", "PingPong"), 0));
-
-    return { params.begin(), params.end() };
-}
-
-void JDelayAudioProcessor::updateParameters()
-{
-    AudioDelayParameters audioDelayParams = stereoDelay.getParameters();
-    audioDelayParams.leftDelay_mSec = *apvts.getRawParameterValue("DELAY TIME");
-    audioDelayParams.feedback_Pct = *apvts.getRawParameterValue("FEEDBACK");
-    audioDelayParams.delayRatio_Pct = *apvts.getRawParameterValue("RATIO");
-    audioDelayParams.updateType = delayUpdateType::kLeftPlusRatio;
-
-    audioDelayParams.dryLevel_dB = *apvts.getRawParameterValue("DRYLEVEL");
-    audioDelayParams.wetLevel_dB = *apvts.getRawParameterValue("WETLEVEL");
-
-    audioDelayParams.algorithm = convertIntToEnum((int)*apvts.getRawParameterValue("DELAYTYPE"), delayAlgorithm);
-
-    stereoDelay.setParameters(audioDelayParams);
 }

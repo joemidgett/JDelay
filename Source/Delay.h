@@ -70,33 +70,6 @@ enum class delayUpdateType { kLeftAndRight, kLeftPlusRatio };
 @doLinearInterpolation
 \ingroup FX-Functions
 
-@brief performs linear interpolation of x distance between two (x,y) points;
-returns interpolated value
-
-\param x1 - the x coordinate of the first point
-\param x2 - the x coordinate of the second point
-\param y1 - the y coordinate of the first point
-\param y2 - the 2 coordinate of the second point
-\param x - the interpolation location
-\return the interpolated value or y1 if the x coordinates are unusable
-*/
-inline double doLinearInterpolation(double x1, double x2, double y1, double y2, double x)
-{
-    double denom = x2 - x1;
-    if (denom == 0)
-        return y1; // --- should not ever happen
-
-    // --- calculate decimal position of x
-    double dx = (x - x1) / (x2 - x1);
-
-    // --- use weighted sum method of interpolating
-    return dx * y2 + (1 - dx) * y1;
-}
-
-/**
-@doLinearInterpolation
-\ingroup FX-Functions
-
 @brief performs linear interpolation of fractional x distance between two adjacent (x,y) points;
 returns interpolated value
 
