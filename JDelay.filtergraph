@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <FILTERGRAPH>
-  <FILTER uid="1" x="0.367624810892587" y="0.2191780821917808">
+  <FILTER uid="1" x="0.140495867768595" y="0.1361867704280156">
     <PLUGIN name="Audio Input" descriptiveName="" format="Internal" category="I/O devices"
             manufacturer="JUCE" version="1.0" file="" uniqueId="246006c0"
             isInstrument="0" fileTime="0" infoUpdateTime="0" numInputs="0"
@@ -16,7 +16,7 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="2" x="0.6762481089258698" y="0.4227005870841487">
+  <FILTER uid="2" x="0.6115702479338843" y="0.1478599221789883">
     <PLUGIN name="MIDI Input" descriptiveName="" format="Internal" category="I/O devices"
             manufacturer="JUCE" version="1.0" file="" uniqueId="a9e4f9eb"
             isInstrument="0" fileTime="0" infoUpdateTime="0" numInputs="0"
@@ -31,7 +31,7 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="3" x="0.4977307110438729" y="0.8767123287671232">
+  <FILTER uid="3" x="0.371900826446281" y="0.8910505836575876">
     <PLUGIN name="Audio Output" descriptiveName="" format="Internal" category="I/O devices"
             manufacturer="JUCE" version="1.0" file="" uniqueId="724248cb"
             isInstrument="0" fileTime="0" infoUpdateTime="0" numInputs="0"
@@ -46,7 +46,7 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="4" x="0.6928895612708018" y="0.8825831702544031">
+  <FILTER uid="4" x="0.6177685950413223" y="0.4124513618677043">
     <PLUGIN name="MIDI Output" descriptiveName="" format="Internal" category="I/O devices"
             manufacturer="JUCE" version="1.0" file="" uniqueId="9d5bbb00"
             isInstrument="0" fileTime="0" infoUpdateTime="0" numInputs="0"
@@ -61,11 +61,11 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="17" x="0.4977307110438729" y="0.4050880626223092" uiLastX_Normal="599"
-          uiLastY_Normal="17" uiopen_Normal="1">
+  <FILTER uid="17" x="0.3739669421487603" y="0.1439688715953307" uiLastX_Normal="713"
+          uiLastY_Normal="13" uiopen_Normal="1">
     <PLUGIN name="AudioFilePlayer" format="VST3" category="Fx" manufacturer="Matkat Music LLC"
             version="1.0.0" file="C:\Users\josep\Dev\AudioFilePlayer\Builds\VisualStudio2022\x64\Debug\VST3\AudioFilePlayer.vst3"
-            uniqueId="79fe81c" isInstrument="0" fileTime="17ebf3d9b72" infoUpdateTime="17f7575cb3e"
+            uniqueId="79fe81c" isInstrument="0" fileTime="17ebf3d9b72" infoUpdateTime="17f7a675b84"
             numInputs="2" numOutputs="2" isShell="0" uid="e95d02c7"/>
     <STATE>316.VMjLgLS....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9DSMy3BTIISX1UEaho2ZVkUdAAkKAwDUigWRWkEcQ0VTucmUY4BQPAUQLolShUELhsVRxHlXuESX4UkQhIFLTMVdqECVhUjZho2ZwHldMczU5slQhYWUrIlXQUkV1EzUYgGNv.UcMU0TlQDUgg1ZVkEcQcDRSUkQiQmdFIVdt3hKt3hKt3hKt3hKtXlTU0DUQAURWoULEYzXqEEUXoWQF4RPDYFTzDzUXkWSG4RPDYmKtnWPt3hKt3hKt3hKJUELPUTPqI1aYcEV5UkQQcVTWgEOujzPu0Fbu4VYtQmO77hUSQ0LPwVcmklaSQWXzUlO..</STATE>
     <LAYOUT>
@@ -77,13 +77,13 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="26" x="0.4561170212765958" y="0.625886524822695" uiLastX_Normal="292"
-          uiLastY_Normal="564" uiopen_Normal="1">
+  <FILTER uid="26" x="0.371900826446281" y="0.5019455252918288" uiLastX_Normal="1237"
+          uiLastY_Normal="426" uiopen_Normal="1">
     <PLUGIN name="JDelay" format="VST3" category="Fx" manufacturer="Joe Midgett"
             version="1.0.0" file="C:\Users\josep\Dev\JDelay\Builds\VisualStudio2022\x64\Debug\VST3\JDelay.vst3"
-            uniqueId="a2e02d" isInstrument="0" fileTime="17f7575abff" infoUpdateTime="17f7575cb40"
+            uniqueId="a2e02d" isInstrument="0" fileTime="17f7a662776" infoUpdateTime="17f7a675b85"
             numInputs="2" numOutputs="2" isShell="0" uid="e959de8a"/>
-    <STATE>586.VMjLgDj....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9LSM03hUMoFSmMSTt3hKt7zJlcUXxEDZisVRxH1a3vVX3fjTLQmKogjYTwVXogiQY8FMwjENHIUUTkEUKMCR38TNtHzSPUDahcFLVkkdUwlX4QyPOAUQpQUPvPDRuEkUOgFTTEESEQkUlAUUR0TUpgjYXcEVxU0UYgCRn0TdPk1RzPzTNQiYowDMDMDS2QUZMgGR3sTN1MDUAkTUP0TPRokZvjFRDUEQSEzZEUUVAUUTn4BZic1cVM1ZvjFR1MiPLg1Mn8zMtTETRUDUSYlZFkENHITTRsVQSUTVUEESIIDRwTjQgASUV8DZ5gGSz4RZHU2LC8DTEoFUAACQH8VTV8DZXQUTEEkZPETS5IEZtf1XmcmUisFLogDLtj1R1gDdKkicCQUPIUETMEjTZoFLogjTEQTUIgiZHYFVWgkbUcUV3fjTMY2LBwDZ2f1S23RUPIUQTMkYpYTV3fDdUUTTEMUQYUUTLkjPHESQFEFLUY0SnoGdLQmKogTcyLzS04RUXgWQVE1ZQcUV30TaO4hKt3hKt3hKt3hKtnTUv.UQAslXuk0UXoWUFE0YQcEVtPDTtHzZGI1YMIiXtPDTtLjKPcjKt3hKt3hKt3haTU0PUQDU3sFaicVTWkEQEYzXmEDOujzPu0Fbu4VYtQmO77hUSQ0LPwVcmklaSQWXzUlO..</STATE>
+    <STATE>570.VMjLgDi....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9LCMy3hUMoFSmgTTt3hKt7zJlcUXxEDZisVRxH1a3vVX3fjTLQmKogjYTwVXogiQY8FMwjENHIUUTkEUKMCR38TNtHzSPUDahcFLVkkdUwlX4QyPOAUQpQUPvPDRuEkUOgFTTEESEQkUlAUUR0TUpgjYXcEVxU0UYgCRnwDLtj1R1gDdKkicCQUPIUETMEjTZoFLogDQUQzTAsVQUkUPUEEZtf1XmcmUisFLogjcyHDSncCZOciKUAkTEQ0TlolQYgCRBEkTqUzTEkUUQwTRBgTLEYTXvTkUOgld3wDctjFR0MyPOAUQpQUPvPDRuEkUOgFVTEUQQoFTA0jdRglKnM1Y2Y0XqASZHAiKosjcHg2R4X2PTETRUAUSAIkVpASZHIUQDUUR3nFRlg0UXIWUWkENHIUS1MiPLg1Mn8zMtTETRUDUSYlZFkENHgWUEEUQSUTVUEESIIDRwTjQgASUV8DZ5gGSz4RZHU2LC8TctTEV3UjUgsVTWkEdM01St3hKt3hKt3hKt3hKJUELPUTPqI1aYcEV5UkQQcVTWgkKDAkKBs1QhcVSxHlKDAkKC4BTG4hKt3hKt3hKt3FUUMTUDQEdqw1XmE0UYQTQFM1YAwyKIMzasA2atUlaz4COuX0TTMCTrU2Yo41TzEFck4C.</STATE>
     <LAYOUT>
       <INPUTS>
         <BUS index="0" layout="L R"/>
