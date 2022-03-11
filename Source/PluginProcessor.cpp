@@ -130,7 +130,7 @@ void JDelayAudioProcessor::updateParameters()
     audioDelayParams.feedback_Pct = *apvts.getRawParameterValue("FEEDBACK");
     audioDelayParams.delayRatio_Pct = *apvts.getRawParameterValue("RATIO");
     audioDelayParams.updateType = delayUpdateType::kLeftPlusRatio;
-
+    
     audioDelayParams.dryLevel_dB = *apvts.getRawParameterValue("DRYLEVEL");
     audioDelayParams.wetLevel_dB = *apvts.getRawParameterValue("WETLEVEL");
 
@@ -206,6 +206,7 @@ bool JDelayAudioProcessor::hasEditor() const
 juce::AudioProcessorEditor* JDelayAudioProcessor::createEditor()
 {
     return new JDelayAudioProcessorEditor (*this);
+    // return new juce::GenericAudioProcessorEditor(*this);
 }
 
 //==============================================================================

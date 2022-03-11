@@ -41,7 +41,7 @@ JDelayAudioProcessorEditor::JDelayAudioProcessorEditor(JDelayAudioProcessor& p)
     makeSlider(&wetLevelSlider, " dB", this);
     makeSliderLabel(&wetLevelLabel, "Wet Level", wetLevelSlider, this);
 
-    ratioSliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts,
+    wetLevelSliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts,
         "WETLEVEL", wetLevelSlider);
 
     //======================
@@ -49,7 +49,7 @@ JDelayAudioProcessorEditor::JDelayAudioProcessorEditor(JDelayAudioProcessor& p)
     makeSlider(&dryLevelSlider, " dB", this);
     makeSliderLabel(&dryLevelLabel, "Dry Level", dryLevelSlider, this);
 
-    ratioSliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts,
+    dryLevelSliderAttachment = std::make_unique<juce::AudioProcessorValueTreeState::SliderAttachment>(audioProcessor.apvts,
         "DRYLEVEL", dryLevelSlider);
 
     //======================
