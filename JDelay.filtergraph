@@ -65,7 +65,7 @@
           uiLastY_Normal="13" uiopen_Normal="1">
     <PLUGIN name="AudioFilePlayer" format="VST3" category="Fx" manufacturer="Matkat Music LLC"
             version="1.0.0" file="C:\Users\josep\Dev\AudioFilePlayer\Builds\VisualStudio2022\x64\Debug\VST3\AudioFilePlayer.vst3"
-            uniqueId="79fe81c" isInstrument="0" fileTime="17ebf3d9b72" infoUpdateTime="17f7a675b84"
+            uniqueId="79fe81c" isInstrument="0" fileTime="17ebf3d9b72" infoUpdateTime="17f7b302a73"
             numInputs="2" numOutputs="2" isShell="0" uid="e95d02c7"/>
     <STATE>316.VMjLgLS....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9DSMy3BTIISX1UEaho2ZVkUdAAkKAwDUigWRWkEcQ0VTucmUY4BQPAUQLolShUELhsVRxHlXuESX4UkQhIFLTMVdqECVhUjZho2ZwHldMczU5slQhYWUrIlXQUkV1EzUYgGNv.UcMU0TlQDUgg1ZVkEcQcDRSUkQiQmdFIVdt3hKt3hKt3hKt3hKtXlTU0DUQAURWoULEYzXqEEUXoWQF4RPDYFTzDzUXkWSG4RPDYmKtnWPt3hKt3hKt3hKJUELPUTPqI1aYcEV5UkQQcVTWgEOujzPu0Fbu4VYtQmO77hUSQ0LPwVcmklaSQWXzUlO..</STATE>
     <LAYOUT>
@@ -77,13 +77,29 @@
       </OUTPUTS>
     </LAYOUT>
   </FILTER>
-  <FILTER uid="26" x="0.371900826446281" y="0.5019455252918288" uiLastX_Normal="1237"
-          uiLastY_Normal="426" uiopen_Normal="1">
+  <FILTER uid="26" x="0.371900826446281" y="0.5019455252918288" uiLastX_Normal="1249"
+          uiLastY_Normal="474" uiopen_Normal="1">
     <PLUGIN name="JDelay" format="VST3" category="Fx" manufacturer="Joe Midgett"
             version="1.0.0" file="C:\Users\josep\Dev\JDelay\Builds\VisualStudio2022\x64\Debug\VST3\JDelay.vst3"
-            uniqueId="a2e02d" isInstrument="0" fileTime="17f7a662776" infoUpdateTime="17f7a675b85"
+            uniqueId="a2e02d" isInstrument="0" fileTime="17f7b2d4cf6" infoUpdateTime="17f7b302a73"
             numInputs="2" numOutputs="2" isShell="0" uid="e959de8a"/>
     <STATE>570.VMjLgDi....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9LCMy3hUMoFSmgTTt3hKt7zJlcUXxEDZisVRxH1a3vVX3fjTLQmKogjYTwVXogiQY8FMwjENHIUUTkEUKMCR38TNtHzSPUDahcFLVkkdUwlX4QyPOAUQpQUPvPDRuEkUOgFTTEESEQkUlAUUR0TUpgjYXcEVxU0UYgCRnwDLtj1R1gDdKkicCQUPIUETMEjTZoFLogDQUQzTAsVQUkUPUEEZtf1XmcmUisFLogjcyHDSncCZOciKUAkTEQ0TlolQYgCRBEkTqUzTEkUUQwTRBgTLEYTXvTkUOgld3wDctjFR0MyPOAUQpQUPvPDRuEkUOgFVTEUQQoFTA0jdRglKnM1Y2Y0XqASZHAiKosjcHg2R4X2PTETRUAUSAIkVpASZHIUQDUUR3nFRlg0UXIWUWkENHIUS1MiPLg1Mn8zMtTETRUDUSYlZFkENHgWUEEUQSUTVUEESIIDRwTjQgASUV8DZ5gGSz4RZHU2LC8TctTEV3UjUgsVTWkEdM01St3hKt3hKt3hKt3hKJUELPUTPqI1aYcEV5UkQQcVTWgkKDAkKBs1QhcVSxHlKDAkKC4BTG4hKt3hKt3hKt3FUUMTUDQEdqw1XmE0UYQTQFM1YAwyKIMzasA2atUlaz4COuX0TTMCTrU2Yo41TzEFck4C.</STATE>
+    <LAYOUT>
+      <INPUTS>
+        <BUS index="0" layout="L R"/>
+      </INPUTS>
+      <OUTPUTS>
+        <BUS index="0" layout="L R"/>
+      </OUTPUTS>
+    </LAYOUT>
+  </FILTER>
+  <FILTER uid="27" x="0.6632231404958677" y="0.669260700389105" uiLastX_Normal="41"
+          uiLastY_Normal="439" uiopen_Normal="0">
+    <PLUGIN name="JQ3" format="VST3" category="Fx" manufacturer="Joe Midgett"
+            version="1.0.0" file="C:\Users\josep\Dev\JQ3\Builds\VisualStudio2022\x64\Debug\VST3\JQ3.vst3"
+            uniqueId="f499de25" isInstrument="0" fileTime="17f7b2edbd7" infoUpdateTime="17f7b302a74"
+            numInputs="2" numOutputs="2" isShell="0" uid="e9544807"/>
+    <STATE>879.VMjLgX1....O+fWarAhckI2bo8la8HRLt.iHfTlai8FYo41Y8HRUTYTK3HxO9.BOVMEUy.Ea0cVZtMEcgQWY9vSRC8Vav8lak4Fc9TyM03BTEwlXmAiUYoWUrIVdA4hKAImKTETRUAUSAAkKBolQY4BQlQTQDoVXmcmUjUSUrIlYToVXmkjQgsVTF4RLEYTXvTkQtDjZtDjKt3hKt3hKtX2JC4BTEoFUAACQtDDRPokZAAkKRQkKR81XFo0PUczXlgDUjYWQwHVdUYTVtf0UXIWUWkkKDAkPD4hKt3hKt3hKt3hKt3RUPIUQTMkKDYlKuEkQtDzLPEDRqESVt0DUioWPnEEdUYkXtf0UXIWUWkkKDAkPD4hKt3hKt3xPnsDTt3RUPIUQTMkKDYlKuEkQtDzMPEDRqESVt0DUioWP3Qkb3XjXqEjYic1cVM1ZAAkKIAkKt3hKt3hKt3hKt3hKTETRUAUSAAkKBolQY4BQPQTQ1oWXxzDUioWPnAEMAcEV40zUYoVPlM1Y2Y0XqEDTtjDTt3hKt3hKt3hKt3hKtPUPIUETMEDTtHjZFkkKDA0PEYmdgISSTMldAgVT3UkUh4BVWgkbUcUVtPDTBQjKt3hKt3hKt.0PP4hKUAkTEQ0TtPjYt7VTF4RPy.UPLgSLiMTUGMlYLUTX0EzUY4BVWgkbUcUVtPDTBQjKt3hKt3hKt3hKt3hKUAkTEQ0TtPjYt7VTF4RP2.UPPUkUXEWPnAEMAcEV40zUYoVPlM1Y2Y0XqEDTtjDTt3hKt3hKt3hKt3hKtPUPIUETMEDTtHjZFkkKDYmPE4RUYc1bFgjQIcUV2EjYic1cVM1ZAAkKIAkKt3hKt3hKtTCYtDjKTETRUAUSAAkKBolQY4BQ1ITQtTUVmMmQHcTQVoEcAY1XmcmUisVPP4RRP4hKt3hKt3hKt3jKA4BUAkTUP0TPP4hPpYTVtPjYCUjKUk0YyYDRQU0UXI2ZFMFMAY1XmcmUisVPP4RRP4hKt3hKHkGSS4hKA4hKt3hKt3hKt3hKtQUUCUEQTg2ZrM1YQcUVDUjQicVPP4RPHQEY1UTLhkWPP4RPL4hKi4hKt3hKt3hKtXlTU0DUQAURWoULEYzXqEEUXoWQFwyKIMzasA2atUlaz4COuX0TTMCTrU2Yo41TzEFck4C.</STATE>
     <LAYOUT>
       <INPUTS>
         <BUS index="0" layout="L R"/>
