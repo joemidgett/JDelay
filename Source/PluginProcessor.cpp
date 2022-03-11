@@ -102,6 +102,9 @@ void JDelayAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
     stereoDelay.createDelayBuffers(sampleRate, 2000.0);
 
     delayTimeLowpassParamSmoothing.initializeLowpassSmoothing(1500.0, sampleRate);
+    ratioLowpassParamSmoothing.initializeLowpassSmoothing(200.0, sampleRate);
+    dryLowpassParamSmoothing.initializeLowpassSmoothing(5.0, sampleRate);
+    wetLowpassParamSmoothing.initializeLowpassSmoothing(5.0, sampleRate);
 
     updateParameters();
 }
@@ -128,11 +131,17 @@ void JDelayAudioProcessor::updateParameters()
     audioDelayParams.leftDelay_mSec = delayTimeLowpassParamSmoothing.processLowpassSmoothing(audioDelayParams.leftDelay_mSec);
 
     audioDelayParams.feedback_Pct = *apvts.getRawParameterValue("FEEDBACK");
+
     audioDelayParams.delayRatio_Pct = *apvts.getRawParameterValue("RATIO");
+    audioDelayParams.delayRatio_Pct = ratioLowpassParamSmoothing.processLowpassSmoothing(audioDelayParams.delayRatio_Pct);
+
     audioDelayParams.updateType = delayUpdateType::kLeftPlusRatio;
     
     audioDelayParams.dryLevel_dB = *apvts.getRawParameterValue("DRYLEVEL");
+    audioDelayParams.dryLevel_dB = dryLowpassParamSmoothing.processLowpassSmoothing(audioDelayParams.dryLevel_dB);
+
     audioDelayParams.wetLevel_dB = *apvts.getRawParameterValue("WETLEVEL");
+    audioDelayParams.wetLevel_dB = wetLowpassParamSmoothing.processLowpassSmoothing(audioDelayParams.wetLevel_dB);
 
     audioDelayParams.algorithm = convertIntToEnum((int)*apvts.getRawParameterValue("DELAYTYPE"), delayAlgorithm);
 

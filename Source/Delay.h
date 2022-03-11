@@ -500,7 +500,7 @@ public:
         // --- total buffer length including fractional part
         bufferLength = (unsigned int)(bufferLength_mSec * (samplesPerMSec)) + 1; // +1 for fractional part
 
-                                                                               // --- create new buffer
+        // --- create new buffer
         delayBuffer_L.createCircularBuffer(bufferLength);
         delayBuffer_R.createCircularBuffer(bufferLength);
     }

@@ -54,17 +54,18 @@ public:
     void setStateInformation(const void* data, int sizeInBytes) override;
 
     juce::AudioProcessorValueTreeState apvts;
+    juce::AudioProcessorValueTreeState::ParameterLayout createParameters();
 
-protected:
-    //==============================================================================
-    AudioDelay stereoDelay;
     void updateParameters();
-
-    LowpassParamSmoother delayTimeLowpassParamSmoothing;
 
 private:
     //==============================================================================
-    juce::AudioProcessorValueTreeState::ParameterLayout createParameters();
+    AudioDelay stereoDelay;
+
+    LowpassParamSmoother delayTimeLowpassParamSmoothing;
+    LowpassParamSmoother ratioLowpassParamSmoothing;
+    LowpassParamSmoother dryLowpassParamSmoothing;
+    LowpassParamSmoother wetLowpassParamSmoothing;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (JDelayAudioProcessor)
 };
