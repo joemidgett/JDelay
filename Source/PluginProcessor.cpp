@@ -214,8 +214,8 @@ bool JDelayAudioProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* JDelayAudioProcessor::createEditor()
 {
-    return new JDelayAudioProcessorEditor (*this);
-    // return new juce::GenericAudioProcessorEditor(*this);
+    // return new JDelayAudioProcessorEditor (*this);
+    return new juce::GenericAudioProcessorEditor(*this);
 }
 
 //==============================================================================

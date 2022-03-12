@@ -24,33 +24,26 @@ public:
     void paint(juce::Graphics&) override;
     void resized() override;
 
-private:
     void makeSlider(juce::Slider* slider, juce::String suffix, juce::Component* parent);
-
     void makeSliderLabel(juce::Label* label, juce::String labelText, juce::Slider& slider, juce::Component* parent);
 
-    juce::Slider delayTimeSlider;
-    juce::Label delayTimeLabel;
-    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> delayTimeSliderAttachment;
+private:
 
-    juce::Slider feedbackSlider;
-    juce::Label feedbackLabel;
-    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> feedbackSliderAttachment;
-
-    juce::Slider ratioSlider;
-    juce::Label ratioLabel;
-    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> ratioSliderAttachment;
-
-    juce::Slider wetLevelSlider;
-    juce::Label wetLevelLabel;
-    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> wetLevelSliderAttachment;
-
-    juce::Slider dryLevelSlider;
-    juce::Label dryLevelLabel;
-    std::unique_ptr<juce::AudioProcessorValueTreeState::SliderAttachment> dryLevelSliderAttachment;
+    juce::Slider delayTimeSlider, feedbackSlider, ratioSlider,
+        wetLevelSlider, dryLevelSlider;
 
     juce::ComboBox delayTypeComboBox;
-    juce::Label delayTypeLabel;
+
+    juce::Label delayTimeLabel, feedbackLabel, ratioLabel,
+        wetLevelLabel, dryLevelLabel, delayTypeLabel;
+
+    using SliderAttachment = juce::AudioProcessorValueTreeState::SliderAttachment;
+    std::unique_ptr<SliderAttachment> delayTimeSliderAttachment,
+        feedbackSliderAttachment,
+        ratioSliderAttachment,
+        wetLevelSliderAttachment,
+        dryLevelSliderAttachment;
+
     std::unique_ptr<juce::AudioProcessorValueTreeState::ComboBoxAttachment> delayTypeComboBoxAttachment;
 
     // This reference is provided as a quick way for your editor to
