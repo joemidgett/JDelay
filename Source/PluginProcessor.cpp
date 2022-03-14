@@ -19,7 +19,7 @@ JDelayAudioProcessor::JDelayAudioProcessor()
                       #endif
                        .withOutput("Output", juce::AudioChannelSet::stereo(), true)
                      #endif
-                       ), apvts(*this, nullptr, "Parameters", createParameters())
+                       )
 #endif
 {
 
@@ -109,18 +109,41 @@ void JDelayAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
     updateParameters();
 }
 
-juce::AudioProcessorValueTreeState::ParameterLayout JDelayAudioProcessor::createParameters()
+juce::AudioProcessorValueTreeState::ParameterLayout JDelayAudioProcessor::createParameterLayout()
 {
-    std::vector<std::unique_ptr<juce::RangedAudioParameter>> params;
+    juce::AudioProcessorValueTreeState::ParameterLayout layout;
 
-    params.push_back(std::make_unique<juce::AudioParameterFloat>("DELAY TIME", "Delay Time", 0.0, 2000.0, 250.0));
-    params.push_back(std::make_unique<juce::AudioParameterFloat>("FEEDBACK", "Feedback", 0.0, 100.0, 50.0));
-    params.push_back(std::make_unique<juce::AudioParameterFloat>("RATIO", "Ratio", 0.0, 100.0, 50.0));
-    params.push_back(std::make_unique<juce::AudioParameterFloat>("WETLEVEL", "Wet Level", -60.0, 12.0, -3.0));
-    params.push_back(std::make_unique<juce::AudioParameterFloat>("DRYLEVEL", "Dry Level", -60.0, 12.0, -3.0));
-    params.push_back(std::make_unique<juce::AudioParameterChoice>("DELAYTYPE", "Delay Type", juce::StringArray("Normal", "PingPong"), 0));
+    layout.add(std::make_unique<juce::AudioParameterFloat>("DELAY TIME", 
+                                                           "Delay Time", 
+                                                            juce::NormalisableRange<float>(0.0, 2000.0, 0.05, 1.0),
+                                                            250.0));
 
-    return { params.begin(), params.end() };
+    layout.add(std::make_unique<juce::AudioParameterFloat>("FEEDBACK",
+                                                           "Feedback",
+                                                            juce::NormalisableRange<float>(0.0, 100.0, 0.05, 1.0),
+                                                            50.0));
+
+    layout.add(std::make_unique<juce::AudioParameterFloat>("RATIO",
+                                                           "Ratio",
+                                                           juce::NormalisableRange<float>(0.0, 100.0, 0.05, 1.0),
+                                                           50.0));
+
+    layout.add(std::make_unique<juce::AudioParameterFloat>("WETLEVEL",
+                                                           "Wet Level",
+                                                            juce::NormalisableRange<float>(-60.0, 12.0, 0.5, 1.0),
+                                                            -3.0));
+
+    layout.add(std::make_unique<juce::AudioParameterFloat>("DRYLEVEL",
+                                                           "Dry Level",
+                                                            juce::NormalisableRange<float>(-60.0, 12.0, 0.5, 1.0),
+                                                            -3.0));
+
+    layout.add(std::make_unique<juce::AudioParameterChoice>("DELAYTYPE", 
+                                                            "Delay Type", 
+                                                             juce::StringArray("Normal", "PingPong"), 
+                                                             0));
+
+    return layout;
 }
 
 void JDelayAudioProcessor::updateParameters()
@@ -214,8 +237,8 @@ bool JDelayAudioProcessor::hasEditor() const
 
 juce::AudioProcessorEditor* JDelayAudioProcessor::createEditor()
 {
-    // return new JDelayAudioProcessorEditor (*this);
-    return new juce::GenericAudioProcessorEditor(*this);
+    return new JDelayAudioProcessorEditor (*this);
+    // return new juce::GenericAudioProcessorEditor(*this);
 }
 
 //==============================================================================
@@ -224,6 +247,7 @@ void JDelayAudioProcessor::getStateInformation(juce::MemoryBlock& destData)
     // You should use this method to store your parameters in the memory block.
     // You could do that either as raw data, or use the XML or ValueTree classes
     // as intermediaries to make it easy to save and load complex data.
+    
     auto state = apvts.copyState();
     std::unique_ptr<juce::XmlElement> xml(state.createXml());
     copyXmlToBinary(*xml, destData);
@@ -233,6 +257,7 @@ void JDelayAudioProcessor::setStateInformation(const void* data, int sizeInBytes
 {
     // You should use this method to restore your parameters from this memory block,
     // whose contents will have been created by the getStateInformation() call.
+    
     std::unique_ptr<juce::XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
 
     if (xmlState.get() != nullptr)
