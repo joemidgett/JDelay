@@ -41,26 +41,31 @@ void JDelayAudioProcessorEditor::resized()
 
     auto bounds = getLocalBounds();
 
-    auto controlArea = bounds.removeFromTop(bounds.getHeight() * JUCE_LIVE_CONSTANT(0.0156399));
+    auto controlArea = bounds.removeFromTop(bounds.getHeight() * JUCE_LIVE_CONSTANT(0.5));
 
-    auto dryLevelSliderArea = bounds.removeFromLeft(bounds.getWidth() * JUCE_LIVE_CONSTANT(0.19));
+    auto dryLevelSliderArea = bounds.removeFromLeft(JUCE_LIVE_CONSTANT(0));
     dryLevelSlider.setBounds(dryLevelSliderArea);
 
-    auto delayTypeButtonArea = bounds.removeFromLeft(bounds.getWidth() * JUCE_LIVE_CONSTANT(0.1))
-        .removeFromTop(bounds.getHeight() * JUCE_LIVE_CONSTANT(1.01611));
-    delayTypeButton.setBounds(delayTypeButtonArea);
+    //auto controlArea = bounds.removeFromTop(bounds.getHeight() * JUCE_LIVE_CONSTANT(0.0156399));
 
-    auto delayTimeArea = bounds.removeFromLeft(bounds.getWidth() * JUCE_LIVE_CONSTANT(0.26));
-    delayTimeSlider.setBounds(delayTimeArea);
+    //auto dryLevelSliderArea = bounds.removeFromLeft(bounds.getWidth() * JUCE_LIVE_CONSTANT(0.19));
+    //dryLevelSlider.setBounds(dryLevelSliderArea);
 
-    auto feedbackArea = bounds.removeFromLeft(bounds.getWidth() * JUCE_LIVE_CONSTANT(0.34));
-    feedbackSlider.setBounds(feedbackArea);
+    //auto delayTypeButtonArea = bounds.removeFromLeft(bounds.getWidth() * JUCE_LIVE_CONSTANT(0.1))
+    //    .removeFromTop(bounds.getHeight() * JUCE_LIVE_CONSTANT(1.01611));
+    //delayTypeButton.setBounds(delayTypeButtonArea);
 
-    auto ratioArea = bounds.removeFromLeft(bounds.getWidth() * JUCE_LIVE_CONSTANT(0.50));
-    ratioSlider.setBounds(ratioArea);
+    //auto delayTimeArea = bounds.removeFromLeft(bounds.getWidth() * JUCE_LIVE_CONSTANT(0.26));
+    //delayTimeSlider.setBounds(delayTimeArea);
 
-    auto wetLevelSliderArea = bounds.removeFromLeft(bounds.getWidth() * JUCE_LIVE_CONSTANT(2.0));
-    wetLevelSlider.setBounds(wetLevelSliderArea);
+    //auto feedbackArea = bounds.removeFromLeft(bounds.getWidth() * JUCE_LIVE_CONSTANT(0.34));
+    //feedbackSlider.setBounds(feedbackArea);
+
+    //auto ratioArea = bounds.removeFromLeft(bounds.getWidth() * JUCE_LIVE_CONSTANT(0.50));
+    //ratioSlider.setBounds(ratioArea);
+
+    //auto wetLevelSliderArea = bounds.removeFromLeft(bounds.getWidth() * JUCE_LIVE_CONSTANT(2.0));
+    //wetLevelSlider.setBounds(wetLevelSliderArea);
 }
 
 std::vector<juce::Component*> JDelayAudioProcessorEditor::getJDelayComponents()
