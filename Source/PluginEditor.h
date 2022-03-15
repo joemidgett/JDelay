@@ -74,7 +74,7 @@ public:
     void paint(juce::Graphics&) override;
     void resized() override;
 
-    // std::vector<juce::Component*> getJDelayComponents();
+    std::vector<juce::Component*> getJDelayComponents();
 
 private:
 
@@ -88,9 +88,7 @@ private:
         wetLevelSlider, 
         dryLevelSlider;
 
-    juce::ToggleButton delayTypeButton;
-
-    std::vector<juce::Component*> getJDelayComponents();
+    juce::ComboBox delayTypeCombobox;
 
     //juce::Label delayTimeLabel, feedbackLabel, ratioLabel,
     //    wetLevelLabel, dryLevelLabel, delayTypeLabel;
