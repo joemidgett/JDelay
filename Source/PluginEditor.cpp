@@ -12,6 +12,13 @@
 //==============================================================================
 JDelayAudioProcessorEditor::JDelayAudioProcessorEditor(JDelayAudioProcessor& p)
     : AudioProcessorEditor(&p), audioProcessor(p),
+
+    dryLevelSlider(*audioProcessor.apvts.getParameter("DRYLEVEL"), "dB"),
+    delayTimeSlider(*audioProcessor.apvts.getParameter("DELAYTIME"), "mSec"),
+    feedbackSlider(*audioProcessor.apvts.getParameter("FEEDBACK"), "%"),
+    ratioSlider(*audioProcessor.apvts.getParameter("RATIO"), "%"),
+    wetLevelSlider(*audioProcessor.apvts.getParameter("WETLEVEL"), "dB"),
+
     dryLevelSliderAttachment(audioProcessor.apvts, "DRYLEVEL", dryLevelSlider),
     delayTimeSliderAttachment(audioProcessor.apvts, "DELAYTIME", delayTimeSlider),
     feedbackSliderAttachment(audioProcessor.apvts, "FEEDBACK", feedbackSlider),
