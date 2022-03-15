@@ -113,7 +113,12 @@ juce::AudioProcessorValueTreeState::ParameterLayout JDelayAudioProcessor::create
 {
     juce::AudioProcessorValueTreeState::ParameterLayout layout;
 
-    layout.add(std::make_unique<juce::AudioParameterFloat>("DELAY TIME", 
+    layout.add(std::make_unique<juce::AudioParameterFloat>("DRYLEVEL",
+                                                           "Dry Level",
+                                                            juce::NormalisableRange<float>(-60.0, 12.0, 0.5, 1.0),
+                                                            -3.0));
+
+    layout.add(std::make_unique<juce::AudioParameterFloat>("DELAYTIME", 
                                                            "Delay Time", 
                                                             juce::NormalisableRange<float>(0.0, 2000.0, 0.05, 1.0),
                                                             250.0));
@@ -133,14 +138,9 @@ juce::AudioProcessorValueTreeState::ParameterLayout JDelayAudioProcessor::create
                                                             juce::NormalisableRange<float>(-60.0, 12.0, 0.5, 1.0),
                                                             -3.0));
 
-    layout.add(std::make_unique<juce::AudioParameterFloat>("DRYLEVEL",
-                                                           "Dry Level",
-                                                            juce::NormalisableRange<float>(-60.0, 12.0, 0.5, 1.0),
-                                                            -3.0));
-
     layout.add(std::make_unique<juce::AudioParameterChoice>("DELAYTYPE", 
                                                             "Delay Type", 
-                                                             juce::StringArray("Normal", "PingPong"), 
+                                                             juce::StringArray("Normal", "PingPong"),
                                                              0));
 
     return layout;
@@ -150,18 +150,18 @@ void JDelayAudioProcessor::updateParameters()
 {
     AudioDelayParameters audioDelayParams = stereoDelay.getParameters();
 
-    audioDelayParams.leftDelay_mSec = *apvts.getRawParameterValue("DELAY TIME");
+    audioDelayParams.updateType = delayUpdateType::kLeftPlusRatio;
+
+    audioDelayParams.dryLevel_dB = *apvts.getRawParameterValue("DRYLEVEL");
+    audioDelayParams.dryLevel_dB = dryLowpassParamSmoothing.processLowpassSmoothing(audioDelayParams.dryLevel_dB);
+
+    audioDelayParams.leftDelay_mSec = *apvts.getRawParameterValue("DELAYTIME");
     audioDelayParams.leftDelay_mSec = delayTimeLowpassParamSmoothing.processLowpassSmoothing(audioDelayParams.leftDelay_mSec);
 
     audioDelayParams.feedback_Pct = *apvts.getRawParameterValue("FEEDBACK");
 
     audioDelayParams.delayRatio_Pct = *apvts.getRawParameterValue("RATIO");
     audioDelayParams.delayRatio_Pct = ratioLowpassParamSmoothing.processLowpassSmoothing(audioDelayParams.delayRatio_Pct);
-
-    audioDelayParams.updateType = delayUpdateType::kLeftPlusRatio;
-    
-    audioDelayParams.dryLevel_dB = *apvts.getRawParameterValue("DRYLEVEL");
-    audioDelayParams.dryLevel_dB = dryLowpassParamSmoothing.processLowpassSmoothing(audioDelayParams.dryLevel_dB);
 
     audioDelayParams.wetLevel_dB = *apvts.getRawParameterValue("WETLEVEL");
     audioDelayParams.wetLevel_dB = wetLowpassParamSmoothing.processLowpassSmoothing(audioDelayParams.wetLevel_dB);

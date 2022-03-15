@@ -88,21 +88,25 @@ private:
         wetLevelSlider, 
         dryLevelSlider;
 
-    juce::ComboBox delayTypeCombobox;
+    juce::ComboBox delayTypeComboBox;
+    
+    using APVTS = juce::AudioProcessorValueTreeState;
+    using SliderAttachment = APVTS::SliderAttachment;
+
+    SliderAttachment delayTimeSliderAttachment,
+        feedbackSliderAttachment,
+        ratioSliderAttachment,
+        wetLevelSliderAttachment,
+        dryLevelSliderAttachment;
+
+    using ComboBoxAttachment = APVTS::ComboBoxAttachment;
+
+    ComboBoxAttachment delayTypeComboBoxAttachment;
+
+    //std::unique_ptr<juce::AudioProcessorValueTreeState::ComboBoxAttachment> delayTypeComboBoxAttachment;
 
     //juce::Label delayTimeLabel, feedbackLabel, ratioLabel,
     //    wetLevelLabel, dryLevelLabel, delayTypeLabel;
-    
-    //using APVTS = juce::AudioProcessorValueTreeState;
-    //using SliderAttachment = APVTS::SliderAttachment;
-
-    //SliderAttachment delayTimeSliderAttachment,
-    //    feedbackSliderAttachment,
-    //    ratioSliderAttachment,
-    //    wetLevelSliderAttachment,
-    //    dryLevelSliderAttachment;
-
-    //std::unique_ptr<juce::AudioProcessorValueTreeState::ComboBoxAttachment> delayTypeComboBoxAttachment;
 
     // JDelayLookAndFeel lnf;
 

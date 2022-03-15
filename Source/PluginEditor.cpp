@@ -11,7 +11,13 @@
 
 //==============================================================================
 JDelayAudioProcessorEditor::JDelayAudioProcessorEditor(JDelayAudioProcessor& p)
-    : AudioProcessorEditor(&p), audioProcessor(p)
+    : AudioProcessorEditor(&p), audioProcessor(p),
+    dryLevelSliderAttachment(audioProcessor.apvts, "DRYLEVEL", dryLevelSlider),
+    delayTimeSliderAttachment(audioProcessor.apvts, "DELAYTIME", delayTimeSlider),
+    feedbackSliderAttachment(audioProcessor.apvts, "FEEDBACK", feedbackSlider),
+    ratioSliderAttachment(audioProcessor.apvts, "RATIO", ratioSlider),
+    wetLevelSliderAttachment(audioProcessor.apvts, "WETLEVEL", wetLevelSlider),
+    delayTypeComboBoxAttachment(audioProcessor.apvts, "DELAYTYPE", delayTypeComboBox)
 {
     for (auto* comp : getJDelayComponents())
     {
@@ -56,8 +62,11 @@ void JDelayAudioProcessorEditor::resized()
     auto wetLevelSliderArea = bounds.removeFromLeft(95);
     wetLevelSlider.setBounds(wetLevelSliderArea);
 
-    auto delayTypeComboboxArea = bounds.removeFromLeft(115).removeFromBottom(135).removeFromTop(70);
-    delayTypeCombobox.setBounds(delayTypeComboboxArea);
+    auto delayTypeComboBoxArea = bounds.removeFromLeft(115).removeFromBottom(125).removeFromTop(45);
+    delayTypeComboBox.addItem("Normal", 1);
+    delayTypeComboBox.addItem("Ping Pong", 2);
+    delayTypeComboBox.setJustificationType(juce::Justification::centred);
+    delayTypeComboBox.setBounds(delayTypeComboBoxArea);
 }
 
 std::vector<juce::Component*> JDelayAudioProcessorEditor::getJDelayComponents()
@@ -69,6 +78,6 @@ std::vector<juce::Component*> JDelayAudioProcessorEditor::getJDelayComponents()
         &ratioSlider,
         &wetLevelSlider,
         &dryLevelSlider,
-        &delayTypeCombobox
+        &delayTypeComboBox
     };
 }
