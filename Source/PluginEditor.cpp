@@ -26,6 +26,12 @@ JDelayAudioProcessorEditor::JDelayAudioProcessorEditor(JDelayAudioProcessor& p)
     wetLevelSliderAttachment(audioProcessor.apvts, "WETLEVEL", wetLevelSlider),
     delayTypeComboBoxAttachment(audioProcessor.apvts, "DELAYTYPE", delayTypeComboBox)
 {
+    dryLevelSlider.labels.add({ 0.f, "Dry Level" });
+    delayTimeSlider.labels.add({ 0.f, "Delay Time" });
+    feedbackSlider.labels.add({ 0.f, "Feedback" });
+    ratioSlider.labels.add({ 0.f, "L/R Ratio" });
+    wetLevelSlider.labels.add({ 0.f, "Wet Level" });
+
     for (auto* comp : getJDelayComponents())
     {
         addAndMakeVisible(comp);
@@ -143,10 +149,10 @@ void RotarySliderWithLabels::paint(juce::Graphics& g)
 
     auto sliderBounds = getSliderBounds();
 
-    g.setColour(juce::Colours::red);
-    g.drawRect(getLocalBounds());
-    g.setColour(juce::Colours::yellow);
-    g.drawRect(sliderBounds);
+    //g.setColour(juce::Colours::red);
+    //g.drawRect(getLocalBounds());
+    //g.setColour(juce::Colours::yellow);
+    //g.drawRect(sliderBounds);
 
     getLookAndFeel().drawRotarySlider(g, 
                                       sliderBounds.getX(), 
@@ -157,6 +163,22 @@ void RotarySliderWithLabels::paint(juce::Graphics& g)
                                       startAng, 
                                       endAng, 
                                       *this);
+
+    g.setColour(juce::Colours::white);
+    g.setFont(getTextHeight());
+
+    auto numChoices = labels.size();
+    for (int labelChoice = 0; labelChoice < numChoices; ++labelChoice)
+    {
+        auto rotarySliderLabelPos = labels[labelChoice].rotarySliderLabelPos;
+        
+        juce::Rectangle<float> r;
+        auto rotarySliderLabelText = labels[labelChoice].rotarySliderLabelText;
+        r.setSize(g.getCurrentFont().getStringWidth(rotarySliderLabelText), getTextHeight());
+        r.setCentre(sliderBounds.getCentreX(), sliderBounds.getCentreY() - 50);
+
+        g.drawFittedText(rotarySliderLabelText, r.toNearestInt(), juce::Justification::centred, 1);
+    }
 }
 
 juce::Rectangle<int> RotarySliderWithLabels::getSliderBounds() const
