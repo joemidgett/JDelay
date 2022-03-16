@@ -531,9 +531,9 @@ public:
 
     void initializeLowpassSmoothing(float smoothingTimeInMs, float samplingRate)
     {
-        const float c_twoPi = 6.283185307179586476925286766559f;
+        const float twoPi = juce::MathConstants<float>::twoPi;
 
-        a = exp(-c_twoPi / (smoothingTimeInMs * 0.001f * samplingRate));
+        a = exp(-twoPi / (smoothingTimeInMs * 0.001f * samplingRate));
         b = 1.0f - a;
         z = 0.0f;
     }

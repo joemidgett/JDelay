@@ -88,3 +88,69 @@ std::vector<juce::Component*> JDelayAudioProcessorEditor::getJDelayComponents()
         &delayTypeComboBox
     };
 }
+
+//==============================================================================
+void JDelayLookAndFeel::drawRotarySlider(juce::Graphics& g,
+                                         int x,
+                                         int y,
+                                         int width,
+                                         int height,
+                                         float sliderPosProportional,
+                                         float rotaryStartAngle,
+                                         float rotaryEndAngle,
+                                         juce::Slider& slider)
+{
+    auto bounds = juce::Rectangle<float>(x, y, width, height);
+
+    g.setColour(juce::Colour(97u, 18u, 167u));
+    g.fillEllipse(bounds);
+
+    g.setColour(juce::Colour(255u, 154u, 1u));
+    g.drawEllipse(bounds, 1.f);
+
+    auto center = bounds.getCentre();
+
+    juce::Path rotarySliderPath;
+
+    juce::Rectangle<float> rotarySliderPathRectangle;
+    rotarySliderPathRectangle.setLeft(center.getX() - 2);
+    rotarySliderPathRectangle.setRight(center.getX() + 2);
+    rotarySliderPathRectangle.setTop(bounds.getY());
+    rotarySliderPathRectangle.setBottom(center.getY());
+
+    rotarySliderPath.addRectangle(rotarySliderPathRectangle);
+
+    jassert(rotaryStartAngle < rotaryEndAngle);
+
+    auto sliderAngRad = juce::jmap(sliderPosProportional, 0.f, 1.f, rotaryStartAngle, rotaryEndAngle);
+
+    rotarySliderPath.applyTransform(juce::AffineTransform().rotated(sliderAngRad, center.getX(), center.getY()));
+
+    g.fillPath(rotarySliderPath);
+}
+
+//==============================================================================
+void RotarySliderWithLabels::paint(juce::Graphics& g)
+{
+    auto startAng = juce::degreesToRadians(180.f + 45.f);
+    auto endAng = juce::degreesToRadians(180.f - 45.f) + juce::MathConstants<float>::twoPi; // what if 2pi is removed?
+
+    auto range = getRange();
+
+    auto sliderBounds = getSliderBounds();
+
+    getLookAndFeel().drawRotarySlider(g, 
+                                      sliderBounds.getX(), 
+                                      sliderBounds.getY(), 
+                                      sliderBounds.getWidth(), 
+                                      sliderBounds.getHeight(), 
+                                      juce::jmap(getValue(), range.getStart(), range.getEnd(), 0.0, 1.0), 
+                                      startAng, 
+                                      endAng, 
+                                      *this);
+}
+
+juce::Rectangle<int> RotarySliderWithLabels::getSliderBounds() const
+{
+    return getLocalBounds();
+}
