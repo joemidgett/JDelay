@@ -108,25 +108,41 @@ void JDelayLookAndFeel::drawRotarySlider(juce::Graphics& g,
     g.setColour(juce::Colour(255u, 154u, 1u));
     g.drawEllipse(bounds, 1.f);
 
-    auto center = bounds.getCentre();
+    if (auto* rswl = dynamic_cast<RotarySliderWithLabels*>(&slider))
+    {
+        auto center = bounds.getCentre();
 
-    juce::Path rotarySliderPath;
+        juce::Path rotarySliderPath;
 
-    juce::Rectangle<float> rotarySliderPathRectangle;
-    rotarySliderPathRectangle.setLeft(center.getX() - 2);
-    rotarySliderPathRectangle.setRight(center.getX() + 2);
-    rotarySliderPathRectangle.setTop(bounds.getY());
-    rotarySliderPathRectangle.setBottom(center.getY());
+        juce::Rectangle<float> rotarySliderPathRectangle;
+        rotarySliderPathRectangle.setLeft(center.getX() - 2);
+        rotarySliderPathRectangle.setRight(center.getX() + 2);
+        rotarySliderPathRectangle.setTop(bounds.getY());
+        rotarySliderPathRectangle.setBottom(center.getY() - rswl->getTextHeight() * 1.5);
 
-    rotarySliderPath.addRectangle(rotarySliderPathRectangle);
+        rotarySliderPath.addRoundedRectangle(rotarySliderPathRectangle, 2.f);
 
-    jassert(rotaryStartAngle < rotaryEndAngle);
+        jassert(rotaryStartAngle < rotaryEndAngle);
 
-    auto sliderAngRad = juce::jmap(sliderPosProportional, 0.f, 1.f, rotaryStartAngle, rotaryEndAngle);
+        auto sliderAngRad = juce::jmap(sliderPosProportional, 0.f, 1.f, rotaryStartAngle, rotaryEndAngle);
 
-    rotarySliderPath.applyTransform(juce::AffineTransform().rotated(sliderAngRad, center.getX(), center.getY()));
+        rotarySliderPath.applyTransform(juce::AffineTransform().rotated(sliderAngRad, center.getX(), center.getY()));
 
-    g.fillPath(rotarySliderPath);
+        g.fillPath(rotarySliderPath);
+
+        g.setFont(rswl->getTextHeight());
+        auto text = rswl->getDisplayString();
+        auto strWidth = g.getCurrentFont().getStringWidth(text);
+
+        rotarySliderPathRectangle.setSize(strWidth + 4, rswl->getTextHeight() + 2);
+        rotarySliderPathRectangle.setCentre(bounds.getCentre());
+
+        g.setColour(juce::Colour(97u, 18u, 167u));
+        g.fillRect(rotarySliderPathRectangle);
+
+        g.setColour(juce::Colours::white);
+        g.drawFittedText(text, rotarySliderPathRectangle.toNearestInt(), juce::Justification::centred, 1);
+    }
 }
 
 //==============================================================================
@@ -170,4 +186,9 @@ juce::Rectangle<int> RotarySliderWithLabels::getSliderBounds() const
     r.setY(65);
 
     return r;
+}
+
+juce::String RotarySliderWithLabels::getDisplayString() const
+{
+    return juce::String(getValue());
 }
