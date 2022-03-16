@@ -31,8 +31,7 @@ public:
     RotarySliderWithLabels(juce::RangedAudioParameter& rap, const juce::String& unitSuffix) : 
                            juce::Slider(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag,
                                         juce::Slider::TextEntryBoxPosition::TextBoxBelow),
-                                        rangedAudioParam(&rap),
-                                        suffix(unitSuffix)
+                                        rangedAudioParam(&rap)
     {
         setLookAndFeel(&lnf);
     }
@@ -45,13 +44,11 @@ public:
     void paint(juce::Graphics& g) override;
     juce::Rectangle<int> getSliderBounds() const;
     int getTextHeight() const { return 14; }
-    juce::String getDisplayString() const;
 
 private:
     JDelayLookAndFeel lnf;
 
     juce::RangedAudioParameter* rangedAudioParam;
-    juce::String suffix;
 };
 
 //==============================================================================

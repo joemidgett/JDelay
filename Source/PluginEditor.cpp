@@ -44,7 +44,8 @@ JDelayAudioProcessorEditor::~JDelayAudioProcessorEditor()
 void JDelayAudioProcessorEditor::paint(juce::Graphics& g)
 {
     // (Our component is opaque, so we must completely fill the background with a solid colour)
-    g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
+    // g.fillAll(getLookAndFeel().findColour(juce::ResizableWindow::backgroundColourId));
+    g.fillAll(juce::Colours::black);
 }
 
 void JDelayAudioProcessorEditor::resized()
@@ -129,19 +130,6 @@ void JDelayLookAndFeel::drawRotarySlider(juce::Graphics& g,
         rotarySliderPath.applyTransform(juce::AffineTransform().rotated(sliderAngRad, center.getX(), center.getY()));
 
         g.fillPath(rotarySliderPath);
-
-        g.setFont(rswl->getTextHeight());
-        auto text = rswl->getDisplayString();
-        auto strWidth = g.getCurrentFont().getStringWidth(text);
-
-        rotarySliderPathRectangle.setSize(strWidth + 4, rswl->getTextHeight() + 2);
-        rotarySliderPathRectangle.setCentre(bounds.getCentre());
-
-        g.setColour(juce::Colour(97u, 18u, 167u));
-        g.fillRect(rotarySliderPathRectangle);
-
-        g.setColour(juce::Colours::white);
-        g.drawFittedText(text, rotarySliderPathRectangle.toNearestInt(), juce::Justification::centred, 1);
     }
 }
 
@@ -186,21 +174,4 @@ juce::Rectangle<int> RotarySliderWithLabels::getSliderBounds() const
     r.setY(65);
 
     return r;
-}
-
-juce::String RotarySliderWithLabels::getDisplayString() const
-{
-    // return juce::String(getValue());
-
-    float val = getValue();
-
-    juce::String str = juce::String(val);
-
-    if (suffix.isNotEmpty())
-    {
-        str << " ";
-        str << suffix;
-    }
-
-    return str;
 }
