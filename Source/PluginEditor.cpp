@@ -190,5 +190,17 @@ juce::Rectangle<int> RotarySliderWithLabels::getSliderBounds() const
 
 juce::String RotarySliderWithLabels::getDisplayString() const
 {
-    return juce::String(getValue());
+    // return juce::String(getValue());
+
+    float val = getValue();
+
+    juce::String str = juce::String(val);
+
+    if (suffix.isNotEmpty())
+    {
+        str << " ";
+        str << suffix;
+    }
+
+    return str;
 }
