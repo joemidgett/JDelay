@@ -36,6 +36,14 @@ public:
         setLookAndFeel(&lnf);
     }
 
+    struct RotarySliderLabelPosition
+    {
+        float rotarySliderLabelPos;
+        juce::String rotarySliderLabelText;
+    };
+
+    juce::Array<RotarySliderLabelPosition> labels;
+
     ~RotarySliderWithLabels()
     {
         setLookAndFeel(nullptr);
@@ -90,8 +98,6 @@ private:
     using ComboBoxAttachment = APVTS::ComboBoxAttachment;
 
     ComboBoxAttachment delayTypeComboBoxAttachment;
-
-    //std::unique_ptr<juce::AudioProcessorValueTreeState::ComboBoxAttachment> delayTypeComboBoxAttachment;
 
     //juce::Label delayTimeLabel, feedbackLabel, ratioLabel,
     //    wetLevelLabel, dryLevelLabel, delayTypeLabel;
