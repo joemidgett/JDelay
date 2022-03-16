@@ -55,19 +55,19 @@ void JDelayAudioProcessorEditor::resized()
 
     auto bounds = getLocalBounds();
 
-    auto dryLevelSliderArea = bounds.removeFromLeft(95);
+    auto dryLevelSliderArea = bounds.removeFromLeft(95).removeFromTop(160);
     dryLevelSlider.setBounds(dryLevelSliderArea);
 
-    auto delayTimeArea = bounds.removeFromLeft(95);
+    auto delayTimeArea = bounds.removeFromLeft(95).removeFromTop(160);
     delayTimeSlider.setBounds(delayTimeArea);
 
-    auto feedbackArea = bounds.removeFromLeft(95);
+    auto feedbackArea = bounds.removeFromLeft(95).removeFromTop(160);
     feedbackSlider.setBounds(feedbackArea);
 
-    auto ratioArea = bounds.removeFromLeft(95);
+    auto ratioArea = bounds.removeFromLeft(95).removeFromTop(160);
     ratioSlider.setBounds(ratioArea);
 
-    auto wetLevelSliderArea = bounds.removeFromLeft(95);
+    auto wetLevelSliderArea = bounds.removeFromLeft(95).removeFromTop(160);
     wetLevelSlider.setBounds(wetLevelSliderArea);
 
     auto delayTypeComboBoxArea = bounds.removeFromLeft(115).removeFromBottom(125).removeFromTop(45);
