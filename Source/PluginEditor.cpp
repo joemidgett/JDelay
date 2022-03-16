@@ -103,10 +103,10 @@ void JDelayLookAndFeel::drawRotarySlider(juce::Graphics& g,
 {
     auto bounds = juce::Rectangle<float>(x, y, width, height);
 
-    g.setColour(juce::Colour(97u, 18u, 167u));
+    g.setColour(juce::Colours::white);
     g.fillEllipse(bounds);
 
-    g.setColour(juce::Colour(255u, 154u, 1u));
+    g.setColour(juce::Colours::black);
     g.drawEllipse(bounds, 1.f);
 
     if (auto* rswl = dynamic_cast<RotarySliderWithLabels*>(&slider))
