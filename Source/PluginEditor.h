@@ -21,10 +21,33 @@ public:
                           float rotaryStartAngle,
                           float rotaryEndAngle, 
                           juce::Slider&) override;
+
+    void drawComboBox(juce::Graphics&, int width, int height, bool isButtonDown,
+                      int buttonX, int buttonY, int buttonW, int buttonH,
+                      juce::ComboBox&) override;
 private:
 
 };
 
+class JDelayComboBox : public juce::ComboBox
+{
+public:
+    JDelayComboBox()
+    {
+        setLookAndFeel(&lnf);
+    }
+
+    ~JDelayComboBox()
+    {
+        setLookAndFeel(nullptr);
+    }
+
+
+private:
+    JDelayLookAndFeel lnf;
+};
+
+//==============================================================================
 class RotarySliderWithLabels : public juce::Slider
 {
 public:
@@ -36,6 +59,11 @@ public:
         setLookAndFeel(&lnf);
     }
 
+    ~RotarySliderWithLabels()
+    {
+        setLookAndFeel(nullptr);
+    }
+
     struct RotarySliderLabelPosition
     {
         float rotarySliderLabelPos;
@@ -43,11 +71,6 @@ public:
     };
 
     juce::Array<RotarySliderLabelPosition> labels;
-
-    ~RotarySliderWithLabels()
-    {
-        setLookAndFeel(nullptr);
-    }
 
     void paint(juce::Graphics& g) override;
     juce::Rectangle<int> getSliderBounds() const;

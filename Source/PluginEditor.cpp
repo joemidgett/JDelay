@@ -175,6 +175,13 @@ void JDelayLookAndFeel::drawRotarySlider(juce::Graphics& g,
     }
 }
 
+void JDelayLookAndFeel::drawComboBox(juce::Graphics&, int width, int height, bool isButtonDown,
+                                     int buttonX, int buttonY, int buttonW, int buttonH,
+                                     juce::ComboBox&)
+{
+
+}
+
 //==============================================================================
 void RotarySliderWithLabels::paint(juce::Graphics& g)
 {
