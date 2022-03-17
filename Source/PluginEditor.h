@@ -99,8 +99,12 @@ private:
 
     ComboBoxAttachment delayTypeComboBoxAttachment;
 
-    //juce::Label delayTimeLabel, feedbackLabel, ratioLabel,
-    //    wetLevelLabel, dryLevelLabel, delayTypeLabel;
+    juce::Label delayTimeUnitsLabel, 
+        feedbackUnitsLabel, 
+        ratioUnitsLabel,
+        wetLevelUnitsLabel, 
+        dryLevelUnitsLabel, 
+        delayTypeUnitsLabel;
 
     // JDelayLookAndFeel lnf;
 
