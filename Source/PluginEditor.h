@@ -16,6 +16,12 @@
 class JDelayLookAndFeel : public juce::LookAndFeel_V4
 {
 public:
+    JDelayLookAndFeel()
+    {
+        setColour(juce::PopupMenu::ColourIds::textColourId, juce::Colours::white);
+        setColour(juce::PopupMenu::ColourIds::backgroundColourId, juce::Colours::black);
+    }
+
     void drawRotarySlider(juce::Graphics&, int x, int y, int width, int height,
                           float sliderPosProportional, 
                           float rotaryStartAngle,
@@ -25,6 +31,21 @@ public:
     void drawComboBox(juce::Graphics&, int width, int height, bool isButtonDown,
                       int buttonX, int buttonY, int buttonW, int buttonH,
                       juce::ComboBox&) override;
+
+    juce::Font getComboBoxFont(juce::ComboBox&) override;
+
+    void positionComboBoxText(juce::ComboBox&, juce::Label&) override;
+
+    void drawPopupMenuItem(juce::Graphics& g, const juce::Rectangle<int>& area,
+        const bool isSeparator, const bool isActive,
+        const bool isHighlighted, const bool isTicked,
+        const bool hasSubMenu, const juce::String& text,
+        const juce::String& shortcutKeyText,
+        const juce::Drawable* icon, const juce::Colour* const textColourToUse) override;
+
+    void getIdealPopupMenuItemSize(const juce::String& text, const bool isSeparator,
+        int standardMenuItemHeight, int& idealWidth, int& idealHeight) override;
+
 private:
 
 };
@@ -32,7 +53,7 @@ private:
 class JDelayComboBox : public juce::ComboBox
 {
 public:
-    JDelayComboBox()
+    JDelayComboBox() : juce::ComboBox()
     {
         setLookAndFeel(&lnf);
     }
@@ -107,7 +128,8 @@ private:
         wetLevelSlider, 
         dryLevelSlider;
 
-    juce::ComboBox delayTypeComboBox;
+    JDelayComboBox delayTypeComboBox;
+    // juce::ComboBox delayTypeComboBox;
     
     using APVTS = juce::AudioProcessorValueTreeState;
     using SliderAttachment = APVTS::SliderAttachment;

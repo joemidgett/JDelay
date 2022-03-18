@@ -69,7 +69,7 @@ JDelayAudioProcessorEditor::JDelayAudioProcessorEditor(JDelayAudioProcessor& p)
 
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize(600, 200);
+    setSize(600, 180);
 }
 
 JDelayAudioProcessorEditor::~JDelayAudioProcessorEditor()
@@ -91,19 +91,19 @@ void JDelayAudioProcessorEditor::resized()
 
     auto bounds = getLocalBounds();
 
-    auto dryLevelSliderArea = bounds.removeFromLeft(95).removeFromTop(160);
+    auto dryLevelSliderArea = bounds.removeFromLeft(95).removeFromTop(140);
     dryLevelSlider.setBounds(dryLevelSliderArea);
 
-    auto delayTimeArea = bounds.removeFromLeft(95).removeFromTop(160);
+    auto delayTimeArea = bounds.removeFromLeft(95).removeFromTop(140);
     delayTimeSlider.setBounds(delayTimeArea);
 
-    auto feedbackArea = bounds.removeFromLeft(95).removeFromTop(160);
+    auto feedbackArea = bounds.removeFromLeft(95).removeFromTop(140);
     feedbackSlider.setBounds(feedbackArea);
 
-    auto ratioArea = bounds.removeFromLeft(95).removeFromTop(160);
+    auto ratioArea = bounds.removeFromLeft(95).removeFromTop(140);
     ratioSlider.setBounds(ratioArea);
 
-    auto wetLevelSliderArea = bounds.removeFromLeft(95).removeFromTop(160);
+    auto wetLevelSliderArea = bounds.removeFromLeft(95).removeFromTop(140);
     wetLevelSlider.setBounds(wetLevelSliderArea);
 
     auto delayTypeComboBoxArea = bounds.removeFromLeft(115).removeFromBottom(125).removeFromTop(45);
@@ -112,11 +112,11 @@ void JDelayAudioProcessorEditor::resized()
     delayTypeComboBox.setJustificationType(juce::Justification::centred);
     delayTypeComboBox.setBounds(delayTypeComboBoxArea);
 
-    dryLevelUnitsLabel.setBounds(-242, 165, getWidth() - 20, 30);
-    delayTimeUnitsLabel.setBounds(-147, 165, getWidth() - 20, 30);
-    feedbackUnitsLabel.setBounds(-52, 165, getWidth() - 20, 30);
-    ratioUnitsLabel.setBounds(42, 165, getWidth() - 20, 30);
-    wetLevelUnitsLabel.setBounds(138, 165, getWidth() - 20, 30);
+    dryLevelUnitsLabel.setBounds(-242, 145, getWidth() - 20, 30);
+    delayTimeUnitsLabel.setBounds(-147, 145, getWidth() - 20, 30);
+    feedbackUnitsLabel.setBounds(-52, 145, getWidth() - 20, 30);
+    ratioUnitsLabel.setBounds(42, 145, getWidth() - 20, 30);
+    wetLevelUnitsLabel.setBounds(138, 145, getWidth() - 20, 30);
 }
 
 std::vector<juce::Component*> JDelayAudioProcessorEditor::getJDelayComponents()
@@ -175,11 +175,101 @@ void JDelayLookAndFeel::drawRotarySlider(juce::Graphics& g,
     }
 }
 
-void JDelayLookAndFeel::drawComboBox(juce::Graphics&, int width, int height, bool isButtonDown,
+void JDelayLookAndFeel::drawComboBox(juce::Graphics& g, int width, int height, bool isButtonDown,
                                      int buttonX, int buttonY, int buttonW, int buttonH,
-                                     juce::ComboBox&)
+                                     juce::ComboBox& box)
 {
+    auto comboBoxBounds = juce::Rectangle<int>(0, 0, width, height);
 
+    // g.setColour(box.findColour(juce::ComboBox::backgroundColourId));
+    g.setColour(juce::Colours::black);
+    g.fillRoundedRectangle(comboBoxBounds.toFloat(), 0);
+
+    g.setColour(juce::Colours::black);
+    g.drawRoundedRectangle(comboBoxBounds.toFloat().reduced(0.5f, 0.5f), 0, 1.0f);
+
+    /*Rectangle<int> arrowZone(width - 30, 0, 20, height);
+    Path path;
+    path.startNewSubPath((float)arrowZone.getX() + 3.0f, (float)arrowZone.getCentreY() - 2.0f);
+    path.lineTo((float)arrowZone.getCentreX(), (float)arrowZone.getCentreY() + 3.0f);
+    path.lineTo((float)arrowZone.getRight() - 3.0f, (float)arrowZone.getCentreY() - 2.0f);*/
+
+    /*g.setColour(box.findColour(ComboBox::arrowColourId).withAlpha((box.isEnabled() ? 0.9f : 0.2f)));
+    g.strokePath(path, PathStrokeType(2.0f));*/
+    
+}
+
+juce::Font JDelayLookAndFeel::getComboBoxFont(juce::ComboBox& box)
+{
+    return { juce::jmin(14.0f, (float)box.getHeight() * 0.85f) };
+}
+
+void JDelayLookAndFeel::positionComboBoxText(juce::ComboBox& box, juce::Label& label)
+{
+    label.setBounds(12, 1,
+        box.getWidth() - 30,
+        box.getHeight() - 2);
+
+    label.setFont(getComboBoxFont(box));
+}
+
+void JDelayLookAndFeel::drawPopupMenuItem(juce::Graphics& g, const juce::Rectangle<int>& area,
+    const bool isSeparator, const bool isActive,
+    const bool isHighlighted, const bool isTicked,
+    const bool hasSubMenu, const juce::String& text,
+    const juce::String& shortcutKeyText,
+    const juce::Drawable* icon, const juce::Colour* const textColourToUse)
+{
+    auto textColour = (textColourToUse == nullptr ? findColour(juce::PopupMenu::textColourId)
+        : *textColourToUse);
+
+    auto r = area.reduced(3);
+
+    if (isHighlighted && isActive)
+    {
+        // g.setColour(findColour(juce::PopupMenu::highlightedBackgroundColourId));
+        g.setColour(juce::Colours::darkgrey);
+        g.fillRect(r);
+
+        g.setColour(findColour(juce::PopupMenu::highlightedTextColourId));
+    }
+    else
+    {
+        g.setColour(textColour.withMultipliedAlpha(isActive ? 1.0f : 0.5f));
+    }
+
+    r.reduce(juce::jmin(5, area.getWidth() / 20), 0);
+
+    auto font = getPopupMenuFont();
+
+    auto maxFontHeight = 14.f;
+    font.setHeight(maxFontHeight);
+    g.setFont(font);
+
+    r.removeFromRight(3);
+    g.drawFittedText(text, r, juce::Justification::centredLeft, 1);
+
+    if (shortcutKeyText.isNotEmpty())
+    {
+        auto f2 = font;
+        f2.setHeight(f2.getHeight() * 0.75f);
+        f2.setHorizontalScale(0.95f);
+        g.setFont(f2);
+
+        g.drawText(shortcutKeyText, r, juce::Justification::centredRight, true);
+    }
+}
+
+void JDelayLookAndFeel::getIdealPopupMenuItemSize(const juce::String& text, const bool isSeparator,
+    int standardMenuItemHeight, int& idealWidth, int& idealHeight)
+{
+    auto font = getPopupMenuFont();
+
+    if (standardMenuItemHeight > 0 && font.getHeight() > (float)standardMenuItemHeight / 1.3f)
+        font.setHeight((float)standardMenuItemHeight / 1.3f);
+
+    idealHeight = 20.f;
+    idealWidth = 20.f;
 }
 
 //==============================================================================
@@ -219,7 +309,7 @@ void RotarySliderWithLabels::paint(juce::Graphics& g)
         auto rotarySliderLabelText = labels[labelChoice].rotarySliderLabelText;
         r.setSize(g.getCurrentFont().getStringWidth(rotarySliderLabelText), getTextHeight());
 
-        r.setCentre(sliderBounds.getCentreX(), sliderBounds.getCentreY() - 50);
+        r.setCentre(sliderBounds.getCentreX(), sliderBounds.getCentreY() - 55);
 
         g.drawFittedText(rotarySliderLabelText, r.toNearestInt(), juce::Justification::centred, 1);
     }
@@ -237,7 +327,7 @@ juce::Rectangle<int> RotarySliderWithLabels::getSliderBounds() const
     juce::Rectangle<int> r;
     r.setSize(size, size);
     r.setCentre(bounds.getCentreX(), 0);
-    r.setY(65);
+    r.setY(40);
 
     return r;
 }
