@@ -20,6 +20,8 @@ public:
     {
         setColour(juce::PopupMenu::ColourIds::textColourId, juce::Colours::white);
         setColour(juce::PopupMenu::ColourIds::backgroundColourId, juce::Colours::black);
+        setColour(juce::Slider::ColourIds::textBoxBackgroundColourId, juce::Colours::black);
+        setColour(juce::Slider::ColourIds::textBoxHighlightColourId, juce::Colours::darkgrey);
     }
 
     void drawRotarySlider(juce::Graphics&, int x, int y, int width, int height,
@@ -149,7 +151,8 @@ private:
         ratioUnitsLabel,
         wetLevelUnitsLabel, 
         dryLevelUnitsLabel, 
-        delayTypeUnitsLabel;
+        delayTypeUnitsLabel,
+        delayTypeLabel;
 
     // JDelayLookAndFeel lnf;
 

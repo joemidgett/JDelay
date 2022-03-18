@@ -62,6 +62,12 @@ JDelayAudioProcessorEditor::JDelayAudioProcessorEditor(JDelayAudioProcessor& p)
     wetLevelUnitsLabel.setColour(juce::Label::textColourId, juce::Colours::white);
     wetLevelUnitsLabel.setJustificationType(juce::Justification::centred);
 
+    addAndMakeVisible(delayTypeLabel);
+    delayTypeLabel.setFont(juce::Font(14.0f));
+    delayTypeLabel.setText("Delay Type:", juce::dontSendNotification);
+    delayTypeLabel.setColour(juce::Label::textColourId, juce::Colours::white);
+    delayTypeLabel.setJustificationType(juce::Justification::centred);
+
     for (auto* comp : getJDelayComponents())
     {
         addAndMakeVisible(comp);
@@ -117,6 +123,7 @@ void JDelayAudioProcessorEditor::resized()
     feedbackUnitsLabel.setBounds(-52, 145, getWidth() - 20, 30);
     ratioUnitsLabel.setBounds(42, 145, getWidth() - 20, 30);
     wetLevelUnitsLabel.setBounds(138, 145, getWidth() - 20, 30);
+    delayTypeLabel.setBounds(242, 32, getWidth() - 20, 30);
 }
 
 std::vector<juce::Component*> JDelayAudioProcessorEditor::getJDelayComponents()
