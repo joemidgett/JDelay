@@ -112,9 +112,10 @@ void JDelayAudioProcessorEditor::resized()
     auto wetLevelSliderArea = bounds.removeFromLeft(95).removeFromTop(140);
     wetLevelSlider.setBounds(wetLevelSliderArea);
 
-    auto delayTypeComboBoxArea = bounds.removeFromLeft(115).removeFromBottom(125).removeFromTop(45);
+    auto delayTypeComboBoxArea = bounds.removeFromLeft(118).removeFromBottom(92).removeFromTop(25);
     delayTypeComboBox.addItem("Normal", 1);
     delayTypeComboBox.addItem("Ping Pong", 2);
+    delayTypeComboBox.setSelectedItemIndex(0, juce::dontSendNotification);
     delayTypeComboBox.setJustificationType(juce::Justification::centred);
     delayTypeComboBox.setBounds(delayTypeComboBoxArea);
 
@@ -123,7 +124,7 @@ void JDelayAudioProcessorEditor::resized()
     feedbackUnitsLabel.setBounds(-52, 145, getWidth() - 20, 30);
     ratioUnitsLabel.setBounds(42, 145, getWidth() - 20, 30);
     wetLevelUnitsLabel.setBounds(138, 145, getWidth() - 20, 30);
-    delayTypeLabel.setBounds(242, 32, getWidth() - 20, 30);
+    delayTypeLabel.setBounds(242, 62, getWidth() - 20, 30);
 }
 
 std::vector<juce::Component*> JDelayAudioProcessorEditor::getJDelayComponents()
