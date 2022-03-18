@@ -26,11 +26,41 @@ JDelayAudioProcessorEditor::JDelayAudioProcessorEditor(JDelayAudioProcessor& p)
     wetLevelSliderAttachment(audioProcessor.apvts, "WETLEVEL", wetLevelSlider),
     delayTypeComboBoxAttachment(audioProcessor.apvts, "DELAYTYPE", delayTypeComboBox)
 {
-    dryLevelSlider.labels.add({ 0.f, "Dry Level" });
-    delayTimeSlider.labels.add({ 0.f, "Delay Time" });
-    feedbackSlider.labels.add({ 0.f, "Feedback" });
-    ratioSlider.labels.add({ 0.f, "L/R Ratio" });
-    wetLevelSlider.labels.add({ 0.f, "Wet Level" });
+    addAndMakeVisible(dryLevelLabel);
+    dryLevelLabel.setFont(juce::Font(14.0f));
+    dryLevelLabel.setText("Dry Level", juce::dontSendNotification);
+    dryLevelLabel.setColour(juce::Label::textColourId, juce::Colours::white);
+    dryLevelLabel.setJustificationType(juce::Justification::centred);
+
+    addAndMakeVisible(delayTimeLabel);
+    delayTimeLabel.setFont(juce::Font(14.0f));
+    delayTimeLabel.setText("Delay Time", juce::dontSendNotification);
+    delayTimeLabel.setColour(juce::Label::textColourId, juce::Colours::white);
+    delayTimeLabel.setJustificationType(juce::Justification::centred);
+
+    addAndMakeVisible(feedbackLabel);
+    feedbackLabel.setFont(juce::Font(14.0f));
+    feedbackLabel.setText("Feedback", juce::dontSendNotification);
+    feedbackLabel.setColour(juce::Label::textColourId, juce::Colours::white);
+    feedbackLabel.setJustificationType(juce::Justification::centred);
+
+    addAndMakeVisible(ratioLabel);
+    ratioLabel.setFont(juce::Font(14.0f));
+    ratioLabel.setText("Ratio", juce::dontSendNotification);
+    ratioLabel.setColour(juce::Label::textColourId, juce::Colours::white);
+    ratioLabel.setJustificationType(juce::Justification::centred);
+
+    addAndMakeVisible(wetLevelLabel);
+    wetLevelLabel.setFont(juce::Font(14.0f));
+    wetLevelLabel.setText("Wet Level", juce::dontSendNotification);
+    wetLevelLabel.setColour(juce::Label::textColourId, juce::Colours::white);
+    wetLevelLabel.setJustificationType(juce::Justification::centred);
+
+    addAndMakeVisible(delayTypeLabel);
+    delayTypeLabel.setFont(juce::Font(14.0f));
+    delayTypeLabel.setText("Wet Level", juce::dontSendNotification);
+    delayTypeLabel.setColour(juce::Label::textColourId, juce::Colours::white);
+    delayTypeLabel.setJustificationType(juce::Justification::centred);
 
     addAndMakeVisible(dryLevelUnitsLabel);
     dryLevelUnitsLabel.setFont(juce::Font(14.0f));
@@ -119,11 +149,18 @@ void JDelayAudioProcessorEditor::resized()
     delayTypeComboBox.setJustificationType(juce::Justification::centred);
     delayTypeComboBox.setBounds(delayTypeComboBoxArea);
 
+    dryLevelLabel.setBounds(-242, 5, getWidth() - 20, 30);
+    delayTimeLabel.setBounds(-147, 5, getWidth() - 20, 30);
+    feedbackLabel.setBounds(-52, 5, getWidth() - 20, 30);
+    ratioLabel.setBounds(42, 5, getWidth() - 20, 30);
+    wetLevelLabel.setBounds(138, 5, getWidth() - 20, 30);
+
     dryLevelUnitsLabel.setBounds(-242, 145, getWidth() - 20, 30);
     delayTimeUnitsLabel.setBounds(-147, 145, getWidth() - 20, 30);
     feedbackUnitsLabel.setBounds(-52, 145, getWidth() - 20, 30);
     ratioUnitsLabel.setBounds(42, 145, getWidth() - 20, 30);
     wetLevelUnitsLabel.setBounds(138, 145, getWidth() - 20, 30);
+    
     delayTypeLabel.setBounds(242, 62, getWidth() - 20, 30);
 }
 
@@ -189,22 +226,11 @@ void JDelayLookAndFeel::drawComboBox(juce::Graphics& g, int width, int height, b
 {
     auto comboBoxBounds = juce::Rectangle<int>(0, 0, width, height);
 
-    // g.setColour(box.findColour(juce::ComboBox::backgroundColourId));
     g.setColour(juce::Colours::black);
     g.fillRoundedRectangle(comboBoxBounds.toFloat(), 0);
 
     g.setColour(juce::Colours::black);
     g.drawRoundedRectangle(comboBoxBounds.toFloat().reduced(0.5f, 0.5f), 0, 1.0f);
-
-    /*Rectangle<int> arrowZone(width - 30, 0, 20, height);
-    Path path;
-    path.startNewSubPath((float)arrowZone.getX() + 3.0f, (float)arrowZone.getCentreY() - 2.0f);
-    path.lineTo((float)arrowZone.getCentreX(), (float)arrowZone.getCentreY() + 3.0f);
-    path.lineTo((float)arrowZone.getRight() - 3.0f, (float)arrowZone.getCentreY() - 2.0f);*/
-
-    /*g.setColour(box.findColour(ComboBox::arrowColourId).withAlpha((box.isEnabled() ? 0.9f : 0.2f)));
-    g.strokePath(path, PathStrokeType(2.0f));*/
-    
 }
 
 juce::Font JDelayLookAndFeel::getComboBoxFont(juce::ComboBox& box)
@@ -304,23 +330,6 @@ void RotarySliderWithLabels::paint(juce::Graphics& g)
                                       startAng, 
                                       endAng, 
                                       *this);
-
-    g.setColour(juce::Colours::white);
-    g.setFont(getTextHeight());
-
-    auto numChoices = labels.size();
-    for (int labelChoice = 0; labelChoice < numChoices; ++labelChoice)
-    {
-        auto rotarySliderLabelPos = labels[labelChoice].rotarySliderLabelPos;
-        
-        juce::Rectangle<float> r;
-        auto rotarySliderLabelText = labels[labelChoice].rotarySliderLabelText;
-        r.setSize(g.getCurrentFont().getStringWidth(rotarySliderLabelText), getTextHeight());
-
-        r.setCentre(sliderBounds.getCentreX(), sliderBounds.getCentreY() - 55);
-
-        g.drawFittedText(rotarySliderLabelText, r.toNearestInt(), juce::Justification::centred, 1);
-    }
 }
 
 juce::Rectangle<int> RotarySliderWithLabels::getSliderBounds() const

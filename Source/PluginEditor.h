@@ -93,8 +93,6 @@ public:
         juce::String rotarySliderLabelText;
     };
 
-    juce::Array<RotarySliderLabelPosition> labels;
-
     void paint(juce::Graphics& g) override;
     juce::Rectangle<int> getSliderBounds() const;
     int getTextHeight() const { return 14; }
@@ -131,7 +129,6 @@ private:
         dryLevelSlider;
 
     JDelayComboBox delayTypeComboBox;
-    // juce::ComboBox delayTypeComboBox;
     
     using APVTS = juce::AudioProcessorValueTreeState;
     using SliderAttachment = APVTS::SliderAttachment;
@@ -146,15 +143,18 @@ private:
 
     ComboBoxAttachment delayTypeComboBoxAttachment;
 
-    juce::Label delayTimeUnitsLabel, 
-        feedbackUnitsLabel, 
+    juce::Label dryLevelLabel,
+        delayTimeLabel,
+        feedbackLabel,
+        ratioLabel,
+        wetLevelLabel,
+        delayTypeLabel,
+        dryLevelUnitsLabel,
+        delayTimeUnitsLabel,
+        feedbackUnitsLabel,
         ratioUnitsLabel,
-        wetLevelUnitsLabel, 
-        dryLevelUnitsLabel, 
-        delayTypeUnitsLabel,
-        delayTypeLabel;
-
-    // JDelayLookAndFeel lnf;
+        wetLevelUnitsLabel,
+        delayTypeUnitsLabel;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (JDelayAudioProcessorEditor)
 };
