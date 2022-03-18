@@ -71,10 +71,10 @@ private:
 };
 
 //==============================================================================
-class RotarySliderWithLabels : public juce::Slider
+class JDelaySlider : public juce::Slider
 {
 public:
-    RotarySliderWithLabels(juce::RangedAudioParameter& rap, const juce::String& unitSuffix) : 
+    JDelaySlider(juce::RangedAudioParameter& rap, const juce::String& unitSuffix) : 
                            juce::Slider(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag,
                                         juce::Slider::TextEntryBoxPosition::TextBoxBelow),
                                         rangedAudioParam(&rap)
@@ -82,7 +82,7 @@ public:
         setLookAndFeel(&lnf);
     }
 
-    ~RotarySliderWithLabels()
+    ~JDelaySlider()
     {
         setLookAndFeel(nullptr);
     }
@@ -114,6 +114,9 @@ public:
     void paint(juce::Graphics&) override;
     void resized() override;
 
+    void createLabel(juce::Label& label, juce::String& text);
+    void createLabels();
+
     std::vector<juce::Component*> getJDelayComponents();
 
 private:
@@ -122,7 +125,7 @@ private:
     // access the processor object that created it.
     JDelayAudioProcessor& audioProcessor;
 
-    RotarySliderWithLabels delayTimeSlider, 
+    JDelaySlider delayTimeSlider, 
         feedbackSlider, 
         ratioSlider,
         wetLevelSlider, 

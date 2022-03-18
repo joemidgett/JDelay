@@ -26,77 +26,7 @@ JDelayAudioProcessorEditor::JDelayAudioProcessorEditor(JDelayAudioProcessor& p)
     wetLevelSliderAttachment(audioProcessor.apvts, "WETLEVEL", wetLevelSlider),
     delayTypeComboBoxAttachment(audioProcessor.apvts, "DELAYTYPE", delayTypeComboBox)
 {
-    addAndMakeVisible(dryLevelLabel);
-    dryLevelLabel.setFont(juce::Font(14.0f));
-    dryLevelLabel.setText("Dry Level", juce::dontSendNotification);
-    dryLevelLabel.setColour(juce::Label::textColourId, juce::Colours::white);
-    dryLevelLabel.setJustificationType(juce::Justification::centred);
-
-    addAndMakeVisible(delayTimeLabel);
-    delayTimeLabel.setFont(juce::Font(14.0f));
-    delayTimeLabel.setText("Delay Time", juce::dontSendNotification);
-    delayTimeLabel.setColour(juce::Label::textColourId, juce::Colours::white);
-    delayTimeLabel.setJustificationType(juce::Justification::centred);
-
-    addAndMakeVisible(feedbackLabel);
-    feedbackLabel.setFont(juce::Font(14.0f));
-    feedbackLabel.setText("Feedback", juce::dontSendNotification);
-    feedbackLabel.setColour(juce::Label::textColourId, juce::Colours::white);
-    feedbackLabel.setJustificationType(juce::Justification::centred);
-
-    addAndMakeVisible(ratioLabel);
-    ratioLabel.setFont(juce::Font(14.0f));
-    ratioLabel.setText("Ratio", juce::dontSendNotification);
-    ratioLabel.setColour(juce::Label::textColourId, juce::Colours::white);
-    ratioLabel.setJustificationType(juce::Justification::centred);
-
-    addAndMakeVisible(wetLevelLabel);
-    wetLevelLabel.setFont(juce::Font(14.0f));
-    wetLevelLabel.setText("Wet Level", juce::dontSendNotification);
-    wetLevelLabel.setColour(juce::Label::textColourId, juce::Colours::white);
-    wetLevelLabel.setJustificationType(juce::Justification::centred);
-
-    addAndMakeVisible(delayTypeLabel);
-    delayTypeLabel.setFont(juce::Font(14.0f));
-    delayTypeLabel.setText("Wet Level", juce::dontSendNotification);
-    delayTypeLabel.setColour(juce::Label::textColourId, juce::Colours::white);
-    delayTypeLabel.setJustificationType(juce::Justification::centred);
-
-    addAndMakeVisible(dryLevelUnitsLabel);
-    dryLevelUnitsLabel.setFont(juce::Font(14.0f));
-    dryLevelUnitsLabel.setText("dB", juce::dontSendNotification);
-    dryLevelUnitsLabel.setColour(juce::Label::textColourId, juce::Colours::white);
-    dryLevelUnitsLabel.setJustificationType(juce::Justification::centred);
-
-    addAndMakeVisible(delayTimeUnitsLabel);
-    delayTimeUnitsLabel.setFont(juce::Font(14.0f));
-    delayTimeUnitsLabel.setText("mSec", juce::dontSendNotification);
-    delayTimeUnitsLabel.setColour(juce::Label::textColourId, juce::Colours::white);
-    delayTimeUnitsLabel.setJustificationType(juce::Justification::centred);
-
-    addAndMakeVisible(feedbackUnitsLabel);
-    feedbackUnitsLabel.setFont(juce::Font(14.0f));
-    feedbackUnitsLabel.setText("%", juce::dontSendNotification);
-    feedbackUnitsLabel.setColour(juce::Label::textColourId, juce::Colours::white);
-    feedbackUnitsLabel.setJustificationType(juce::Justification::centred);
-
-    addAndMakeVisible(ratioUnitsLabel);
-    ratioUnitsLabel.setFont(juce::Font(14.0f));
-    ratioUnitsLabel.setText("%", juce::dontSendNotification);
-    ratioUnitsLabel.setColour(juce::Label::textColourId, juce::Colours::white);
-    ratioUnitsLabel.setJustificationType(juce::Justification::centred);
-
-    addAndMakeVisible(wetLevelUnitsLabel);
-    wetLevelUnitsLabel.setFont(juce::Font(14.0f));
-    wetLevelUnitsLabel.setText("dB", juce::dontSendNotification);
-    wetLevelUnitsLabel.setColour(juce::Label::textColourId, juce::Colours::white);
-    wetLevelUnitsLabel.setJustificationType(juce::Justification::centred);
-
-    addAndMakeVisible(delayTypeLabel);
-    delayTypeLabel.setFont(juce::Font(14.0f));
-    delayTypeLabel.setText("Delay Type:", juce::dontSendNotification);
-    delayTypeLabel.setColour(juce::Label::textColourId, juce::Colours::white);
-    delayTypeLabel.setJustificationType(juce::Justification::centred);
+    createLabels();
 
     for (auto* comp : getJDelayComponents())
     {
@@ -162,6 +92,31 @@ void JDelayAudioProcessorEditor::resized()
     wetLevelUnitsLabel.setBounds(138, 145, getWidth() - 20, 30);
     
     delayTypeLabel.setBounds(242, 62, getWidth() - 20, 30);
+}
+
+void JDelayAudioProcessorEditor::createLabel(juce::Label& label, juce::String& text)
+{
+    addAndMakeVisible(label);
+    label.setFont(juce::Font(14.0f));
+    label.setText(text, juce::dontSendNotification);
+    label.setColour(juce::Label::textColourId, juce::Colours::white);
+    label.setJustificationType(juce::Justification::centred);
+}
+
+void JDelayAudioProcessorEditor::createLabels()
+{
+    createLabel(dryLevelLabel, juce::String("Dry Level"));
+    createLabel(delayTimeLabel, juce::String("Delay Time"));
+    createLabel(feedbackLabel, juce::String("Feedback"));
+    createLabel(ratioLabel, juce::String("Ratio"));
+    createLabel(wetLevelLabel, juce::String("Wet Level"));
+    createLabel(delayTypeLabel, juce::String("Delay Type"));
+
+    createLabel(dryLevelUnitsLabel, juce::String("dB"));
+    createLabel(delayTimeUnitsLabel, juce::String("mSec"));
+    createLabel(feedbackUnitsLabel, juce::String("%"));
+    createLabel(ratioUnitsLabel, juce::String("%"));
+    createLabel(wetLevelUnitsLabel, juce::String("dB"));
 }
 
 std::vector<juce::Component*> JDelayAudioProcessorEditor::getJDelayComponents()
@@ -240,9 +195,7 @@ juce::Font JDelayLookAndFeel::getComboBoxFont(juce::ComboBox& box)
 
 void JDelayLookAndFeel::positionComboBoxText(juce::ComboBox& box, juce::Label& label)
 {
-    label.setBounds(12, 1,
-        box.getWidth() - 30,
-        box.getHeight() - 2);
+    label.setBounds(12, 1, box.getWidth() - 30, box.getHeight() - 2);
 
     label.setFont(getComboBoxFont(box));
 }
@@ -334,8 +287,6 @@ void RotarySliderWithLabels::paint(juce::Graphics& g)
 
 juce::Rectangle<int> RotarySliderWithLabels::getSliderBounds() const
 {
-    // return getLocalBounds();
-
     auto bounds = getLocalBounds();
 
     auto size = juce::jmin(bounds.getWidth(), bounds.getHeight());
