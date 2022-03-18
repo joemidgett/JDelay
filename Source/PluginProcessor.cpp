@@ -115,27 +115,27 @@ juce::AudioProcessorValueTreeState::ParameterLayout JDelayAudioProcessor::create
 
     layout.add(std::make_unique<juce::AudioParameterFloat>("DRYLEVEL",
                                                            "Dry Level",
-                                                            juce::NormalisableRange<float>(-60.0, 12.0, 0.5, 1.0),
+                                                            juce::NormalisableRange<float>(-60.0, 12.0, 0.01, 1.0),
                                                             -3.0));
 
     layout.add(std::make_unique<juce::AudioParameterFloat>("DELAYTIME", 
                                                            "Delay Time", 
-                                                            juce::NormalisableRange<float>(0.0, 2000.0, 0.05, 1.0),
+                                                            juce::NormalisableRange<float>(0.0, 2000.0, 0.01, 1.0),
                                                             250.0));
 
     layout.add(std::make_unique<juce::AudioParameterFloat>("FEEDBACK",
                                                            "Feedback",
-                                                            juce::NormalisableRange<float>(0.0, 100.0, 0.05, 1.0),
+                                                            juce::NormalisableRange<float>(0.0, 100.0, 0.01, 1.0),
                                                             50.0));
 
     layout.add(std::make_unique<juce::AudioParameterFloat>("RATIO",
                                                            "Ratio",
-                                                           juce::NormalisableRange<float>(0.0, 100.0, 0.05, 1.0),
+                                                           juce::NormalisableRange<float>(0.0, 100.0, 0.01, 1.0),
                                                            50.0));
 
     layout.add(std::make_unique<juce::AudioParameterFloat>("WETLEVEL",
                                                            "Wet Level",
-                                                            juce::NormalisableRange<float>(-60.0, 12.0, 0.5, 1.0),
+                                                            juce::NormalisableRange<float>(-60.0, 12.0, 0.01, 1.0),
                                                             -3.0));
 
     layout.add(std::make_unique<juce::AudioParameterChoice>("DELAYTYPE", 
