@@ -151,7 +151,7 @@ void JDelayLookAndFeel::drawRotarySlider(juce::Graphics& g,
     g.setColour(juce::Colours::black);
     g.drawEllipse(bounds, 1.f);
 
-    if (auto* rswl = dynamic_cast<RotarySliderWithLabels*>(&slider))
+    if (auto* rswl = dynamic_cast<JDelaySlider*>(&slider))
     {
         auto center = bounds.getCentre();
 
@@ -260,7 +260,7 @@ void JDelayLookAndFeel::getIdealPopupMenuItemSize(const juce::String& text, cons
 }
 
 //==============================================================================
-void RotarySliderWithLabels::paint(juce::Graphics& g)
+void JDelaySlider::paint(juce::Graphics& g)
 {
     auto startAng = juce::degreesToRadians(180.f + 45.f);
     auto endAng = juce::degreesToRadians(180.f - 45.f) + juce::MathConstants<float>::twoPi; // what if 2pi is removed?
@@ -285,7 +285,7 @@ void RotarySliderWithLabels::paint(juce::Graphics& g)
                                       *this);
 }
 
-juce::Rectangle<int> RotarySliderWithLabels::getSliderBounds() const
+juce::Rectangle<int> JDelaySlider::getSliderBounds() const
 {
     auto bounds = getLocalBounds();
 
