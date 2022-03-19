@@ -55,7 +55,11 @@ private:
 class JDelayDryLevelLookAndFeel : public JDelayLookAndFeel
 {
 public:
-
+    void drawRotarySlider(juce::Graphics& g, int x, int y, int width, int height,
+                          float sliderPosProportional,
+                          float rotaryStartAngle,
+                          float rotaryEndAngle,
+                          juce::Slider& slider) override;
 private:
 
 };
@@ -63,7 +67,11 @@ private:
 class JDelayDelayTimeLookAndFeel : public JDelayLookAndFeel
 {
 public:
-
+    void drawRotarySlider(juce::Graphics& g, int x, int y, int width, int height,
+                          float sliderPosProportional,
+                          float rotaryStartAngle,
+                          float rotaryEndAngle,
+                          juce::Slider& slider) override;
 private:
 
 };
@@ -71,7 +79,11 @@ private:
 class JDelayFeedbackLookAndFeel : public JDelayLookAndFeel
 {
 public:
-
+    void drawRotarySlider(juce::Graphics& g, int x, int y, int width, int height,
+                          float sliderPosProportional,
+                          float rotaryStartAngle,
+                          float rotaryEndAngle,
+                          juce::Slider& slider) override;
 private:
 
 };
@@ -79,7 +91,23 @@ private:
 class JDelayRatioLookAndFeel : public JDelayLookAndFeel
 {
 public:
+    void drawRotarySlider(juce::Graphics& g, int x, int y, int width, int height,
+                          float sliderPosProportional,
+                          float rotaryStartAngle,
+                          float rotaryEndAngle,
+                          juce::Slider& slider) override;
+private:
 
+};
+
+class JDelayWetLevelLookAndFeel : public JDelayLookAndFeel
+{
+public:
+    void drawRotarySlider(juce::Graphics& g, int x, int y, int width, int height,
+        float sliderPosProportional,
+        float rotaryStartAngle,
+        float rotaryEndAngle,
+        juce::Slider& slider) override;
 private:
 
 };
@@ -150,8 +178,6 @@ public:
     void createLabel(juce::Label& label, juce::String& text);
     void createLabels();
 
-    // std::vector<juce::Component*> getJDelayComponents();
-
 private:
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
@@ -167,6 +193,7 @@ private:
     JDelayDelayTimeLookAndFeel delayTimeLnf;
     JDelayFeedbackLookAndFeel feedbackLnf;
     JDelayRatioLookAndFeel ratioLnf;
+    JDelayWetLevelLookAndFeel wetLevelLnf;
 
     JDelayComboBox delayTypeComboBox;
     
