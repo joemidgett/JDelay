@@ -52,6 +52,39 @@ private:
 
 };
 
+class JDelayDryLevelLookAndFeel : public JDelayLookAndFeel
+{
+public:
+
+private:
+
+};
+
+class JDelayDelayTimeLookAndFeel : public JDelayLookAndFeel
+{
+public:
+
+private:
+
+};
+
+class JDelayFeedbackLookAndFeel : public JDelayLookAndFeel
+{
+public:
+
+private:
+
+};
+
+class JDelayRatioLookAndFeel : public JDelayLookAndFeel
+{
+public:
+
+private:
+
+};
+
+//==============================================================================
 class JDelayComboBox : public juce::ComboBox
 {
 public:
@@ -117,19 +150,23 @@ public:
     void createLabel(juce::Label& label, juce::String& text);
     void createLabels();
 
-    std::vector<juce::Component*> getJDelayComponents();
+    // std::vector<juce::Component*> getJDelayComponents();
 
 private:
-
     // This reference is provided as a quick way for your editor to
     // access the processor object that created it.
     JDelayAudioProcessor& audioProcessor;
 
-    JDelaySlider delayTimeSlider, 
+    JDelaySlider dryLevelSlider,
+        delayTimeSlider,
         feedbackSlider, 
         ratioSlider,
-        wetLevelSlider, 
-        dryLevelSlider;
+        wetLevelSlider;
+
+    JDelayDryLevelLookAndFeel dryLevelLnf;
+    JDelayDelayTimeLookAndFeel delayTimeLnf;
+    JDelayFeedbackLookAndFeel feedbackLnf;
+    JDelayRatioLookAndFeel ratioLnf;
 
     JDelayComboBox delayTypeComboBox;
     
@@ -143,7 +180,6 @@ private:
         dryLevelSliderAttachment;
 
     using ComboBoxAttachment = APVTS::ComboBoxAttachment;
-
     ComboBoxAttachment delayTypeComboBoxAttachment;
 
     juce::Label dryLevelLabel,

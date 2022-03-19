@@ -28,10 +28,21 @@ JDelayAudioProcessorEditor::JDelayAudioProcessorEditor(JDelayAudioProcessor& p)
 {
     createLabels();
 
-    for (auto* comp : getJDelayComponents())
-    {
-        addAndMakeVisible(comp);
-    }
+    addAndMakeVisible(dryLevelSlider);
+    dryLevelSlider.setLookAndFeel(&dryLevelLnf);
+
+    addAndMakeVisible(delayTimeSlider);
+    delayTimeSlider.setLookAndFeel(&delayTimeLnf);
+
+    addAndMakeVisible(feedbackSlider);
+    feedbackSlider.setLookAndFeel(&feedbackLnf);
+
+    addAndMakeVisible(ratioSlider);
+    ratioSlider.setLookAndFeel(&ratioLnf);
+
+    addAndMakeVisible(wetLevelSlider);
+
+    addAndMakeVisible(delayTypeComboBox);
 
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
@@ -40,6 +51,10 @@ JDelayAudioProcessorEditor::JDelayAudioProcessorEditor(JDelayAudioProcessor& p)
 
 JDelayAudioProcessorEditor::~JDelayAudioProcessorEditor()
 {
+    dryLevelSlider.setLookAndFeel(nullptr);
+    delayTimeSlider.setLookAndFeel(nullptr);
+    feedbackSlider.setLookAndFeel(nullptr);
+    ratioSlider.setLookAndFeel(nullptr);
 }
 
 //==============================================================================
@@ -117,19 +132,6 @@ void JDelayAudioProcessorEditor::createLabels()
     createLabel(feedbackUnitsLabel, juce::String("%"));
     createLabel(ratioUnitsLabel, juce::String("%"));
     createLabel(wetLevelUnitsLabel, juce::String("dB"));
-}
-
-std::vector<juce::Component*> JDelayAudioProcessorEditor::getJDelayComponents()
-{
-    return
-    {
-        &delayTimeSlider,
-        &feedbackSlider,
-        &ratioSlider,
-        &wetLevelSlider,
-        &dryLevelSlider,
-        &delayTypeComboBox
-    };
 }
 
 //==============================================================================
