@@ -8,8 +8,8 @@
 
 #pragma once
 
-#include "./AudioDelay.h"
-#include "./LowpassParamSmoother.h"
+#include "DSP/AudioDelay.h"
+#include "DSP/LowpassParamSmoother.h"
 
 #include <JuceHeader.h>
 

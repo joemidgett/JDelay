@@ -10,14 +10,14 @@
 
 #include <JuceHeader.h>
 
-#include "./AudioDelay.h"
-#include "./JDelayComboBox.h"
-#include "./JDelayDelayTimeLookAndFeel.h"
-#include "./JDelayDryLevelLookAndFeel.h"
-#include "./JDelayFeedbackLookAndFeel.h"
-#include "./JDelayRatioLookAndFeel.h"
-#include "./JDelaySlider.h"
-#include "./JDelayWetLevelLookAndFeel.h"
+#include "DSP/AudioDelay.h"
+#include "GUI/JDelayComboBox.h"
+#include "GUI/JDelayDelayTimeLookAndFeel.h"
+#include "GUI/JDelayDryLevelLookAndFeel.h"
+#include "GUI/JDelayFeedbackLookAndFeel.h"
+#include "GUI/JDelayRatioLookAndFeel.h"
+#include "GUI/JDelaySlider.h"
+#include "GUI/JDelayWetLevelLookAndFeel.h"
 #include "PluginProcessor.h"
 
 //==============================================================================
