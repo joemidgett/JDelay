@@ -5,58 +5,58 @@
               companyName="Joe Midgett">
   <MAINGROUP id="BsnTZO" name="JDelay">
     <GROUP id="{51F5D711-4B6E-0882-757F-561F1EDD5B4F}" name="Source">
-      <GROUP id="{FEE9040A-06C2-091A-2A8F-D26ACC964A93}" name="DSP">
-        <FILE id="m9vIJH" name="AudioDelay.h" compile="0" resource="0" file="Source/AudioDelay.h"/>
-        <FILE id="JnBxTH" name="AudioDelayParameters.h" compile="0" resource="0"
-              file="Source/AudioDelayParameters.h"/>
-        <FILE id="kyyUhp" name="CircularBuffer.h" compile="0" resource="0"
-              file="Source/CircularBuffer.h"/>
-        <FILE id="oZF49R" name="DSPUtils.h" compile="0" resource="0" file="Source/DSPUtils.h"/>
-        <FILE id="iRR1HJ" name="IAudioSignalProcessor.h" compile="0" resource="0"
-              file="Source/IAudioSignalProcessor.h"/>
-        <FILE id="NFxaiW" name="LowpassParamSmoother.h" compile="0" resource="0"
-              file="Source/LowpassParamSmoother.h"/>
+      <GROUP id="{5B042B9B-18B7-10D3-0D78-8E86D8615955}" name="DSP">
+        <FILE id="yuOcKp" name="AudioDelay.h" compile="0" resource="0" file="Source/DSP/AudioDelay.h"/>
+        <FILE id="bGubhx" name="AudioDelayParameters.h" compile="0" resource="0"
+              file="Source/DSP/AudioDelayParameters.h"/>
+        <FILE id="NSRC9F" name="CircularBuffer.h" compile="0" resource="0"
+              file="Source/DSP/CircularBuffer.h"/>
+        <FILE id="E3mqu2" name="DSPUtils.h" compile="0" resource="0" file="Source/DSP/DSPUtils.h"/>
+        <FILE id="VOy87J" name="IAudioSignalProcessor.h" compile="0" resource="0"
+              file="Source/DSP/IAudioSignalProcessor.h"/>
+        <FILE id="xzq8Sc" name="LowpassParamSmoother.h" compile="0" resource="0"
+              file="Source/DSP/LowpassParamSmoother.h"/>
       </GROUP>
-      <GROUP id="{0B85DBA7-B018-5552-7ABF-598DD6A081AE}" name="GUI">
-        <FILE id="rL4mZz" name="JDelayComboBox.h" compile="0" resource="0"
-              file="Source/JDelayComboBox.h"/>
-        <FILE id="XYM7pg" name="JDelayComboBox.cpp" compile="1" resource="0"
-              file="Source/JDelayComboBox.cpp"/>
-        <FILE id="Zn8xDk" name="JDelayDelayTimeLookAndFeel.h" compile="0" resource="0"
-              file="Source/JDelayDelayTimeLookAndFeel.h"/>
-        <FILE id="NUgWN8" name="JDelayDelayTimeLookAndFeel.cpp" compile="1"
-              resource="0" file="Source/JDelayDelayTimeLookAndFeel.cpp"/>
-        <FILE id="LXOMEl" name="JDelayDryLevelLookAndFeel.h" compile="0" resource="0"
-              file="Source/JDelayDryLevelLookAndFeel.h"/>
-        <FILE id="DQirSY" name="JDelayDryLevelLookAndFeel.cpp" compile="1"
-              resource="0" file="Source/JDelayDryLevelLookAndFeel.cpp"/>
-        <FILE id="FjgIw0" name="JDelayFeedbackLookAndFeel.h" compile="0" resource="0"
-              file="Source/JDelayFeedbackLookAndFeel.h"/>
-        <FILE id="tUjs87" name="JDelayFeedbackLookAndFeel.cpp" compile="1"
-              resource="0" file="Source/JDelayFeedbackLookAndFeel.cpp"/>
-        <FILE id="ajix4c" name="JDelayLookAndFeel.h" compile="0" resource="0"
-              file="Source/JDelayLookAndFeel.h"/>
-        <FILE id="HnR9Ky" name="JDelayLookAndFeel.cpp" compile="1" resource="0"
-              file="Source/JDelayLookAndFeel.cpp"/>
-        <FILE id="wLXrhL" name="JDelayRatioLookAndFeel.h" compile="0" resource="0"
-              file="Source/JDelayRatioLookAndFeel.h"/>
-        <FILE id="TkP26I" name="JDelayRatioLookAndFeel.cpp" compile="1" resource="0"
-              file="Source/JDelayRatioLookAndFeel.cpp"/>
-        <FILE id="eWFOd0" name="JDelaySlider.h" compile="0" resource="0" file="Source/JDelaySlider.h"/>
-        <FILE id="bewAVz" name="JDelaySlider.cpp" compile="1" resource="0"
-              file="Source/JDelaySlider.cpp"/>
-        <FILE id="wADkYz" name="JDelayWetLevelLookAndFeel.h" compile="0" resource="0"
-              file="Source/JDelayWetLevelLookAndFeel.h"/>
-        <FILE id="wlruZ4" name="JDelayWetLevelLookAndFeel.cpp" compile="1"
-              resource="0" file="Source/JDelayWetLevelLookAndFeel.cpp"/>
+      <GROUP id="{84A12649-CBA2-0C4C-12DF-E1939B48FB23}" name="GUI">
+        <FILE id="gvNhIj" name="JDelayComboBox.cpp" compile="1" resource="0"
+              file="Source/GUI/JDelayComboBox.cpp"/>
+        <FILE id="YjuLKn" name="JDelayComboBox.h" compile="0" resource="0"
+              file="Source/GUI/JDelayComboBox.h"/>
+        <FILE id="DEVcpy" name="JDelayDelayTimeLookAndFeel.cpp" compile="1"
+              resource="0" file="Source/GUI/JDelayDelayTimeLookAndFeel.cpp"/>
+        <FILE id="RTmFwp" name="JDelayDelayTimeLookAndFeel.h" compile="0" resource="0"
+              file="Source/GUI/JDelayDelayTimeLookAndFeel.h"/>
+        <FILE id="RxX9Uf" name="JDelayDryLevelLookAndFeel.cpp" compile="1"
+              resource="0" file="Source/GUI/JDelayDryLevelLookAndFeel.cpp"/>
+        <FILE id="EzqqSO" name="JDelayDryLevelLookAndFeel.h" compile="0" resource="0"
+              file="Source/GUI/JDelayDryLevelLookAndFeel.h"/>
+        <FILE id="d1tfh9" name="JDelayFeedbackLookAndFeel.cpp" compile="1"
+              resource="0" file="Source/GUI/JDelayFeedbackLookAndFeel.cpp"/>
+        <FILE id="IDbduV" name="JDelayFeedbackLookAndFeel.h" compile="0" resource="0"
+              file="Source/GUI/JDelayFeedbackLookAndFeel.h"/>
+        <FILE id="zcUntT" name="JDelayLookAndFeel.cpp" compile="1" resource="0"
+              file="Source/GUI/JDelayLookAndFeel.cpp"/>
+        <FILE id="kFlOo6" name="JDelayLookAndFeel.h" compile="0" resource="0"
+              file="Source/GUI/JDelayLookAndFeel.h"/>
+        <FILE id="yjgAg1" name="JDelayRatioLookAndFeel.cpp" compile="1" resource="0"
+              file="Source/GUI/JDelayRatioLookAndFeel.cpp"/>
+        <FILE id="aiSa5w" name="JDelayRatioLookAndFeel.h" compile="0" resource="0"
+              file="Source/GUI/JDelayRatioLookAndFeel.h"/>
+        <FILE id="YjS9uA" name="JDelaySlider.cpp" compile="1" resource="0"
+              file="Source/GUI/JDelaySlider.cpp"/>
+        <FILE id="KGFxy6" name="JDelaySlider.h" compile="0" resource="0" file="Source/GUI/JDelaySlider.h"/>
+        <FILE id="Hs9Ngv" name="JDelayWetLevelLookAndFeel.cpp" compile="1"
+              resource="0" file="Source/GUI/JDelayWetLevelLookAndFeel.cpp"/>
+        <FILE id="HQFEF7" name="JDelayWetLevelLookAndFeel.h" compile="0" resource="0"
+              file="Source/GUI/JDelayWetLevelLookAndFeel.h"/>
       </GROUP>
-      <FILE id="Mxwdmi" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
-      <FILE id="ts7gRy" name="PluginEditor.cpp" compile="1" resource="0"
+      <FILE id="czBApT" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
-      <FILE id="uuqdJ0" name="PluginProcessor.h" compile="0" resource="0"
-            file="Source/PluginProcessor.h"/>
-      <FILE id="kgKhl7" name="PluginProcessor.cpp" compile="1" resource="0"
+      <FILE id="Yaoina" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="PvwTiG" name="PluginProcessor.cpp" compile="1" resource="0"
             file="Source/PluginProcessor.cpp"/>
+      <FILE id="Y4BZLS" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
