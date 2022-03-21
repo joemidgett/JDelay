@@ -5,14 +5,58 @@
               companyName="Joe Midgett">
   <MAINGROUP id="BsnTZO" name="JDelay">
     <GROUP id="{51F5D711-4B6E-0882-757F-561F1EDD5B4F}" name="Source">
-      <FILE id="haqW50" name="Delay.h" compile="0" resource="0" file="Source/Delay.h"/>
-      <FILE id="kgKhl7" name="PluginProcessor.cpp" compile="1" resource="0"
-            file="Source/PluginProcessor.cpp"/>
-      <FILE id="uuqdJ0" name="PluginProcessor.h" compile="0" resource="0"
-            file="Source/PluginProcessor.h"/>
+      <GROUP id="{FEE9040A-06C2-091A-2A8F-D26ACC964A93}" name="DSP">
+        <FILE id="m9vIJH" name="AudioDelay.h" compile="0" resource="0" file="Source/AudioDelay.h"/>
+        <FILE id="JnBxTH" name="AudioDelayParameters.h" compile="0" resource="0"
+              file="Source/AudioDelayParameters.h"/>
+        <FILE id="kyyUhp" name="CircularBuffer.h" compile="0" resource="0"
+              file="Source/CircularBuffer.h"/>
+        <FILE id="oZF49R" name="DSPUtils.h" compile="0" resource="0" file="Source/DSPUtils.h"/>
+        <FILE id="iRR1HJ" name="IAudioSignalProcessor.h" compile="0" resource="0"
+              file="Source/IAudioSignalProcessor.h"/>
+        <FILE id="NFxaiW" name="LowpassParamSmoother.h" compile="0" resource="0"
+              file="Source/LowpassParamSmoother.h"/>
+      </GROUP>
+      <GROUP id="{0B85DBA7-B018-5552-7ABF-598DD6A081AE}" name="GUI">
+        <FILE id="rL4mZz" name="JDelayComboBox.h" compile="0" resource="0"
+              file="Source/JDelayComboBox.h"/>
+        <FILE id="XYM7pg" name="JDelayComboBox.cpp" compile="1" resource="0"
+              file="Source/JDelayComboBox.cpp"/>
+        <FILE id="Zn8xDk" name="JDelayDelayTimeLookAndFeel.h" compile="0" resource="0"
+              file="Source/JDelayDelayTimeLookAndFeel.h"/>
+        <FILE id="NUgWN8" name="JDelayDelayTimeLookAndFeel.cpp" compile="1"
+              resource="0" file="Source/JDelayDelayTimeLookAndFeel.cpp"/>
+        <FILE id="LXOMEl" name="JDelayDryLevelLookAndFeel.h" compile="0" resource="0"
+              file="Source/JDelayDryLevelLookAndFeel.h"/>
+        <FILE id="DQirSY" name="JDelayDryLevelLookAndFeel.cpp" compile="1"
+              resource="0" file="Source/JDelayDryLevelLookAndFeel.cpp"/>
+        <FILE id="FjgIw0" name="JDelayFeedbackLookAndFeel.h" compile="0" resource="0"
+              file="Source/JDelayFeedbackLookAndFeel.h"/>
+        <FILE id="tUjs87" name="JDelayFeedbackLookAndFeel.cpp" compile="1"
+              resource="0" file="Source/JDelayFeedbackLookAndFeel.cpp"/>
+        <FILE id="ajix4c" name="JDelayLookAndFeel.h" compile="0" resource="0"
+              file="Source/JDelayLookAndFeel.h"/>
+        <FILE id="HnR9Ky" name="JDelayLookAndFeel.cpp" compile="1" resource="0"
+              file="Source/JDelayLookAndFeel.cpp"/>
+        <FILE id="wLXrhL" name="JDelayRatioLookAndFeel.h" compile="0" resource="0"
+              file="Source/JDelayRatioLookAndFeel.h"/>
+        <FILE id="TkP26I" name="JDelayRatioLookAndFeel.cpp" compile="1" resource="0"
+              file="Source/JDelayRatioLookAndFeel.cpp"/>
+        <FILE id="eWFOd0" name="JDelaySlider.h" compile="0" resource="0" file="Source/JDelaySlider.h"/>
+        <FILE id="bewAVz" name="JDelaySlider.cpp" compile="1" resource="0"
+              file="Source/JDelaySlider.cpp"/>
+        <FILE id="wADkYz" name="JDelayWetLevelLookAndFeel.h" compile="0" resource="0"
+              file="Source/JDelayWetLevelLookAndFeel.h"/>
+        <FILE id="wlruZ4" name="JDelayWetLevelLookAndFeel.cpp" compile="1"
+              resource="0" file="Source/JDelayWetLevelLookAndFeel.cpp"/>
+      </GROUP>
+      <FILE id="Mxwdmi" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
       <FILE id="ts7gRy" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
-      <FILE id="Mxwdmi" name="PluginEditor.h" compile="0" resource="0" file="Source/PluginEditor.h"/>
+      <FILE id="uuqdJ0" name="PluginProcessor.h" compile="0" resource="0"
+            file="Source/PluginProcessor.h"/>
+      <FILE id="kgKhl7" name="PluginProcessor.cpp" compile="1" resource="0"
+            file="Source/PluginProcessor.cpp"/>
     </GROUP>
   </MAINGROUP>
   <JUCEOPTIONS JUCE_STRICT_REFCOUNTEDPOINTER="1" JUCE_VST3_CAN_REPLACE_VST2="0"/>
