@@ -2,7 +2,7 @@
 
 <JUCERPROJECT id="snNXnV" name="JDelay" projectType="audioplug" useAppConfig="0"
               addUsingNamespaceToJuceHeader="0" jucerFormatVersion="1" cppLanguageStandard="17"
-              companyName="Joe Midgett">
+              companyName="Joe Midgett" pluginVST3Category="Delay">
   <MAINGROUP id="BsnTZO" name="JDelay">
     <GROUP id="{51F5D711-4B6E-0882-757F-561F1EDD5B4F}" name="Source">
       <GROUP id="{5B042B9B-18B7-10D3-0D78-8E86D8615955}" name="DSP">
