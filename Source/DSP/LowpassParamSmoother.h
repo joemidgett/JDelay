@@ -2,9 +2,9 @@
 
 #pragma once
 
-#include <math.h>
-#include <memory>
-#include <time.h>
+//#include <math.h>
+//#include <memory>
+//#include <time.h>
 
 #include <JuceHeader.h>
 
