@@ -39,11 +39,13 @@ private:
     // access the processor object that created it.
     JDelayAudioProcessor& audioProcessor;
 
+    JDelayLookAndFeel jDelayLnf;
+
     JDelaySlider dryLevelSlider,
-        delayTimeSlider,
-        feedbackSlider, 
-        ratioSlider,
-        wetLevelSlider;
+                 delayTimeSlider,
+                 feedbackSlider, 
+                 ratioSlider,
+                 wetLevelSlider;
 
     JDelayDryLevelLookAndFeel dryLevelLnf;
     JDelayDelayTimeLookAndFeel delayTimeLnf;
@@ -53,30 +55,29 @@ private:
 
     JDelayComboBox delayTypeComboBox;
     
-    using APVTS = juce::AudioProcessorValueTreeState;
-    using SliderAttachment = APVTS::SliderAttachment;
+    using SliderAttachment = juce::AudioProcessorValueTreeState::SliderAttachment;
 
     SliderAttachment delayTimeSliderAttachment,
-        feedbackSliderAttachment,
-        ratioSliderAttachment,
-        wetLevelSliderAttachment,
-        dryLevelSliderAttachment;
+                     feedbackSliderAttachment,
+                     ratioSliderAttachment,
+                     wetLevelSliderAttachment,
+                     dryLevelSliderAttachment;
 
-    using ComboBoxAttachment = APVTS::ComboBoxAttachment;
+    using ComboBoxAttachment = juce::AudioProcessorValueTreeState::ComboBoxAttachment;
     ComboBoxAttachment delayTypeComboBoxAttachment;
 
     juce::Label dryLevelLabel,
-        delayTimeLabel,
-        feedbackLabel,
-        ratioLabel,
-        wetLevelLabel,
-        delayTypeLabel,
-        dryLevelUnitsLabel,
-        delayTimeUnitsLabel,
-        feedbackUnitsLabel,
-        ratioUnitsLabel,
-        wetLevelUnitsLabel,
-        delayTypeUnitsLabel;
+                delayTimeLabel,
+                feedbackLabel,
+                ratioLabel,
+                wetLevelLabel,
+                delayTypeLabel,
+                dryLevelUnitsLabel,
+                delayTimeUnitsLabel,
+                feedbackUnitsLabel,
+                ratioUnitsLabel,
+                wetLevelUnitsLabel,
+                delayTypeUnitsLabel;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (JDelayAudioProcessorEditor)
 };
