@@ -11,11 +11,6 @@ void JDelaySlider::paint(juce::Graphics& g)
 
     auto sliderBounds = getSliderBounds();
 
-    //g.setColour(juce::Colours::red);
-    //g.drawRect(getLocalBounds());
-    //g.setColour(juce::Colours::yellow);
-    //g.drawRect(sliderBounds);
-
     getLookAndFeel().drawRotarySlider(g, 
                                       sliderBounds.getX(), 
                                       sliderBounds.getY(), 
@@ -25,6 +20,9 @@ void JDelaySlider::paint(juce::Graphics& g)
                                       startAng, 
                                       endAng, 
                                       *this);
+
+    setColour(juce::Slider::ColourIds::textBoxBackgroundColourId, juce::Colours::black);
+    setColour(juce::Slider::ColourIds::textBoxHighlightColourId, juce::Colours::darkgrey);
 }
 
 juce::Rectangle<int> JDelaySlider::getSliderBounds() const

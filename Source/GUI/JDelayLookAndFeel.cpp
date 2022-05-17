@@ -3,15 +3,8 @@
 #include "JDelayLookAndFeel.h"
 #include "JDelaySlider.h"
 
-void JDelayLookAndFeel::drawRotarySlider(juce::Graphics& g,
-                                         int x,
-                                         int y,
-                                         int width,
-                                         int height,
-                                         float sliderPosProportional,
-                                         float rotaryStartAngle,
-                                         float rotaryEndAngle,
-                                         juce::Slider& slider)
+void JDelayLookAndFeel::drawRotarySlider(juce::Graphics& g, int x, int y, int width, int height,
+    float sliderPosProportional, float rotaryStartAngle, float rotaryEndAngle, juce::Slider& slider)
 {
     auto bounds = juce::Rectangle<float>(x, y, width, height);
 
@@ -84,7 +77,6 @@ void JDelayLookAndFeel::drawPopupMenuItem(juce::Graphics& g, const juce::Rectang
 
     if (isHighlighted && isActive)
     {
-        // g.setColour(findColour(juce::PopupMenu::highlightedBackgroundColourId));
         g.setColour(juce::Colours::darkgrey);
         g.fillRect(r);
 

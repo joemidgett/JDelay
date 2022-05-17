@@ -9,7 +9,7 @@
 class JDelaySlider : public juce::Slider
 {
 public:
-    JDelaySlider(juce::RangedAudioParameter& rap, const juce::String& unitSuffix) : 
+    JDelaySlider(juce::RangedAudioParameter& rap, const juce::String& unitSuffix) :
                            juce::Slider(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag,
                                         juce::Slider::TextEntryBoxPosition::TextBoxBelow),
                                         rangedAudioParam(&rap)
