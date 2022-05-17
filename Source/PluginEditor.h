@@ -33,6 +33,7 @@ public:
 
     void createLabel(juce::Label& label, juce::String& text);
     void createLabels();
+    void createDelayTypeComboBox();
 
 private:
     // This reference is provided as a quick way for your editor to
@@ -56,7 +57,6 @@ private:
     JDelayComboBox delayTypeComboBox;
     
     using SliderAttachment = juce::AudioProcessorValueTreeState::SliderAttachment;
-
     SliderAttachment delayTimeSliderAttachment,
                      feedbackSliderAttachment,
                      ratioSliderAttachment,
