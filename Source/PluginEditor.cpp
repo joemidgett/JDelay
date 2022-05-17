@@ -71,44 +71,26 @@ void JDelayAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
+    dryLevelSlider.setBounds(0, 0, 130, 150);
+    delayTimeSlider.setBounds(dryLevelSlider.getBounds().withX(dryLevelSlider.getRight()));
+    feedbackSlider.setBounds(delayTimeSlider.getBounds().withX(delayTimeSlider.getRight()));
+    ratioSlider.setBounds(feedbackSlider.getBounds().withX(feedbackSlider.getRight()));
+    wetLevelSlider.setBounds(ratioSlider.getBounds().withX(ratioSlider.getRight()));
+    delayTypeComboBox.setBounds(wetLevelSlider.getBounds().withX(wetLevelSlider.getRight()));
 
-    auto bounds = getLocalBounds();
+    dryLevelLabel.setBounds(0, 10, 130, 30);
+    delayTimeLabel.setBounds(dryLevelLabel.getBounds().withX(dryLevelLabel.getRight()));
+    feedbackLabel.setBounds(delayTimeLabel.getBounds().withX(delayTimeLabel.getRight()));
+    ratioLabel.setBounds(feedbackLabel.getBounds().withX(feedbackLabel.getRight()));
+    wetLevelLabel.setBounds(ratioLabel.getBounds().withX(ratioLabel.getRight()));
 
-    auto dryLevelSliderArea = bounds.removeFromLeft(95).removeFromTop(140);
-    dryLevelSlider.setBounds(dryLevelSliderArea);
-
-    auto delayTimeArea = bounds.removeFromLeft(95).removeFromTop(140);
-    delayTimeSlider.setBounds(delayTimeArea);
-
-    auto feedbackArea = bounds.removeFromLeft(95).removeFromTop(140);
-    feedbackSlider.setBounds(feedbackArea);
-
-    auto ratioArea = bounds.removeFromLeft(95).removeFromTop(140);
-    ratioSlider.setBounds(ratioArea);
-
-    auto wetLevelSliderArea = bounds.removeFromLeft(95).removeFromTop(140);
-    wetLevelSlider.setBounds(wetLevelSliderArea);
-
-    auto delayTypeComboBoxArea = bounds.removeFromLeft(118).removeFromBottom(92).removeFromTop(25);
-    delayTypeComboBox.addItem("Normal", 1);
-    delayTypeComboBox.addItem("Ping Pong", 2);
-    delayTypeComboBox.setSelectedItemIndex(0, juce::dontSendNotification);
-    delayTypeComboBox.setJustificationType(juce::Justification::centred);
-    delayTypeComboBox.setBounds(delayTypeComboBoxArea);
-
-    dryLevelLabel.setBounds(-242, 5, getWidth() - 20, 30);
-    delayTimeLabel.setBounds(-147, 5, getWidth() - 20, 30);
-    feedbackLabel.setBounds(-52, 5, getWidth() - 20, 30);
-    ratioLabel.setBounds(42, 5, getWidth() - 20, 30);
-    wetLevelLabel.setBounds(138, 5, getWidth() - 20, 30);
-
-    dryLevelUnitsLabel.setBounds(-242, 145, getWidth() - 20, 30);
-    delayTimeUnitsLabel.setBounds(-147, 145, getWidth() - 20, 30);
-    feedbackUnitsLabel.setBounds(-52, 145, getWidth() - 20, 30);
-    ratioUnitsLabel.setBounds(42, 145, getWidth() - 20, 30);
-    wetLevelUnitsLabel.setBounds(138, 145, getWidth() - 20, 30);
-    
-    delayTypeLabel.setBounds(242, 62, getWidth() - 20, 30);
+    dryLevelUnitsLabel.setBounds(0, 160, 130, 30);
+    delayTimeUnitsLabel.setBounds(dryLevelUnitsLabel.getBounds().withX(dryLevelUnitsLabel.getRight()));
+    feedbackUnitsLabel.setBounds(delayTimeUnitsLabel.getBounds().withX(delayTimeUnitsLabel.getRight()));
+    ratioUnitsLabel.setBounds(feedbackUnitsLabel.getBounds().withX(feedbackUnitsLabel.getRight()));
+    wetLevelUnitsLabel.setBounds(ratioUnitsLabel.getBounds().withX(ratioUnitsLabel.getRight()));
+   
+    //delayTypeLabel.setBounds(242, 62, getWidth() - 20, 30);
 }
 
 void JDelayAudioProcessorEditor::createLabel(juce::Label& label, juce::String& text)
