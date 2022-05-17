@@ -6,3 +6,8 @@ JDelayComboBox::JDelayComboBox() : juce::ComboBox()
 {
 	setLookAndFeel(&lnf);
 }
+
+JDelayComboBox::~JDelayComboBox()
+{
+	setLookAndFeel(nullptr);
+}

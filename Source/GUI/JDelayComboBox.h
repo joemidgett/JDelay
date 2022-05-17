@@ -11,10 +11,7 @@ class JDelayComboBox : public juce::ComboBox
 public:
     JDelayComboBox();
 
-    ~JDelayComboBox()
-    {
-        setLookAndFeel(nullptr);
-    }
+    ~JDelayComboBox();
 
 private:
     JDelayLookAndFeel lnf;

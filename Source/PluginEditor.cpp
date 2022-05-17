@@ -46,7 +46,7 @@ JDelayAudioProcessorEditor::JDelayAudioProcessorEditor(JDelayAudioProcessor& p)
 
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize(650, 195);
+    setSize(620, 190);
 }
 
 JDelayAudioProcessorEditor::~JDelayAudioProcessorEditor()
@@ -65,26 +65,29 @@ void JDelayAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
-    dryLevelSlider.setBounds(0, 0, 130, 150);
+    dryLevelSlider.setBounds(0, 0, 105, 150);
     delayTimeSlider.setBounds(dryLevelSlider.getBounds().withX(dryLevelSlider.getRight()));
     feedbackSlider.setBounds(delayTimeSlider.getBounds().withX(delayTimeSlider.getRight()));
     ratioSlider.setBounds(feedbackSlider.getBounds().withX(feedbackSlider.getRight()));
     wetLevelSlider.setBounds(ratioSlider.getBounds().withX(ratioSlider.getRight()));
-    delayTypeComboBox.setBounds(wetLevelSlider.getBounds().withX(wetLevelSlider.getRight()));
+    delayTypeComboBox.setBounds(wetLevelSlider.getBounds()
+                                              .withX(wetLevelSlider.getRight() + 3)
+                                              .withHeight(wetLevelSlider.getHeight() - 95)
+                                              .withY(wetLevelSlider.getHeight() - 80));
 
-    dryLevelLabel.setBounds(0, 10, 130, 30);
+    dryLevelLabel.setBounds(0, 5, 105, 30);
     delayTimeLabel.setBounds(dryLevelLabel.getBounds().withX(dryLevelLabel.getRight()));
     feedbackLabel.setBounds(delayTimeLabel.getBounds().withX(delayTimeLabel.getRight()));
     ratioLabel.setBounds(feedbackLabel.getBounds().withX(feedbackLabel.getRight()));
     wetLevelLabel.setBounds(ratioLabel.getBounds().withX(ratioLabel.getRight()));
+    delayTypeLabel.setBounds(wetLevelLabel.getBounds().withX(wetLevelLabel.getRight())
+                                                      .withHeight(wetLevelLabel.getHeight() + 75));
 
-    dryLevelUnitsLabel.setBounds(0, 160, 130, 30);
+    dryLevelUnitsLabel.setBounds(0, 153, 105, 30);
     delayTimeUnitsLabel.setBounds(dryLevelUnitsLabel.getBounds().withX(dryLevelUnitsLabel.getRight()));
     feedbackUnitsLabel.setBounds(delayTimeUnitsLabel.getBounds().withX(delayTimeUnitsLabel.getRight()));
     ratioUnitsLabel.setBounds(feedbackUnitsLabel.getBounds().withX(feedbackUnitsLabel.getRight()));
     wetLevelUnitsLabel.setBounds(ratioUnitsLabel.getBounds().withX(ratioUnitsLabel.getRight()));
-   
-    //delayTypeLabel.setBounds(242, 62, getWidth() - 20, 30);
 }
 
 void JDelayAudioProcessorEditor::createLabel(juce::Label& label, juce::String& text)
