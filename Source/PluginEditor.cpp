@@ -70,7 +70,7 @@ void JDelayAudioProcessorEditor::resized()
     delayTypeComboBox.setBounds(wetLevelSlider.getBounds()
                                               .withX(wetLevelSlider.getRight() + 3)
                                               .withY(wetLevelSlider.getY() + 90)
-                                              .withHeight(wetLevelSlider.getHeight() - 130)
+                                              .withHeight(wetLevelSlider.getHeight() - 125)
                                               .withWidth(wetLevelSlider.getWidth()));
 
     dryLevelLabel.setBounds(0, 5, 103, 30);

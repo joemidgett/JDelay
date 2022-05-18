@@ -70,6 +70,9 @@ void JDelayLookAndFeel::drawPopupMenuItem(juce::Graphics& g, const juce::Rectang
     const juce::String& shortcutKeyText,
     const juce::Drawable* icon, const juce::Colour* const textColourToUse)
 {
+    setColour(juce::PopupMenu::ColourIds::textColourId, juce::Colours::white);
+    setColour(juce::PopupMenu::ColourIds::backgroundColourId, juce::Colours::black);
+
     auto textColour = (textColourToUse == nullptr ? findColour(juce::PopupMenu::textColourId)
         : *textColourToUse);
 
