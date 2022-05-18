@@ -22,33 +22,13 @@
               file="Source/GUI/JDelayComboBox.cpp"/>
         <FILE id="YjuLKn" name="JDelayComboBox.h" compile="0" resource="0"
               file="Source/GUI/JDelayComboBox.h"/>
-        <FILE id="DEVcpy" name="JDelayDelayTimeLookAndFeel.cpp" compile="1"
-              resource="0" file="Source/GUI/JDelayDelayTimeLookAndFeel.cpp"/>
-        <FILE id="RTmFwp" name="JDelayDelayTimeLookAndFeel.h" compile="0" resource="0"
-              file="Source/GUI/JDelayDelayTimeLookAndFeel.h"/>
-        <FILE id="RxX9Uf" name="JDelayDryLevelLookAndFeel.cpp" compile="1"
-              resource="0" file="Source/GUI/JDelayDryLevelLookAndFeel.cpp"/>
-        <FILE id="EzqqSO" name="JDelayDryLevelLookAndFeel.h" compile="0" resource="0"
-              file="Source/GUI/JDelayDryLevelLookAndFeel.h"/>
-        <FILE id="d1tfh9" name="JDelayFeedbackLookAndFeel.cpp" compile="1"
-              resource="0" file="Source/GUI/JDelayFeedbackLookAndFeel.cpp"/>
-        <FILE id="IDbduV" name="JDelayFeedbackLookAndFeel.h" compile="0" resource="0"
-              file="Source/GUI/JDelayFeedbackLookAndFeel.h"/>
         <FILE id="zcUntT" name="JDelayLookAndFeel.cpp" compile="1" resource="0"
               file="Source/GUI/JDelayLookAndFeel.cpp"/>
         <FILE id="kFlOo6" name="JDelayLookAndFeel.h" compile="0" resource="0"
               file="Source/GUI/JDelayLookAndFeel.h"/>
-        <FILE id="yjgAg1" name="JDelayRatioLookAndFeel.cpp" compile="1" resource="0"
-              file="Source/GUI/JDelayRatioLookAndFeel.cpp"/>
-        <FILE id="aiSa5w" name="JDelayRatioLookAndFeel.h" compile="0" resource="0"
-              file="Source/GUI/JDelayRatioLookAndFeel.h"/>
         <FILE id="YjS9uA" name="JDelaySlider.cpp" compile="1" resource="0"
               file="Source/GUI/JDelaySlider.cpp"/>
         <FILE id="KGFxy6" name="JDelaySlider.h" compile="0" resource="0" file="Source/GUI/JDelaySlider.h"/>
-        <FILE id="Hs9Ngv" name="JDelayWetLevelLookAndFeel.cpp" compile="1"
-              resource="0" file="Source/GUI/JDelayWetLevelLookAndFeel.cpp"/>
-        <FILE id="HQFEF7" name="JDelayWetLevelLookAndFeel.h" compile="0" resource="0"
-              file="Source/GUI/JDelayWetLevelLookAndFeel.h"/>
       </GROUP>
       <FILE id="czBApT" name="PluginEditor.cpp" compile="1" resource="0"
             file="Source/PluginEditor.cpp"/>
