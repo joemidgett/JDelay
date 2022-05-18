@@ -28,14 +28,11 @@ JDelayAudioProcessorEditor::JDelayAudioProcessorEditor(JDelayAudioProcessor& p)
 {
     juce::LookAndFeel::setDefaultLookAndFeel(&jDelayLnf);
 
-    //dryLevelSlider.setLookAndFeel(&dryLevelLnf);
-    //delayTimeSlider.setLookAndFeel(&delayTimeLnf);
-    //feedbackSlider.setLookAndFeel(&feedbackLnf);
-    //ratioSlider.setLookAndFeel(&ratioLnf);
-    //wetLevelSlider.setLookAndFeel(&wetLevelLnf);
-
     createDelayTypeComboBox();
     createLabels();
+
+    dryLevelSlider.setColour(juce::Slider::ColourIds::rotarySliderOutlineColourId, juce::Colours::white);
+    dryLevelSlider.setColour(juce::Slider::ColourIds::rotarySliderFillColourId, juce::Colours::black);
 
     addAndMakeVisible(dryLevelSlider);
     addAndMakeVisible(delayTimeSlider);
@@ -46,7 +43,7 @@ JDelayAudioProcessorEditor::JDelayAudioProcessorEditor(JDelayAudioProcessor& p)
 
     // Make sure that before the constructor has finished, you've set the
     // editor's size to whatever you need it to be.
-    setSize(620, 190);
+    setSize(635, 190);
 }
 
 JDelayAudioProcessorEditor::~JDelayAudioProcessorEditor()
@@ -65,7 +62,7 @@ void JDelayAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
     // subcomponents in your editor..
-    dryLevelSlider.setBounds(0, 0, 105, 150);
+    dryLevelSlider.setBounds(0, 0, 103, 150);
     delayTimeSlider.setBounds(dryLevelSlider.getBounds().withX(dryLevelSlider.getRight()));
     feedbackSlider.setBounds(delayTimeSlider.getBounds().withX(delayTimeSlider.getRight()));
     ratioSlider.setBounds(feedbackSlider.getBounds().withX(feedbackSlider.getRight()));
@@ -73,17 +70,17 @@ void JDelayAudioProcessorEditor::resized()
     delayTypeComboBox.setBounds(wetLevelSlider.getBounds()
                                               .withX(wetLevelSlider.getRight() + 3)
                                               .withHeight(wetLevelSlider.getHeight() - 95)
-                                              .withY(wetLevelSlider.getHeight() - 80));
+                                              .withY(wetLevelSlider.getHeight() - 70));
 
-    dryLevelLabel.setBounds(0, 5, 105, 30);
+    dryLevelLabel.setBounds(0, 5, 103, 30);
     delayTimeLabel.setBounds(dryLevelLabel.getBounds().withX(dryLevelLabel.getRight()));
     feedbackLabel.setBounds(delayTimeLabel.getBounds().withX(delayTimeLabel.getRight()));
     ratioLabel.setBounds(feedbackLabel.getBounds().withX(feedbackLabel.getRight()));
     wetLevelLabel.setBounds(ratioLabel.getBounds().withX(ratioLabel.getRight()));
     delayTypeLabel.setBounds(wetLevelLabel.getBounds().withX(wetLevelLabel.getRight())
-                                                      .withHeight(wetLevelLabel.getHeight() + 75));
+                                                      .withHeight(wetLevelLabel.getHeight() + 105));
 
-    dryLevelUnitsLabel.setBounds(0, 153, 105, 30);
+    dryLevelUnitsLabel.setBounds(0, 153, 103, 30);
     delayTimeUnitsLabel.setBounds(dryLevelUnitsLabel.getBounds().withX(dryLevelUnitsLabel.getRight()));
     feedbackUnitsLabel.setBounds(delayTimeUnitsLabel.getBounds().withX(delayTimeUnitsLabel.getRight()));
     ratioUnitsLabel.setBounds(feedbackUnitsLabel.getBounds().withX(feedbackUnitsLabel.getRight()));

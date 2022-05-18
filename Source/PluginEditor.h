@@ -12,12 +12,7 @@
 
 #include "DSP/AudioDelay.h"
 #include "GUI/JDelayComboBox.h"
-#include "GUI/JDelayDelayTimeLookAndFeel.h"
-#include "GUI/JDelayDryLevelLookAndFeel.h"
-#include "GUI/JDelayFeedbackLookAndFeel.h"
-#include "GUI/JDelayRatioLookAndFeel.h"
 #include "GUI/JDelaySlider.h"
-#include "GUI/JDelayWetLevelLookAndFeel.h"
 #include "PluginProcessor.h"
 
 //==============================================================================
@@ -47,12 +42,6 @@ private:
                  feedbackSlider, 
                  ratioSlider,
                  wetLevelSlider;
-
-    JDelayDryLevelLookAndFeel dryLevelLnf;
-    JDelayDelayTimeLookAndFeel delayTimeLnf;
-    JDelayFeedbackLookAndFeel feedbackLnf;
-    JDelayRatioLookAndFeel ratioLnf;
-    JDelayWetLevelLookAndFeel wetLevelLnf;
 
     JDelayComboBox delayTypeComboBox;
     

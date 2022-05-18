@@ -2,6 +2,12 @@
 
 #include "JDelaySlider.h"
 
+JDelaySlider::JDelaySlider(juce::RangedAudioParameter& rap, const juce::String& unitSuffix)
+{
+    setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+    setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxBelow, false, 80, 20);
+}
+
 void JDelaySlider::paint(juce::Graphics& g)
 {
     auto startAng = juce::degreesToRadians(180.f + 45.f);

@@ -8,11 +8,5 @@
 
 class JDelayComboBox : public juce::ComboBox
 {
-public:
-    JDelayComboBox();
 
-    ~JDelayComboBox();
-
-private:
-    JDelayLookAndFeel lnf;
 };
