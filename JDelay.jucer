@@ -18,10 +18,6 @@
               file="Source/DSP/LowpassParamSmoother.h"/>
       </GROUP>
       <GROUP id="{84A12649-CBA2-0C4C-12DF-E1939B48FB23}" name="GUI">
-        <FILE id="gvNhIj" name="JDelayComboBox.cpp" compile="1" resource="0"
-              file="Source/GUI/JDelayComboBox.cpp"/>
-        <FILE id="YjuLKn" name="JDelayComboBox.h" compile="0" resource="0"
-              file="Source/GUI/JDelayComboBox.h"/>
         <FILE id="zcUntT" name="JDelayLookAndFeel.cpp" compile="1" resource="0"
               file="Source/GUI/JDelayLookAndFeel.cpp"/>
         <FILE id="kFlOo6" name="JDelayLookAndFeel.h" compile="0" resource="0"
