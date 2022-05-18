@@ -31,8 +31,11 @@ JDelayAudioProcessorEditor::JDelayAudioProcessorEditor(JDelayAudioProcessor& p)
     createDelayTypeComboBox();
     createLabels();
 
-    dryLevelSlider.setColour(juce::Slider::ColourIds::rotarySliderOutlineColourId, juce::Colours::white);
-    dryLevelSlider.setColour(juce::Slider::ColourIds::rotarySliderFillColourId, juce::Colours::black);
+    modifyJDelaySliderColors(dryLevelSlider, dryLevelColorIds);
+    modifyJDelaySliderColors(delayTimeSlider, delayTimeColorIds);
+    modifyJDelaySliderColors(feedbackSlider, feedbackColorIds);
+    modifyJDelaySliderColors(ratioSlider, ratioColorIds);
+    modifyJDelaySliderColors(wetLevelSlider, wetLevelColorIds);
 
     addAndMakeVisible(dryLevelSlider);
     addAndMakeVisible(delayTimeSlider);
@@ -119,4 +122,10 @@ void JDelayAudioProcessorEditor::createDelayTypeComboBox()
     delayTypeComboBox.addItem("Ping Pong", 2);
     delayTypeComboBox.setSelectedItemIndex(0, juce::dontSendNotification);
     delayTypeComboBox.setJustificationType(juce::Justification::centred);
+}
+
+void JDelayAudioProcessorEditor::modifyJDelaySliderColors(JDelaySlider& slider, std::vector<juce::String> colors)
+{
+    slider.setColour(juce::Slider::rotarySliderOutlineColourId, juce::Colours::findColourForName(colors.at(0), defaultColor));
+    slider.setColour(juce::Slider::rotarySliderFillColourId, juce::Colours::findColourForName(colors.at(1), defaultColor));
 }

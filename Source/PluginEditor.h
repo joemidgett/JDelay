@@ -28,6 +28,7 @@ public:
     void createLabel(juce::Label& label, juce::String& text);
     void createLabels();
     void createDelayTypeComboBox();
+    void modifyJDelaySliderColors(JDelaySlider& slider, std::vector<juce::String> colors);
 
 private:
     // This reference is provided as a quick way for your editor to
@@ -41,6 +42,14 @@ private:
                  feedbackSlider, 
                  ratioSlider,
                  wetLevelSlider;
+
+    std::vector<juce::String> dryLevelColorIds{ "white", "black" },
+                              delayTimeColorIds{ "white", "darkgrey" },
+                              feedbackColorIds{ "white", "dimgrey" },
+                              ratioColorIds{ "white", "grey" },
+                              wetLevelColorIds{ "grey", "lightgrey" };
+
+    juce::Colour defaultColor;
 
     juce::ComboBox delayTypeComboBox;
     

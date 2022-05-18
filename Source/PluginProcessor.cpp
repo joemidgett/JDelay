@@ -105,8 +105,6 @@ void JDelayAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock
     ratioLowpassParamSmoothing.initializeLowpassSmoothing(200.0, sampleRate);
     dryLowpassParamSmoothing.initializeLowpassSmoothing(5.0, sampleRate);
     wetLowpassParamSmoothing.initializeLowpassSmoothing(5.0, sampleRate);
-
-    // updateParameters();
 }
 
 void JDelayAudioProcessor::releaseResources()

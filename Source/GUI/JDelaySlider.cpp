@@ -6,6 +6,12 @@ JDelaySlider::JDelaySlider(juce::RangedAudioParameter& rap, const juce::String& 
 {
     setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
     setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxBelow, false, 80, 20);
+
+    setColour(juce::Slider::ColourIds::rotarySliderFillColourId, juce::Colours::white);
+    setColour(juce::Slider::ColourIds::rotarySliderOutlineColourId, juce::Colours::black);
+
+    setColour(juce::Slider::ColourIds::textBoxBackgroundColourId, juce::Colours::black);
+    setColour(juce::Slider::ColourIds::textBoxHighlightColourId, juce::Colours::darkgrey);
 }
 
 void JDelaySlider::paint(juce::Graphics& g)
@@ -26,9 +32,6 @@ void JDelaySlider::paint(juce::Graphics& g)
                                       startAng, 
                                       endAng, 
                                       *this);
-
-    setColour(juce::Slider::ColourIds::textBoxBackgroundColourId, juce::Colours::black);
-    setColour(juce::Slider::ColourIds::textBoxHighlightColourId, juce::Colours::darkgrey);
 }
 
 juce::Rectangle<int> JDelaySlider::getSliderBounds() const
