@@ -14,6 +14,8 @@
         <FILE id="E3mqu2" name="DSPUtils.h" compile="0" resource="0" file="Source/DSP/DSPUtils.h"/>
         <FILE id="VOy87J" name="IAudioSignalProcessor.h" compile="0" resource="0"
               file="Source/DSP/IAudioSignalProcessor.h"/>
+        <FILE id="e16Qqp" name="LowpassParamSmoother.cpp" compile="1" resource="0"
+              file="Source/DSP/LowpassParamSmoother.cpp"/>
         <FILE id="xzq8Sc" name="LowpassParamSmoother.h" compile="0" resource="0"
               file="Source/DSP/LowpassParamSmoother.h"/>
       </GROUP>
