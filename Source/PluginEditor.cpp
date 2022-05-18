@@ -69,8 +69,9 @@ void JDelayAudioProcessorEditor::resized()
     wetLevelSlider.setBounds(ratioSlider.getBounds().withX(ratioSlider.getRight()));
     delayTypeComboBox.setBounds(wetLevelSlider.getBounds()
                                               .withX(wetLevelSlider.getRight() + 3)
-                                              .withHeight(wetLevelSlider.getHeight() - 95)
-                                              .withY(wetLevelSlider.getHeight() - 70));
+                                              .withY(wetLevelSlider.getY() + 90)
+                                              .withHeight(wetLevelSlider.getHeight() - 130)
+                                              .withWidth(wetLevelSlider.getWidth()));
 
     dryLevelLabel.setBounds(0, 5, 103, 30);
     delayTimeLabel.setBounds(dryLevelLabel.getBounds().withX(dryLevelLabel.getRight()));
@@ -78,7 +79,7 @@ void JDelayAudioProcessorEditor::resized()
     ratioLabel.setBounds(feedbackLabel.getBounds().withX(feedbackLabel.getRight()));
     wetLevelLabel.setBounds(ratioLabel.getBounds().withX(ratioLabel.getRight()));
     delayTypeLabel.setBounds(wetLevelLabel.getBounds().withX(wetLevelLabel.getRight())
-                                                      .withHeight(wetLevelLabel.getHeight() + 105));
+                                                      .withY(wetLevelLabel.getY() + 55));
 
     dryLevelUnitsLabel.setBounds(0, 153, 103, 30);
     delayTimeUnitsLabel.setBounds(dryLevelUnitsLabel.getBounds().withX(dryLevelUnitsLabel.getRight()));
