@@ -11,7 +11,6 @@
 #include <JuceHeader.h>
 
 #include "DSP/AudioDelay.h"
-#include "GUI/JDelayComboBox.h"
 #include "GUI/JDelaySlider.h"
 #include "PluginProcessor.h"
 
@@ -43,7 +42,7 @@ private:
                  ratioSlider,
                  wetLevelSlider;
 
-    JDelayComboBox delayTypeComboBox;
+    juce::ComboBox delayTypeComboBox;
     
     using SliderAttachment = juce::AudioProcessorValueTreeState::SliderAttachment;
     SliderAttachment delayTimeSliderAttachment,
