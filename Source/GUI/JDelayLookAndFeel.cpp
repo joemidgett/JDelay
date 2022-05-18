@@ -3,22 +3,18 @@
 #include "JDelayLookAndFeel.h"
 #include "JDelaySlider.h"
 
-void JDelayLookAndFeel::drawRotarySlider(juce::Graphics& g,
-                                         int x,
-                                         int y,
-                                         int width,
-                                         int height,
-                                         float sliderPosProportional,
-                                         float rotaryStartAngle,
-                                         float rotaryEndAngle,
-                                         juce::Slider& slider)
+void JDelayLookAndFeel::drawRotarySlider(juce::Graphics& g, int x, int y, int width, int height,
+    float sliderPosProportional, float rotaryStartAngle, float rotaryEndAngle, juce::Slider& slider)
 {
     auto bounds = juce::Rectangle<float>(x, y, width, height);
 
-    g.setColour(juce::Colours::white);
+    auto outline = slider.findColour(juce::Slider::rotarySliderOutlineColourId);
+    auto fill = slider.findColour(juce::Slider::rotarySliderFillColourId);
+
+    g.setColour(fill);
     g.fillEllipse(bounds);
 
-    g.setColour(juce::Colours::black);
+    g.setColour(outline);
     g.drawEllipse(bounds, 1.f);
 
     if (auto* rswl = dynamic_cast<JDelaySlider*>(&slider))
@@ -77,6 +73,9 @@ void JDelayLookAndFeel::drawPopupMenuItem(juce::Graphics& g, const juce::Rectang
     const juce::String& shortcutKeyText,
     const juce::Drawable* icon, const juce::Colour* const textColourToUse)
 {
+    setColour(juce::PopupMenu::ColourIds::textColourId, juce::Colours::white);
+    setColour(juce::PopupMenu::ColourIds::backgroundColourId, juce::Colours::black);
+
     auto textColour = (textColourToUse == nullptr ? findColour(juce::PopupMenu::textColourId)
         : *textColourToUse);
 
@@ -84,7 +83,6 @@ void JDelayLookAndFeel::drawPopupMenuItem(juce::Graphics& g, const juce::Rectang
 
     if (isHighlighted && isActive)
     {
-        // g.setColour(findColour(juce::PopupMenu::highlightedBackgroundColourId));
         g.setColour(juce::Colours::darkgrey);
         g.fillRect(r);
 

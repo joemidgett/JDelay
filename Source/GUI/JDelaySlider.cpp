@@ -2,6 +2,18 @@
 
 #include "JDelaySlider.h"
 
+JDelaySlider::JDelaySlider(juce::RangedAudioParameter& rap, const juce::String& unitSuffix)
+{
+    setSliderStyle(juce::Slider::SliderStyle::RotaryHorizontalVerticalDrag);
+    setTextBoxStyle(juce::Slider::TextEntryBoxPosition::TextBoxBelow, false, 80, 20);
+
+    setColour(juce::Slider::ColourIds::rotarySliderFillColourId, juce::Colours::white);
+    setColour(juce::Slider::ColourIds::rotarySliderOutlineColourId, juce::Colours::black);
+
+    setColour(juce::Slider::ColourIds::textBoxBackgroundColourId, juce::Colours::black);
+    setColour(juce::Slider::ColourIds::textBoxHighlightColourId, juce::Colours::darkgrey);
+}
+
 void JDelaySlider::paint(juce::Graphics& g)
 {
     auto startAng = juce::degreesToRadians(180.f + 45.f);
@@ -10,11 +22,6 @@ void JDelaySlider::paint(juce::Graphics& g)
     auto range = getRange();
 
     auto sliderBounds = getSliderBounds();
-
-    //g.setColour(juce::Colours::red);
-    //g.drawRect(getLocalBounds());
-    //g.setColour(juce::Colours::yellow);
-    //g.drawRect(sliderBounds);
 
     getLookAndFeel().drawRotarySlider(g, 
                                       sliderBounds.getX(), 

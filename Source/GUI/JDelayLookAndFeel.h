@@ -7,14 +7,6 @@
 class JDelayLookAndFeel : public juce::LookAndFeel_V4
 {
 public:
-    JDelayLookAndFeel()
-    {
-        setColour(juce::PopupMenu::ColourIds::textColourId, juce::Colours::white);
-        setColour(juce::PopupMenu::ColourIds::backgroundColourId, juce::Colours::black);
-        setColour(juce::Slider::ColourIds::textBoxBackgroundColourId, juce::Colours::black);
-        setColour(juce::Slider::ColourIds::textBoxHighlightColourId, juce::Colours::darkgrey);
-    }
-
     void drawRotarySlider(juce::Graphics&, int x, int y, int width, int height,
                           float sliderPosProportional, 
                           float rotaryStartAngle,
@@ -38,7 +30,4 @@ public:
 
     void getIdealPopupMenuItemSize(const juce::String& text, const bool isSeparator,
         int standardMenuItemHeight, int& idealWidth, int& idealHeight) override;
-
-private:
-
 };
