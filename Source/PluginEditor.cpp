@@ -90,8 +90,8 @@ void JDelayAudioProcessorEditor::resized()
     ratioUnitsLabel.setBounds(feedbackUnitsLabel.getBounds().withX(feedbackUnitsLabel.getRight()));
     wetLevelUnitsLabel.setBounds(ratioUnitsLabel.getBounds().withX(ratioUnitsLabel.getRight()));
 }
-
-void JDelayAudioProcessorEditor::createLabel(juce::Label& label, juce::String& text)
+	
+void JDelayAudioProcessorEditor::createLabel(juce::Label& label, const juce::String& text)
 {
     addAndMakeVisible(label);
     label.setFont(juce::Font(14.0f));

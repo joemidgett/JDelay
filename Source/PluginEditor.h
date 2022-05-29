@@ -25,7 +25,7 @@ public:
     void paint(juce::Graphics&) override;
     void resized() override;
 
-    void createLabel(juce::Label& label, juce::String& text);
+    void createLabel(juce::Label& label, const juce::String& text);
     void createLabels();
     void createDelayTypeComboBox();
     void modifyJDelaySliderColors(JDelaySlider& slider, std::vector<juce::String> colors);
