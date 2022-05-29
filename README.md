@@ -4,7 +4,7 @@ Delay audio plug-in
 ![JDelay Screenshot](jdelayscreenshot.png?raw=true "JDelay Screenshot")
 
 ## Installing
-1. Download plugin (Windows 10, Mac, Ubuntu Linux) "here"
+1. Download plugin (Windows 10, Mac, Ubuntu Linux) [here](https://github.com/joemidgett/JDelay/releases)
 2. Copy downloaded plugin to your DAW's VST/AU directory
 
 ## Building
